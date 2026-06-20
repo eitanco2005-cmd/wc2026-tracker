@@ -480,7 +480,9 @@ Respond ONLY with valid JSON (no markdown, no explanation):
     });
     const data=await resp.json();
     const text=(data.content||[]).map(c=>c.text||"").join("").replace(/```json|```/g,"").trim();
-    PRED_CACHE[k]=JSON.parse(text);
+    const jsonMatch=text.match(/\{[\s\S]*\}/);
+    if(jsonMatch)
+      {PRED_CACHE[k]=JSON.parse(jsonMatch[0]);}else{throw new Error("No JSON");}
   } catch(e){
     PRED_CACHE[k]={pick:dn(m.h),score:"1-0",prop:"Home win",propOdds:"2.0×",scoreOdds:"8.0×",confidence:"low",reasoning:"Prediction generation failed — defaulting to home win.",aiPicks:{chatgpt:dn(m.h)+" win",gemini:dn(m.h)+" 1-0",grok:dn(m.h)+" win"}};
   }
@@ -493,7 +495,7 @@ function triggerPredictions(){
   ALL_FIXTURES.forEach(m=>{
     if(getResult(m)) return;
     const diff=(new Date(m.date)-today)/(864e5);
-    if(diff>=0&&diff<=3) generatePrediction(m);
+    if(diff>=-1&&diff<=4) generatePrediction(m);
   });
 }
 
