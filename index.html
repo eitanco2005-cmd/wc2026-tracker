@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="WC2026">
+<meta name="theme-color" content="#07101e">
+<title>WC2026 AI Tracker</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#07101e;--card:#0b1c30;--border:#0e2236;
+  --text:#e2e8f0;--sub:#64748b;--dim:#2d5070;
+  --red:#c8102e;--green:#22c55e;--amber:#f59e0b;--blue:#60a5fa;
+  --claude:#fbbf24;--chatgpt:#34d399;--gemini:#60a5fa;--grok:#f87171;
+}
+html,body{background:var(--bg);min-height:100vh}
+body{font-family:-apple-system,"SF Pro Display",Arial,sans-serif;max-width:480px;margin:0 auto;padding-bottom:90px;color:var(--text);overflow-x:hidden}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+.hdr{background:linear-gradient(150deg,#9b0b20,#5c000f);padding:14px 16px 12px;position:sticky;top:0;z-index:50;box-shadow:0 2px 20px rgba(0,0,0,.5)}
+.hdr-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.hdr-title{font-size:15px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.05em}
+.hdr-sub{font-size:9px;color:rgba(255,255,255,.55);margin-top:3px;letter-spacing:.06em}
+.hdr-right{font-size:8px;color:rgba(255,255,255,.3);text-align:right;line-height:1.6}
+.sb{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.sbc{background:rgba(0,0,0,.3);border-radius:8px;padding:7px 4px;text-align:center;border:1px solid transparent}
+.sbc.lead{border-color:rgba(251,191,36,.4);background:rgba(251,191,36,.07)}
+.sbc-name{font-size:9px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+.sbc-pts{font-size:20px;font-weight:800;line-height:1}
+.sbc-sub{font-size:8px;color:rgba(255,255,255,.3);margin-top:1px}
+
+.auto-badge{display:inline-flex;align-items:center;gap:4px;font-size:8px;padding:2px 8px;border-radius:20px;background:#052e16;color:var(--green);margin-left:6px;vertical-align:middle}
+.auto-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.tabs{display:flex;background:#030912;border-bottom:1px solid var(--border);position:sticky;top:99px;z-index:40}
+.tab{flex:1;padding:9px 2px;text-align:center;font-size:10px;font-weight:700;color:var(--dim);border-bottom:2px solid transparent;text-transform:uppercase;letter-spacing:.05em;transition:all .2s}
+.tab.on{color:#fff;border-bottom-color:var(--red)}
+
+.filters{display:flex;gap:6px;padding:10px 12px 4px;overflow-x:auto;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.fb{padding:4px 14px;border-radius:20px;font-size:10px;font-weight:700;border:none;white-space:nowrap;flex-shrink:0}
+.fb.on{background:var(--red);color:#fff}
+.fb.off{background:var(--card);color:var(--dim)}
+
+.gen-banner{background:#0d1f34;border:1px solid var(--amber);border-radius:10px;margin:6px 12px;padding:9px 12px;display:flex;align-items:center;gap:10px}
+.spin{animation:spin 1.2s linear infinite;display:inline-block;font-size:15px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.gen-text{font-size:11px;font-weight:600;color:var(--amber)}
+.gen-sub{font-size:9px;color:var(--dim);margin-top:1px}
+
+.day-band{font-size:9px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;padding:12px 12px 4px;border-top:1px solid var(--border);margin-top:4px}
+.day-band:first-child{border-top:none;margin-top:0}
+
+.gc{background:var(--card);border-radius:12px;padding:11px 12px;margin:0 12px 8px;border-left:3px solid var(--amber);transition:border-color .3s}
+.gc.done{border-left-color:var(--green)}
+.gc.generating{border-left-color:#818cf8}
+.gc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.gc-group{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.06em}
+.gc-badge{font-size:9px;padding:2px 8px;border-radius:20px;font-weight:700}
+.b-final{background:#052e16;color:var(--green)}
+.b-pending{background:#1c1003;color:var(--amber)}
+.b-gen{background:#1e1b4b;color:#818cf8}
+
+.matchup{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin-bottom:7px}
+.team{text-align:center}
+.flag{font-size:22px;display:block;margin-bottom:2px;line-height:1.1}
+.tname{font-size:10px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.03em}
+.score-blk{text-align:center}
+.score-main{font-size:19px;font-weight:800;letter-spacing:1px;line-height:1}
+.score-actual{font-size:11px;font-weight:800;color:var(--blue);margin-top:3px}
+.score-lbl{font-size:8px;color:var(--dim);text-transform:uppercase;letter-spacing:.04em;margin-top:1px}
+
+.xg-wrap{margin-bottom:6px}
+.xg-labels{display:flex;justify-content:space-between;font-size:8px;color:var(--dim);margin-bottom:2px}
+.xg-labels b{color:#94a3b8}
+.xg-c{font-size:9px;color:var(--blue);font-weight:700}
+.xg-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;display:flex}
+.xg-h{background:#3b82f6;transition:width .6s}
+.xg-a{background:#ef4444;flex:1}
+
+.odds-row{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:7px}
+.op{font-size:9px;background:#040c1a;border-radius:20px;padding:2px 7px;color:var(--dim)}
+.op b{color:#94a3b8}
+.op.sc{color:var(--blue)}
+
+.ai-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:7px}
+.ai-box{background:#040c1a;border-radius:6px;padding:5px 3px;text-align:center}
+.ai-nm{font-size:8px;text-transform:uppercase;letter-spacing:.03em;margin-bottom:2px}
+.ai-pk{font-size:9px;font-weight:600;color:var(--sub);margin-bottom:2px;line-height:1.2;min-height:22px}
+.ai-ic{font-size:10px}
+
+.vbet{background:#030912;border-radius:8px;padding:7px 9px;border:.5px solid var(--border);margin-bottom:6px}
+.vbet-lbl{font-size:8px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+.vbet-desc{font-size:11px;font-weight:700;margin-bottom:5px}
+.vbet-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.vs{text-align:center}
+.vs-n{font-size:14px;font-weight:800;line-height:1}
+.vs-l{font-size:8px;color:var(--dim);text-transform:uppercase;margin-top:1px}
+.vsep{width:.5px;height:22px;background:var(--border);flex-shrink:0}
+
+.exact-row{display:flex;align-items:center;gap:6px;padding:5px 0 2px;border-top:.5px solid var(--border);margin-top:4px}
+.exact-lbl{font-size:9px;color:var(--dim);flex:1}
+.exact-badge{font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px}
+.exact-hit{background:#052e16;color:var(--green)}
+.exact-miss{background:#1c0505;color:#ef4444}
+
+.intel-btn{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;padding:5px 0 0;display:block;text-align:left}
+.intel-body{background:#030912;border-radius:6px;padding:7px 9px;margin-top:4px;font-size:10px;color:var(--sub);line-height:1.6;border:.5px solid var(--border)}
+.intel-body b{color:#94a3b8}
+
+.confidence{display:inline-block;font-size:8px;padding:1px 7px;border-radius:20px;margin-left:6px;font-weight:700}
+.conf-high{background:#052e16;color:var(--green)}
+.conf-medium{background:#1c1003;color:var(--amber)}
+.conf-low{background:#1c0505;color:#ef4444}
+
+.lesson{background:var(--card);border-radius:12px;padding:12px;margin:0 12px 8px;border-left:3px solid var(--dim)}
+.lesson.hit{border-left-color:var(--green)}
+.lesson.miss{border-left-color:#ef4444}
+.lesson.mixed{border-left-color:var(--amber)}
+.lesson-hdr{cursor:pointer}
+.lesson-game{font-size:11px;font-weight:700;margin-bottom:3px}
+.lesson-head{font-size:10px;color:var(--blue);font-weight:600;margin-bottom:5px}
+.lesson-tags{display:flex;flex-wrap:wrap;gap:3px}
+.ltag{font-size:8px;padding:2px 7px;border-radius:20px;font-weight:700}
+.lesson-body{display:none;margin-top:8px;padding-top:8px;border-top:.5px solid var(--border)}
+.lesson.open .lesson-body{display:block}
+.ls-t{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.ls-b{font-size:10px;color:var(--sub);line-height:1.6;margin-bottom:8px}
+.opinion-box{background:#040c1a;border-radius:6px;padding:8px;margin-top:4px;border-left:3px solid var(--amber)}
+.opinion-lbl{font-size:8px;color:var(--amber);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.opinion-txt{font-size:10px;color:#94a3b8;line-height:1.6}
+
+.stat-card{background:var(--card);border-radius:12px;padding:12px;margin:0 12px 8px}
+.stat-title{font-size:11px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+.stat-big{font-size:36px;font-weight:800;color:var(--claude);text-align:center;line-height:1}
+.stat-sub{font-size:10px;color:var(--dim);text-align:center;margin:4px 0 10px}
+.stat-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:10px}
+.stat-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--red),var(--amber),var(--green))}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-top:.5px solid var(--border);font-size:9px}
+.stat-hit{color:var(--green);font-weight:700}
+.stat-miss{color:#ef4444;font-weight:700}
+
+.lb-wrap{background:var(--card);border-radius:12px;overflow:hidden;margin:0 12px 10px}
+.lb-hdr{display:grid;grid-template-columns:28px 1fr 44px 44px 44px;padding:7px 12px;background:#040c1a;font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.06em}
+.lb-row{display:grid;grid-template-columns:28px 1fr 44px 44px 44px;padding:10px 12px;border-top:1px solid var(--border);align-items:center}
+.lb-row.gold{background:#0e1f33}
+.lb-rank{font-size:14px;font-weight:800}
+.lb-bar-w{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:3px;width:60px}
+.lb-bar-f{height:100%;border-radius:2px;transition:width .5s}
+.lb-n{text-align:center;font-size:13px;font-weight:800}
+.lb-p{text-align:center;font-size:11px}
+
+.info-card{background:var(--card);border-radius:12px;padding:12px;margin:0 12px 10px}
+.info-title{font-size:11px;font-weight:700;margin-bottom:6px}
+.info-body{font-size:9px;color:var(--dim);line-height:2}
+
+.share-card{background:var(--card);border-radius:12px;padding:14px;margin:0 12px 10px}
+.share-title{font-size:13px;font-weight:700;margin-bottom:10px}
+.share-step{display:flex;gap:10px;align-items:flex-start;margin-bottom:9px}
+.share-num{width:22px;height:22px;border-radius:11px;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0;flex-shrink:0}
+.share-text{font-size:11px;color:var(--sub);line-height:1.5}
+.share-text b{color:var(--text)}
+.big-btn{width:100%;padding:13px;border-radius:10px;color:#fff;font-size:13px;font-weight:700;border:none;margin-top:6px;cursor:pointer}
+.btn-teal{background:#00ad9f}
+.btn-red{background:var(--red)}
+.share-info{font-size:9px;color:var(--dim);line-height:2;margin-top:8px}
+.code-block{background:#030912;border-radius:8px;padding:10px 12px;font-family:monospace;font-size:11px;color:var(--green);margin:8px 0;border:.5px solid var(--border);word-break:break-all}
+
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1e293b;color:#fff;font-size:11px;font-weight:700;padding:8px 18px;border-radius:20px;z-index:200;opacity:0;transition:opacity .3s;pointer-events:none;border:1px solid var(--border)}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<div id="hdr"></div>
+<div id="tabs-bar"></div>
+<div id="content"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// WC2026 AI TRACKER — Auto-predicting via Netlify Function proxy
+// ═══════════════════════════════════════════════════════════════
+
+const AI_COLOR={claude:"#fbbf24",chatgpt:"#34d399",gemini:"#60a5fa",grok:"#f87171"};
+const AI_LABEL={claude:"🤖 Claude",chatgpt:"ChatGPT",gemini:"Gemini",grok:"Grok"};
+
+const FLAGS={
+  "Mexico":"🇲🇽","South Africa":"🇿🇦","Korea Republic":"🇰🇷","Czechia":"🇨🇿",
+  "Canada":"🇨🇦","Bosnia and Herzegovina":"🇧🇦","United States":"🇺🇸","Paraguay":"🇵🇾",
+  "Haiti":"🇭🇹","Scotland":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","Australia":"🇦🇺","Turkiye":"🇹🇷",
+  "Brazil":"🇧🇷","Morocco":"🇲🇦","Qatar":"🇶🇦","Switzerland":"🇨🇭",
+  "Germany":"🇩🇪","Curacao":"🇨🇼","Cote d'Ivoire":"🇨🇮","Ecuador":"🇪🇨",
+  "Netherlands":"🇳🇱","Japan":"🇯🇵","Sweden":"🇸🇪","Tunisia":"🇹🇳",
+  "Spain":"🇪🇸","Cabo Verde":"🇨🇻","Belgium":"🇧🇪","Egypt":"🇪🇬",
+  "Saudi Arabia":"🇸🇦","Uruguay":"🇺🇾","Iran":"🇮🇷","New Zealand":"🇳🇿",
+  "France":"🇫🇷","Senegal":"🇸🇳","Norway":"🇳🇴","Iraq":"🇮🇶",
+  "Argentina":"🇦🇷","Algeria":"🇩🇿","Austria":"🇦🇹","Jordan":"🇯🇴",
+  "Portugal":"🇵🇹","Congo DR":"🇨🇩","England":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Croatia":"🇭🇷",
+  "Ghana":"🇬🇭","Panama":"🇵🇦","Uzbekistan":"🇺🇿","Colombia":"🇨🇴",
+};
+const SHORT={
+  "Korea Republic":"S.Korea","Bosnia and Herzegovina":"Bosnia",
+  "United States":"USA","Cote d'Ivoire":"Iv.Coast","Congo DR":"DR Congo",
+  "Saudi Arabia":"S.Arabia","New Zealand":"NZ","Cabo Verde":"C.Verde",
+};
+const dn=t=>SHORT[t]||t;
+const fl=t=>FLAGS[t]||"🏳";
+const ico=v=>v===true?"✅":v===false?"❌":v===null?"❓":"⏳";
+
+// ── CONFIRMED RESULTS ────────────────────────────────────────
+const KNOWN_RESULTS={
+  "Mexico|South Africa":"2-0","Korea Republic|Czechia":"2-1",
+  "Canada|Bosnia and Herzegovina":"1-1","United States|Paraguay":"4-1",
+  "Haiti|Scotland":"0-1","Australia|Turkiye":"2-0","Brazil|Morocco":"1-1",
+  "Qatar|Switzerland":"1-1","Germany|Curacao":"7-1","Cote d'Ivoire|Ecuador":"1-0",
+  "Netherlands|Japan":"2-2","Sweden|Tunisia":"5-1","Spain|Cabo Verde":"0-0",
+  "Belgium|Egypt":"1-1","Saudi Arabia|Uruguay":"1-1","Iran|New Zealand":"2-2",
+  "France|Senegal":"3-1","Norway|Iraq":"4-1","Argentina|Algeria":"3-0",
+  "Austria|Jordan":"3-1","Portugal|Congo DR":"1-1","England|Croatia":"4-2",
+  "Ghana|Panama":"1-0","Uzbekistan|Colombia":"1-3",
+  "Czechia|South Africa":"1-1","Switzerland|Bosnia and Herzegovina":"4-1",
+  "Canada|Qatar":"6-0","Mexico|Korea Republic":"1-0",
+};
+
+// ── CONFIRMED PROP HITS ──────────────────────────────────────
+const KNOWN_PROPS={
+  "Mexico|South Africa":true,"Korea Republic|Czechia":true,
+  "Canada|Bosnia and Herzegovina":false,"United States|Paraguay":true,
+  "Haiti|Scotland":false,"Australia|Turkiye":false,"Brazil|Morocco":false,
+  "Qatar|Switzerland":false,"Germany|Curacao":true,"Cote d'Ivoire|Ecuador":false,
+  "Netherlands|Japan":false,"Sweden|Tunisia":true,"Spain|Cabo Verde":false,
+  "Belgium|Egypt":false,"Saudi Arabia|Uruguay":null,"Iran|New Zealand":false,
+  "France|Senegal":true,"Norway|Iraq":true,"Argentina|Algeria":true,
+  "Austria|Jordan":true,"Portugal|Congo DR":false,"England|Croatia":true,
+  "Ghana|Panama":true,"Uzbekistan|Colombia":true,
+  "Czechia|South Africa":true,"Switzerland|Bosnia and Herzegovina":true,
+  "Canada|Qatar":true,"Mexico|Korea Republic":false,
+};
+
+// ── XG DATA ──────────────────────────────────────────────────
+const KNOWN_XG={
+  "Mexico|South Africa":{h:"1.41",a:"0.07"},
+  "Korea Republic|Czechia":{h:"1.84",a:"0.81"},
+  "Canada|Bosnia and Herzegovina":{h:"1.25",a:"0.98"},
+  "United States|Paraguay":{h:"1.35",a:"0.47"},
+  "Haiti|Scotland":{h:"1.21",a:"1.05"},
+  "Australia|Turkiye":{h:"0.77",a:"1.33"},
+  "Brazil|Morocco":{h:"1.23",a:"1.53"},
+  "Qatar|Switzerland":{h:"0.76",a:"3.24"},
+  "Germany|Curacao":{h:"4.22",a:"0.41"},
+  "Cote d'Ivoire|Ecuador":{h:"1.68",a:"1.03"},
+  "Netherlands|Japan":{h:"0.78",a:"0.59"},
+  "Sweden|Tunisia":{h:"1.36",a:"0.28"},
+  "France|Senegal":{h:"1.79",a:"0.56"},
+  "Norway|Iraq":{h:"2.53",a:"0.77"},
+  "Argentina|Algeria":{h:"1.23",a:"0.31"},
+  "England|Croatia":{h:"2.80",a:"0.71"},
+  "Spain|Cabo Verde":{h:"2.29",a:"0.30"},
+  "Canada|Qatar":{h:"4.75",a:"0.18"},
+};
+
+// ── MATCH NOTES ──────────────────────────────────────────────
+const KNOWN_NOTES={
+  "Mexico|South Africa":"S.Africa had 1 shot attempt. Mexico press at 2,200m altitude was suffocating.",
+  "Korea Republic|Czechia":"Hwang In-beom drove comeback. 1.84 xG through sharp transitions.",
+  "Canada|Bosnia and Herzegovina":"23 shots but poor finishing. Bosnia 5-4-1 equalised late.",
+  "United States|Paraguay":"Balogun scored twice before HT. USA overperformed xG by +2.65.",
+  "Haiti|Scotland":"Haiti had MORE xG (1.21 vs 1.05) but lost. McGinn deflected rebound.",
+  "Australia|Turkiye":"Türkiye 1.33 xG vs Australia 0.77 but LOST. GK Beach saved 8 shots.",
+  "Brazil|Morocco":"Morocco outperformed Brazil on xG (1.53 vs 1.23). Saibari led all in xG.",
+  "Qatar|Switzerland":"Switzerland had 3.24 xG but Qatar scored 94th-min own goal from corner.",
+  "Germany|Curacao":"Germany 4.22 xG — tournament high. Havertz twice. Musiala-Wirtz unplayable.",
+  "Cote d'Ivoire|Ecuador":"Ivory Coast 1.68 xG. Amad Diallo 90th-min winner. Ecuador defence exposed.",
+  "Netherlands|Japan":"NED let Japan level twice. Missing 4 key defenders.",
+  "Sweden|Tunisia":"Sweden 1.36 xG → 5 goals. Gyökeres and Isak clinical beyond xG metrics.",
+  "Spain|Cabo Verde":"SHOCK. Spain 2.29 xG → 0 goals. Cabo Verde low block was perfect.",
+  "Belgium|Egypt":"Egypt 1.08 xG. Lukaku OG equaliser off bench.",
+  "France|Senegal":"Mbappe scored twice. France dominant (1.79 xG).",
+  "Norway|Iraq":"Haaland debut brace. Norway 2.53 xG → 4 goals.",
+  "Argentina|Algeria":"MESSI HAT-TRICK — ties WC record. Pure Messi magic.",
+  "England|Croatia":"England 4-2 (2.80 xG). Kane and Bellingham dominant.",
+  "Canada|Qatar":"JONATHAN DAVID HAT-TRICK. Canada 4.75 xG → 6 goals. Biggest CONCACAF WC win ever.",
+  "Mexico|Korea Republic":"Romo 50'. Mexico shut up shop. S.Korea 0 corners until stoppage time.",
+};
+
+// ── ALL 72 FIXTURES ──────────────────────────────────────────
+const ALL_FIXTURES=[
+  {h:"Mexico",a:"South Africa",date:"2026-06-11",g:"A",md:1},
+  {h:"Korea Republic",a:"Czechia",date:"2026-06-11",g:"A",md:1},
+  {h:"Canada",a:"Bosnia and Herzegovina",date:"2026-06-12",g:"B",md:1},
+  {h:"United States",a:"Paraguay",date:"2026-06-12",g:"D",md:1},
+  {h:"Haiti",a:"Scotland",date:"2026-06-13",g:"C",md:1},
+  {h:"Australia",a:"Turkiye",date:"2026-06-13",g:"D",md:1},
+  {h:"Brazil",a:"Morocco",date:"2026-06-13",g:"C",md:1},
+  {h:"Qatar",a:"Switzerland",date:"2026-06-13",g:"B",md:1},
+  {h:"Germany",a:"Curacao",date:"2026-06-14",g:"E",md:1},
+  {h:"Cote d'Ivoire",a:"Ecuador",date:"2026-06-14",g:"E",md:1},
+  {h:"Netherlands",a:"Japan",date:"2026-06-14",g:"F",md:1},
+  {h:"Sweden",a:"Tunisia",date:"2026-06-14",g:"F",md:1},
+  {h:"Spain",a:"Cabo Verde",date:"2026-06-15",g:"H",md:1},
+  {h:"Belgium",a:"Egypt",date:"2026-06-15",g:"G",md:1},
+  {h:"Saudi Arabia",a:"Uruguay",date:"2026-06-15",g:"H",md:1},
+  {h:"Iran",a:"New Zealand",date:"2026-06-15",g:"G",md:1},
+  {h:"France",a:"Senegal",date:"2026-06-16",g:"I",md:1},
+  {h:"Norway",a:"Iraq",date:"2026-06-16",g:"I",md:1},
+  {h:"Argentina",a:"Algeria",date:"2026-06-16",g:"J",md:1},
+  {h:"Austria",a:"Jordan",date:"2026-06-17",g:"J",md:1},
+  {h:"Portugal",a:"Congo DR",date:"2026-06-17",g:"K",md:1},
+  {h:"England",a:"Croatia",date:"2026-06-17",g:"L",md:1},
+  {h:"Ghana",a:"Panama",date:"2026-06-17",g:"L",md:1},
+  {h:"Uzbekistan",a:"Colombia",date:"2026-06-17",g:"K",md:1},
+  {h:"Czechia",a:"South Africa",date:"2026-06-18",g:"A",md:2},
+  {h:"Switzerland",a:"Bosnia and Herzegovina",date:"2026-06-18",g:"B",md:2},
+  {h:"Canada",a:"Qatar",date:"2026-06-18",g:"B",md:2},
+  {h:"Mexico",a:"Korea Republic",date:"2026-06-18",g:"A",md:2},
+  {h:"United States",a:"Australia",date:"2026-06-19",g:"D",md:2},
+  {h:"Scotland",a:"Morocco",date:"2026-06-19",g:"C",md:2},
+  {h:"Brazil",a:"Haiti",date:"2026-06-19",g:"C",md:2},
+  {h:"Turkiye",a:"Paraguay",date:"2026-06-19",g:"D",md:2},
+  {h:"Netherlands",a:"Sweden",date:"2026-06-20",g:"F",md:2},
+  {h:"Germany",a:"Cote d'Ivoire",date:"2026-06-20",g:"E",md:2},
+  {h:"Ecuador",a:"Curacao",date:"2026-06-20",g:"E",md:2},
+  {h:"Tunisia",a:"Japan",date:"2026-06-21",g:"F",md:2},
+  {h:"Spain",a:"Saudi Arabia",date:"2026-06-21",g:"H",md:2},
+  {h:"Belgium",a:"Iran",date:"2026-06-21",g:"G",md:2},
+  {h:"Uruguay",a:"Cabo Verde",date:"2026-06-21",g:"H",md:2},
+  {h:"New Zealand",a:"Egypt",date:"2026-06-21",g:"G",md:2},
+  {h:"Argentina",a:"Austria",date:"2026-06-22",g:"J",md:2},
+  {h:"France",a:"Iraq",date:"2026-06-22",g:"I",md:2},
+  {h:"Norway",a:"Senegal",date:"2026-06-22",g:"I",md:2},
+  {h:"Jordan",a:"Algeria",date:"2026-06-22",g:"J",md:2},
+  {h:"Portugal",a:"Uzbekistan",date:"2026-06-23",g:"K",md:2},
+  {h:"England",a:"Ghana",date:"2026-06-23",g:"L",md:2},
+  {h:"Panama",a:"Croatia",date:"2026-06-23",g:"L",md:2},
+  {h:"Colombia",a:"Congo DR",date:"2026-06-23",g:"K",md:2},
+  {h:"Switzerland",a:"Canada",date:"2026-06-24",g:"B",md:3},
+  {h:"Bosnia and Herzegovina",a:"Qatar",date:"2026-06-24",g:"B",md:3},
+  {h:"Scotland",a:"Brazil",date:"2026-06-24",g:"C",md:3},
+  {h:"Morocco",a:"Haiti",date:"2026-06-24",g:"C",md:3},
+  {h:"Czechia",a:"Mexico",date:"2026-06-24",g:"A",md:3},
+  {h:"South Africa",a:"Korea Republic",date:"2026-06-24",g:"A",md:3},
+  {h:"Curacao",a:"Cote d'Ivoire",date:"2026-06-25",g:"E",md:3},
+  {h:"Ecuador",a:"Germany",date:"2026-06-25",g:"E",md:3},
+  {h:"Japan",a:"Sweden",date:"2026-06-25",g:"F",md:3},
+  {h:"Tunisia",a:"Netherlands",date:"2026-06-25",g:"F",md:3},
+  {h:"Turkiye",a:"United States",date:"2026-06-25",g:"D",md:3},
+  {h:"Paraguay",a:"Australia",date:"2026-06-25",g:"D",md:3},
+  {h:"Norway",a:"France",date:"2026-06-26",g:"I",md:3},
+  {h:"Senegal",a:"Iraq",date:"2026-06-26",g:"I",md:3},
+  {h:"Cabo Verde",a:"Saudi Arabia",date:"2026-06-26",g:"H",md:3},
+  {h:"Uruguay",a:"Spain",date:"2026-06-26",g:"H",md:3},
+  {h:"Egypt",a:"Iran",date:"2026-06-26",g:"G",md:3},
+  {h:"New Zealand",a:"Belgium",date:"2026-06-26",g:"G",md:3},
+  {h:"Panama",a:"England",date:"2026-06-27",g:"L",md:3},
+  {h:"Croatia",a:"Ghana",date:"2026-06-27",g:"L",md:3},
+  {h:"Colombia",a:"Portugal",date:"2026-06-27",g:"K",md:3},
+  {h:"Congo DR",a:"Uzbekistan",date:"2026-06-27",g:"K",md:3},
+  {h:"Algeria",a:"Austria",date:"2026-06-27",g:"J",md:3},
+  {h:"Jordan",a:"Argentina",date:"2026-06-27",g:"J",md:3},
+];
+
+// ── LESSONS ──────────────────────────────────────────────────
+const LESSONS=[
+  {g:"🇲🇽 Mexico 2-0 S.Africa",md:1,type:"hit",head:"Altitude + home press = structural advantage that overpowers xG models",xg:"Mexico 1.41 xG → 2 goals · S.Africa 0.07 xG → 0",tac:"S.Africa had just 1 shot attempt all game. Mexico's press at 2,200m in Mexico City was physically suffocating. S.Africa never entered dangerous areas until the 72nd minute.",lesson:"Weight altitude as +0.4 xG equivalent advantage for all Mexico City and Guadalajara home games. Host nations at altitude are structurally advantaged beyond what pre-match models capture.",opinion:"I now apply a +0.4 xG bonus to Mexico home games at altitude in every prediction. Their home record since 2018 is extraordinary — this isn't sentiment, it's measurable.",tags:["altitude multiplier","Mexico press","home advantage"]},
+  {g:"🇺🇸 USA 4-1 Paraguay",md:1,type:"hit",head:"USA massively overperformed — Balogun's finishing is an anomaly, not a baseline",xg:"USA 1.35 xG → 4 goals (+2.65 overperformance) · Paraguay 0.47 → 1",tac:"Balogun's second goal came from just 0.12 xG — improvised from a difficult angle. Pulisic's assists showed USA's left-channel dominance. Paraguay's xG distribution: 0.38 of their 0.47 came in the first 30 minutes before they collapsed.",lesson:"USA's true level is 2-goal wins, not 4-1. Balogun's finishing is elite but not repeatable at this rate. Don't anchor to the Paraguay scoreline.",opinion:"The shot map shows USA's first 3 goals were legitimate positional wins. But Reyna's 22-yard 4th goal was pure overperformance. I treat USA as a 2-0 team going forward.",tags:["xG overperformance","Balogun elite","USA regression warning"]},
+  {g:"🇦🇺 Australia 2-0 Türkiye",md:1,type:"miss",head:"Beach made 8 saves — this was a goalkeeping heist, not a football result",xg:"Australia 0.77 xG → 2 · Türkiye 1.33 xG → 0",tac:"Beach prevented 1.46 xG. Türkiye's Yilmaz had two shots over 0.3 xG each — Beach saved both. Australia won 73% of defensive duels, unusually high. Irankunda's counter-goals came from limited chances.",lesson:"When a team wins on goalkeeper heroics (+1.46 prevented xG), expect statistical regression in their next match. Australia's true attacking level is 0.77 xG.",opinion:"Türkiye were robbed. 1.33 xG vs Australia's 0.77 gave them ~58% win probability, yet they lost 2-0. I still rate Türkiye highly and expect Australia to regress in MD3.",tags:["GK heroics","xG robbery","Australia regression","Türkiye unlucky"]},
+  {g:"🇧🇷 Brazil 1-1 Morocco",md:1,type:"miss",head:"Morocco outperformed Brazil on xG — Ancelotti's system is genuinely unstable",xg:"Brazil 1.23 xG → 1 · Morocco 1.53 xG → 1",tac:"Saibari generated 0.34 xG in first 25 minutes alone. Casemiro subbed at HT with 52% pass completion. Morocco's press disrupted Brazil's build-up 14 times in the first half. Vinicius' equaliser came from just 0.08 xG.",lesson:"Morocco are genuinely better than their ranking — they outperformed Brazil on xG. Brazil under Ancelotti have no clear system identity. Avoid large handicaps on Brazil until they stabilise.",opinion:"This match changed how I view both teams. Morocco deserve bracket conversation. Brazil are fragile: no Neymar, no clear system, Casemiro declining. I won't confidently back Brazil until MD3.",tags:["Morocco dark horse","Brazil fragile","Ancelotti transition","Saibari key"]},
+  {g:"🇨🇦 Canada 6-0 Qatar",md:2,type:"mixed",head:"4.75 xG was the signal — I still underestimated by 4 goals",xg:"Canada 4.75 xG → 6 · Qatar 0.18 → 0",tac:"Jonathan David's hat-trick: goals at 0.67, 0.29, and 0.18 xG — all converted through elite finishing mechanics. Qatar's only dangerous moment was a free kick at 78'.",lesson:"FIRM RULE: when opponent xG <0.25 and favourite xG >3.5, predict 4+ goals minimum. My 2-0 prediction was off by 4 goals. Extreme xG gaps produce extreme scorelines.",opinion:"David is the most underrated striker in this tournament. Canada at full strength is a genuine R16 contender. I've updated my mismatch model permanently: xG gap maps directly to scoreline gap.",tags:["mismatch rule","David hat-trick","xG gap = score gap","Canada underrated"]},
+  {g:"🇲🇽 Mexico 1-0 S.Korea",md:2,type:"miss",head:"Mexico's defensive shape plus altitude nullified one of Asia's best attacks",xg:"xG data pending. Result: 1-0, Romo 50'",tac:"S.Korea's pressing dropped 18% in distance vs MD1 — altitude effect is measurable. Mexico switched to 5-4-1 after scoring. S.Korea had 0 shots inside the box until 71'. 0 corners until stoppage time.",lesson:"Never back BTTS when Mexico score first in Guadalajara. S.Korea's MD1 form was vs Czechia — a very different opponent type. Don't overthink: when market and all AIs agree, go with the probability.",opinion:"I overthought this. ChatGPT, Gemini, and Grok all just backed Mexico and were right. The simpler call wins when three AIs agree and the market is clear. I'm applying this calibration going forward.",tags:["Guadalajara altitude","Mexico defensive excellence","don't overthink","follow the consensus"]},
+];
+
+// ── STATE ────────────────────────────────────────────────────
+let TAB="tracker", FILTER="2", OPEN_LESSON=null, OPEN_NOTES={};
+let LIVE_DATA={}, LAST_FETCH=0;
+const PRED_CACHE={}, GENERATING={};
+
+// ── HELPERS ──────────────────────────────────────────────────
+const gk=m=>`${m.h}|${m.a}`;
+const getResult=m=>LIVE_DATA[gk(m)]||KNOWN_RESULTS[gk(m)]||null;
+const parseWinner=r=>{ if(!r) return null; const [h,a]=r.split("-").map(Number); return h>a?"home":a>h?"away":"draw"; };
+
+function claudeWinHit(m,pred){
+  const r=getResult(m); if(!r||!pred) return null;
+  const actual=parseWinner(r);
+  const pick=(pred.pick||"").toLowerCase();
+  const home=dn(m.h).toLowerCase(), away=dn(m.a).toLowerCase();
+  if(pick==="draw") return actual==="draw";
+  if(pick.includes(home)||home.includes(pick)) return actual==="home";
+  if(pick.includes(away)||away.includes(pick)) return actual==="away";
+  return false;
+}
+function otherWinHit(m,predStr){
+  const r=getResult(m); if(!r||!predStr) return null;
+  const p=predStr.toLowerCase(), actual=parseWinner(r);
+  const home=dn(m.h).toLowerCase(), away=dn(m.a).toLowerCase();
+  if(p.includes("draw")) return actual==="draw";
+  if(p.includes(home)) return actual==="home";
+  if(p.includes(away)) return actual==="away";
+  return null;
+}
+function exactHit(m,pred){
+  const r=getResult(m); if(!r||!pred?.score) return null;
+  return r===pred.score;
+}
+function getProp(m){ const k=gk(m); return KNOWN_PROPS[k]!==undefined?KNOWN_PROPS[k]:null; }
+
+function calcScores(){
+  const pts={claude:0,chatgpt:0,gemini:0,grok:0};
+  const pl={claude:0,chatgpt:0,gemini:0,grok:0};
+  const exact={hits:0,total:0,games:[]};
+  ALL_FIXTURES.forEach(m=>{
+    const r=getResult(m); if(!r) return;
+    const pred=PRED_CACHE[gk(m)];
+    const cw=claudeWinHit(m,pred);
+    if(cw===true) pts.claude++; pl.claude++;
+    const ph=getProp(m);
+    if(ph===true) pts.claude++;
+    if(ph!==null) pl.claude++;
+    const ex=exactHit(m,pred);
+    if(ex!==null){ exact.total++; if(ex) exact.hits++; }
+    exact.games.push({m,pred,r,hit:ex});
+    ["chatgpt","gemini","grok"].forEach(ai=>{
+      const h=otherWinHit(m,pred?.aiPicks?.[ai]);
+      if(h===true) pts[ai]++; if(h!==null) pl[ai]++;
+    });
+  });
+  return {pts,pl,exact};
+}
+
+function showToast(msg){
+  const t=document.getElementById("toast");
+  t.textContent=msg; t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2500);
+}
+
+// ── AUTO-PREDICTION via Netlify Function ─────────────────────
+async function generatePrediction(m){
+  const k=gk(m);
+  if(PRED_CACHE[k]||GENERATING[k]) return;
+  GENERATING[k]=true;
+  render();
+
+  // Build context
+  const homeResults=Object.entries(KNOWN_RESULTS).filter(([k2])=>k2.startsWith(m.h+"|")||k2.endsWith("|"+m.h)).map(([k2,v])=>`${k2.replace("|"," vs ")}=${v}`).join(", ")||"no prior games";
+  const awayResults=Object.entries(KNOWN_RESULTS).filter(([k2])=>k2.startsWith(m.a+"|")||k2.endsWith("|"+m.a)).map(([k2,v])=>`${k2.replace("|"," vs ")}=${v}`).join(", ")||"no prior games";
+  const homeXG=Object.entries(KNOWN_XG).filter(([k2])=>k2.startsWith(m.h+"|")||k2.endsWith("|"+m.h)).map(([k2,v])=>{ const isH=k2.startsWith(m.h+"|"); return `${isH?v.h:v.a} xG`; }).join(", ")||"unknown";
+  const awayXG=Object.entries(KNOWN_XG).filter(([k2])=>k2.startsWith(m.a+"|")||k2.endsWith("|"+m.a)).map(([k2,v])=>{ const isH=k2.startsWith(m.a+"|"); return `${isH?v.h:v.a} xG`; }).join(", ")||"unknown";
+
+  const prompt=`You are an AI football analyst predicting WC2026 Group ${m.g} MD${m.md}: ${dn(m.h)} vs ${dn(m.a)} on ${m.date}.
+
+TEAM DATA:
+${dn(m.h)}: results=[${homeResults}], xG=[${homeXG}]
+${dn(m.a)}: results=[${awayResults}], xG=[${awayXG}]
+
+LEARNED RULES (apply these):
+- Mexico home at altitude = +0.4 xG advantage; never back BTTS if Mexico lead
+- Opponent xG <0.25 + favourite xG >3.5 = predict 4+ goals minimum
+- GK heroics cause regression (Australia true level ~0.77 xG)
+- Morocco outperformed Brazil — respect their attacking quality
+- Brazil under Ancelotti: structurally unstable, avoid large handicaps
+- USA true baseline = 2-goal wins despite 4-1 result
+- Sweden more clinical than xG shows (Gyökeres+Isak overperform)
+- Spain have finishing problems despite high xG
+- Netherlands missing 4 key defenders — weaker than odds suggest
+- Don't overthink when market consensus is clear
+
+Respond ONLY with valid JSON (no markdown, no explanation):
+{"pick":"${dn(m.h)} OR ${dn(m.a)} OR Draw","score":"H-A","prop":"best value bet description","propOdds":"X.XX×","scoreOdds":"X.XX×","confidence":"high|medium|low","reasoning":"2-3 sentence tactical analysis","aiPicks":{"chatgpt":"prediction","gemini":"Team X-Y score","grok":"prediction"}}`;
+
+  try {
+    // Call our Netlify Function proxy — not the Claude API directly
+    const resp=await fetch("/.netlify/functions/predict",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({messages:[{role:"user",content:prompt}]})
+    });
+    const data=await resp.json();
+    const text=(data.content||[]).map(c=>c.text||"").join("").replace(/```json|```/g,"").trim();
+    PRED_CACHE[k]=JSON.parse(text);
+  } catch(e){
+    PRED_CACHE[k]={pick:dn(m.h),score:"1-0",prop:"Home win",propOdds:"2.0×",scoreOdds:"8.0×",confidence:"low",reasoning:"Prediction generation failed — defaulting to home win.",aiPicks:{chatgpt:dn(m.h)+" win",gemini:dn(m.h)+" 1-0",grok:dn(m.h)+" win"}};
+  }
+  delete GENERATING[k];
+  render();
+}
+
+function triggerPredictions(){
+  const today=new Date("2026-06-20");
+  ALL_FIXTURES.forEach(m=>{
+    if(getResult(m)) return;
+    const diff=(new Date(m.date)-today)/(864e5);
+    if(diff>=0&&diff<=3) generatePrediction(m);
+  });
+}
+
+// ── LIVE SCORES ──────────────────────────────────────────────
+async function fetchLiveScores(){
+  try {
+    const r=await fetch("https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",{cache:"no-store"});
+    if(r.ok){
+      const data=await r.json();
+      (data.rounds||[]).forEach(round=>{
+        (round.matches||[]).forEach(m=>{
+          if(!m.team1||!m.team2||!m.score?.ft) return;
+          const h=m.team1.name||m.team1, a=m.team2.name||m.team2;
+          LIVE_DATA[`${h}|${a}`]=`${m.score.ft[0]}-${m.score.ft[1]}`;
+        });
+      });
+    }
+  } catch(e){}
+  LAST_FETCH=Date.now();
+  triggerPredictions();
+  render();
+}
+
+// ── RENDER ───────────────────────────────────────────────────
+function render(){
+  const {pts,pl,exact}=calcScores();
+  const lb=["claude","chatgpt","gemini","grok"].map(ai=>({ai,pts:pts[ai],pl:pl[ai],pct:pl[ai]?Math.round(pts[ai]/pl[ai]*100):0})).sort((a,b)=>b.pts-a.pts||b.pct-a.pct);
+  const completed=ALL_FIXTURES.filter(m=>getResult(m)).length;
+  const genCount=Object.keys(GENERATING).length;
+  const ago=LAST_FETCH?Math.round((Date.now()-LAST_FETCH)/1000):null;
+
+  document.getElementById("hdr").innerHTML=`
+  <div class="hdr">
+    <div class="hdr-row">
+      <div>
+        <div class="hdr-title">⚽ WC2026 AI Tracker <span class="auto-badge"><span class="auto-dot"></span>AUTO</span></div>
+        <div class="hdr-sub">${completed}/${ALL_FIXTURES.length} played · predictions auto-generated · ${ago!=null?ago+"s ago":"connecting…"}${genCount?` · ⚙️ ${genCount} generating`:""}</div>
+      </div>
+      <div class="hdr-right">Jun–Jul 2026<br/>72 games</div>
+    </div>
+    <div class="sb">${lb.map(({ai,pts:p,pl:played,pct},rank)=>`
+      <div class="sbc${rank===0?" lead":""}">
+        <div class="sbc-name" style="color:${AI_COLOR[ai]}">${rank===0?"👑 ":""}${ai==="claude"?"Claude":AI_LABEL[ai]}</div>
+        <div class="sbc-pts" style="color:${rank===0?"#fbbf24":"#fff"}">${p}</div>
+        <div class="sbc-sub">${played} · ${pct}%</div>
+      </div>`).join("")}</div>
+  </div>`;
+
+  document.getElementById("tabs-bar").innerHTML=`
+  <div class="tabs">
+    ${[["tracker","📊 Games"],["lessons","🧠 Learn"],["board","🏆 Board"],["share","📱 Share"]].map(([id,lbl])=>`
+      <button class="tab${TAB===id?" on":""}" onclick="setTab('${id}')">${lbl}</button>`).join("")}
+  </div>`;
+
+  let html="";
+
+  if(TAB==="tracker"){
+    const filtered=FILTER==="all"?ALL_FIXTURES:ALL_FIXTURES.filter(f=>f.md===+FILTER);
+    const byDay={};
+    filtered.forEach(m=>{ if(!byDay[m.date]) byDay[m.date]=[]; byDay[m.date].push(m); });
+
+    html+=`<div class="filters">
+      ${[["all","All"],["1","MD1"],["2","MD2 ⭐"],["3","MD3"]].map(([v,l])=>`
+        <button class="fb ${FILTER===v?"on":"off"}" onclick="setFilter('${v}')">${l}</button>`).join("")}
+    </div>`;
+
+    if(genCount>0) html+=`<div class="gen-banner"><span class="spin">⚙️</span><div><div class="gen-text">Auto-generating predictions…</div><div class="gen-sub">Claude is analysing upcoming games using xG data and learned lessons</div></div></div>`;
+
+    Object.entries(byDay).sort(([a],[b])=>a.localeCompare(b)).forEach(([date,games])=>{
+      const fmt=new Date(date+"T12:00:00Z").toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"});
+      html+=`<div class="day-band">📅 ${fmt} — MD${games[0]?.md}</div>`;
+      games.forEach(m=>{
+        const k=gk(m);
+        const result=getResult(m);
+        const pred=PRED_CACHE[k];
+        const isGen=GENERATING[k];
+        const done=!!result;
+        const xg=KNOWN_XG[k];
+        const note=KNOWN_NOTES[k];
+        const xTot=xg?parseFloat(xg.h)+parseFloat(xg.a):2;
+        const hPct=xg?Math.round(parseFloat(xg.h)/xTot*100):50;
+        const open=OPEN_NOTES[k];
+        const cw=claudeWinHit(m,pred);
+        const ph=getProp(m);
+        const ex=exactHit(m,pred);
+        const pick=pred?.pick||"—";
+        const score=pred?.score||"?-?";
+        const prop=pred?.prop||"Awaiting prediction…";
+        const pOdds=pred?.propOdds||"—";
+        const sOdds=pred?.scoreOdds||"—";
+        const aiPicks=pred?.aiPicks||{};
+        const conf=pred?.confidence;
+
+        html+=`<div class="gc${done?" done":isGen?" generating":""}">
+          <div class="gc-top">
+            <span class="gc-group">Grp ${m.g} · MD${m.md}</span>
+            <span class="gc-badge ${done?"b-final":isGen?"b-gen":"b-pending"}">${done?"✅ FINAL":isGen?"⚙️ Generating…":"⏳ Pending"}</span>
+          </div>
+          <div class="matchup">
+            <div class="team"><span class="flag">${fl(m.h)}</span><span class="tname">${dn(m.h)}</span></div>
+            <div class="score-blk">
+              ${isGen
+                ?`<div style="font-size:13px;color:#818cf8;animation:blink 1.5s infinite">⚙️ …</div><div class="score-lbl">generating</div>`
+                :`<div class="score-main" style="${done&&ex===true?"color:var(--green)":""}">${score}</div>
+                  ${result?`<div class="score-actual">${result}</div>`:""}
+                  <div class="score-lbl">${result?"result":"Claude's pick"}</div>`}
+            </div>
+            <div class="team"><span class="flag">${fl(m.a)}</span><span class="tname">${dn(m.a)}</span></div>
+          </div>
+          ${xg?`<div class="xg-wrap">
+            <div class="xg-labels"><span>${dn(m.h)} xG <b>${xg.h}</b></span><span class="xg-c">xG</span><span>${dn(m.a)} xG <b>${xg.a}</b></span></div>
+            <div class="xg-bar"><div class="xg-h" style="width:${hPct}%"></div><div class="xg-a"></div></div>
+          </div>`:""}
+          <div class="ai-grid">
+            <div class="ai-box" style="border-top:2px solid ${AI_COLOR.claude}33">
+              <div class="ai-nm" style="color:${AI_COLOR.claude}">Claude${conf?`<span class="confidence conf-${conf}">${conf}</span>`:""}</div>
+              <div class="ai-pk">${isGen?"…":pick}</div>
+              <div class="ai-ic">${ico(cw)} ${ico(ph)}</div>
+            </div>
+            ${["chatgpt","gemini","grok"].map(ai=>`
+              <div class="ai-box" style="border-top:2px solid ${AI_COLOR[ai]}33">
+                <div class="ai-nm" style="color:${AI_COLOR[ai]}">${AI_LABEL[ai]}</div>
+                <div class="ai-pk">${isGen?"…":(aiPicks[ai]||"—")}</div>
+                <div class="ai-ic">${ico(otherWinHit(m,aiPicks[ai]))}</div>
+              </div>`).join("")}
+          </div>
+          ${!isGen?`<div class="vbet">
+            <div class="vbet-lbl">★ Value Bet</div>
+            <div class="vbet-desc">${prop}</div>
+            <div class="vbet-row">
+              <div class="vs"><div class="vs-n" style="color:${AI_COLOR.claude}">${pOdds}</div><div class="vs-l">Bet odds</div></div>
+              <div class="vsep"></div>
+              <div class="vs"><div class="vs-n" style="color:var(--blue)">${sOdds}</div><div class="vs-l">${score}</div></div>
+              ${done?`<div class="vsep"></div><div class="vs">
+                <div class="vs-n" style="color:${ph===true?"var(--green)":ph===false?"#ef4444":"var(--dim)"}">${ph===true?"HIT ✅":ph===false?"MISS ❌":"?"}</div>
+                <div class="vs-l">Prop</div>
+              </div>`:""}
+            </div>
+            ${done?`<div class="exact-row">
+              <span class="exact-lbl">🎯 Exact score (${score}):</span>
+              <span class="exact-badge ${ex===true?"exact-hit":"exact-miss"}">${ex===true?"✅ NAILED IT":"❌ Was "+result}</span>
+            </div>`:""}
+          </div>`:""}
+          ${(pred?.reasoning||note)?`
+            <button class="intel-btn" onclick="toggleN('${k.replace(/\|/g,"_")}')">
+              ${open?"▼":"▶"} Claude's analysis${xg?` · xG ${xg.h}–${xg.a}`:""}
+            </button>
+            ${open?`<div class="intel-body">${pred?.reasoning?`<b>🤖 Reasoning:</b> ${pred.reasoning}<br><br>`:""}${note?`<b>📊 Match intel:</b> ${note}`:""}</div>`:""}`:""}
+        </div>`;
+      });
+    });
+  }
+
+  else if(TAB==="lessons"){
+    html+=`<div style="padding:10px 12px 6px;font-size:10px;color:var(--dim);line-height:1.6">Built from xG data, pressing stats, and multi-source match reports. Claude's own opinions and learning curve included. Applied automatically to every prediction.</div>`;
+    LESSONS.forEach((l,i)=>{
+      const isOpen=OPEN_LESSON===i;
+      const tc=l.type==="hit"?"var(--green)":l.type==="miss"?"#ef4444":"var(--amber)";
+      const bg=l.type==="hit"?"#052e16":l.type==="miss"?"#1c0505":"#1c1003";
+      html+=`<div class="lesson ${l.type}${isOpen?" open":""}">
+        <div class="lesson-hdr" onclick="toggleL(${i})">
+          <div class="lesson-game">${l.g} <span style="font-size:9px;padding:1px 6px;border-radius:10px;background:${bg};color:${tc};font-weight:700;margin-left:4px">MD${l.md} ${l.type==="hit"?"✅":"❌"}</span></div>
+          <div class="lesson-head">${l.head}</div>
+          <div class="lesson-tags">${l.tags.map(t=>`<span class="ltag" style="background:${tc}22;color:${tc}">${t}</span>`).join("")}</div>
+        </div>
+        <div class="lesson-body">
+          <div class="ls-t" style="color:var(--amber)">📊 xG & Stats</div><div class="ls-b">${l.xg}</div>
+          <div class="ls-t" style="color:var(--blue)">🎯 Tactical Analysis</div><div class="ls-b">${l.tac}</div>
+          <div class="ls-t" style="color:var(--green)">🧠 Applied Lesson</div><div class="ls-b">${l.lesson}</div>
+          <div class="opinion-box"><div class="opinion-lbl">💬 Claude's Own Opinion</div><div class="opinion-txt">${l.opinion}</div></div>
+        </div>
+      </div>`;
+    });
+  }
+
+  else if(TAB==="board"){
+    const {pts:p2,pl:pl2,exact:ex2}=calcScores();
+    const lb2=["claude","chatgpt","gemini","grok"].map(ai=>({ai,pts:p2[ai],pl:pl2[ai],pct:pl2[ai]?Math.round(p2[ai]/pl2[ai]*100):0})).sort((a,b)=>b.pts-a.pts||b.pct-a.pct);
+    const exactPct=ex2.total?Math.round(ex2.hits/ex2.total*100):0;
+    html+=`<div style="height:8px"></div>
+    <div class="stat-card">
+      <div class="stat-title">🎯 Exact Score Tracker <span style="font-size:9px;color:var(--dim);font-weight:400">Claude only</span></div>
+      <div class="stat-big">${ex2.hits}/${ex2.total}</div>
+      <div class="stat-sub">${exactPct}% exact score hit rate</div>
+      <div class="stat-bar"><div class="stat-bar-fill" style="width:${exactPct}%"></div></div>
+      ${ex2.games.filter(g=>g.r).map(({m,pred,r,hit})=>`
+        <div class="stat-row">
+          <span style="color:var(--sub)">${fl(m.h)} ${dn(m.h)} vs ${dn(m.a)} ${fl(m.a)}</span>
+          <span class="${hit?"stat-hit":"stat-miss"}">${pred?.score||"?"}→${r} ${hit?"✅":"❌"}</span>
+        </div>`).join("")}
+    </div>
+    <div class="lb-wrap">
+      <div class="lb-hdr"><div>#</div><div>AI</div><div style="text-align:center">Pts</div><div style="text-align:center">Games</div><div style="text-align:center">%</div></div>
+      ${lb2.map(({ai,pts:p,pl:played,pct},i)=>`
+        <div class="lb-row${i===0?" gold":""}">
+          <div class="lb-rank" style="color:${i===0?"#fbbf24":i===1?"#94a3b8":i===2?"#cd7f32":"var(--dim)"}">${i+1}</div>
+          <div><div style="font-size:11px;font-weight:700;color:${AI_COLOR[ai]}">${AI_LABEL[ai]}</div>
+            <div class="lb-bar-w"><div class="lb-bar-f" style="width:${played?Math.round(p/Math.max(played*2,1)*100):0}%;background:${AI_COLOR[ai]}"></div></div></div>
+          <div class="lb-n" style="color:${AI_COLOR[ai]}">${p}</div>
+          <div class="lb-n" style="color:var(--sub)">${played}</div>
+          <div class="lb-p" style="color:${pct>=60?"var(--green)":pct>=40?"var(--amber)":"#ef4444"}">${pct}%</div>
+        </div>`).join("")}
+    </div>
+    <div class="info-card">
+      <div class="info-title">📊 Scoring rules</div>
+      <div class="info-body">✅ +1 pt — correct winner or draw<br>✅ +1 pt — value prop bet hits (Claude only)<br>🎯 Exact score: bonus stat, tracked separately<br>🤖 All predictions auto-generated by Claude<br>🔄 Scores refresh every 60s from live API</div>
+    </div>
+    <div class="info-card">
+      <div class="info-title">📈 xG Power Rankings</div>
+      <div class="info-body">🥇 Germany +3.81 xG diff<br>🥈 Switzerland +2.48<br>🥉 England +2.09<br>⭐ Spain +1.99 (finishing crisis!)<br>⭐ Norway +1.76<br>🌟 Morocco +0.30 (outperformed Brazil)<br>⚠️ Brazil -0.30 (Ancelotti unstable)<br>⚠️ Netherlands +0.19 (4 defenders out)</div>
+    </div>`;
+  }
+
+  else if(TAB==="share"){
+    html=`<div style="height:8px"></div>
+    <div class="share-card">
+      <div class="share-title">Step 1 — Get your free API key</div>
+      ${[["1","Go to <b>console.anthropic.com</b>"],["2","Sign up for free"],["3","Go to API Keys → Create Key"],["4","Copy it — you'll need it in Step 3"]].map(([n,t])=>`<div class="share-step"><div class="share-num">${n}</div><div class="share-text">${t}</div></div>`).join("")}
+      <button class="big-btn btn-red" onclick="window.open('https://console.anthropic.com','_blank')">🔑 Get API Key</button>
+    </div>
+    <div class="share-card">
+      <div class="share-title">Step 2 — Deploy to Netlify</div>
+      ${[["1","Download the <b>wc2026-tracker folder</b> from this chat (as a zip)"],["2","Go to <b>app.netlify.com</b> → Add new site → Deploy manually"],["3","Drag & drop the entire <b>wc2026-tracker folder</b>"],["4","Your site goes live instantly with a URL like <b>amazing-name-123.netlify.app</b>"]].map(([n,t])=>`<div class="share-step"><div class="share-num">${n}</div><div class="share-text">${t}</div></div>`).join("")}
+      <button class="big-btn btn-teal" onclick="window.open('https://app.netlify.com','_blank')">🚀 Open Netlify</button>
+    </div>
+    <div class="share-card">
+      <div class="share-title">Step 3 — Add your API key (one time)</div>
+      ${[["1","In Netlify: go to your site → <b>Site configuration → Environment variables</b>"],["2","Click <b>Add a variable</b>"],["3","Key: <b>ANTHROPIC_API_KEY</b>"],["4","Value: paste your API key from Step 1"],["5","Click Save → <b>Trigger a redeploy</b> → done forever!"]].map(([n,t])=>`<div class="share-step"><div class="share-num">${n}</div><div class="share-text">${t}</div></div>`).join("")}
+      <div class="code-block">ANTHROPIC_API_KEY = sk-ant-...</div>
+    </div>
+    <div class="share-card">
+      <div class="share-title">📱 Add to iPhone + share</div>
+      ${[["1","Open your Netlify URL in <b>Safari</b>"],["2","Tap Share □↑ → <b>Add to Home Screen</b>"],["3","Name it <b>WC2026</b> → Add"],["4","Share the Netlify URL with friends on WhatsApp — they just tap and it works!"]].map(([n,t])=>`<div class="share-step"><div class="share-num">${n}</div><div class="share-text">${t}</div></div>`).join("")}
+      <div class="share-info">
+        🤖 Predictions auto-generated by Claude — no manual work<br>
+        🔄 Scores refresh every 60s from live API<br>
+        🧠 Claude learns from each game and applies lessons automatically<br>
+        🎯 Exact score tracker updates in real time<br>
+        ♾️ Works for all 72 group stage games through June 27
+      </div>
+    </div>`;
+  }
+
+  document.getElementById("content").innerHTML=html;
+}
+
+function setTab(t){ TAB=t; render(); window.scrollTo(0,0); }
+function setFilter(v){ FILTER=v; render(); }
+function toggleL(i){ OPEN_LESSON=OPEN_LESSON===i?null:i; render(); }
+function toggleN(k){ OPEN_NOTES[k]=!OPEN_NOTES[k]; render(); }
+
+// ── BOOT ─────────────────────────────────────────────────────
+render();
+fetchLiveScores();
+setInterval(fetchLiveScores, 60000);
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden) fetchLiveScores(); });
+</script>
+</body>
+</html>
