@@ -21,6 +21,12 @@ def _t(dt):
     return dt.astimezone(TZ).strftime("%d/%m %H:%M")
 
 
+def _anom(b):
+    if not b.get("anomaly"):
+        return ""
+    return f"<span class='badge' title='{html.escape(b['anomaly'])}'>קו חריג</span>"
+
+
 def render(now, games, singles, parlays, all_bets, model, track, warnings):
     e = html.escape
     avg_vig = sum(b["vig"] for b in all_bets) / len(all_bets) / 2 if all_bets else 0
@@ -37,7 +43,8 @@ th{{color:var(--mut);font-weight:500}}.pos{{color:var(--pos);font-weight:600}}.n
 .pill{{display:inline-block;padding:1px 8px;border-radius:99px;background:#232836;font-size:12px;color:var(--mut)}}
 .warn{{border-color:#5a4313;background:#1f1a10}}.big{{font-size:20px;font-weight:700}}
 .grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}}
-details summary{{cursor:pointer;color:var(--mut)}} .num{{direction:ltr;unicode-bidi:embed}}
+details summary{{cursor:pointer;color:var(--mut)}} .warn-line{{color:var(--acc);font-size:13px;margin-top:4px}}
+.badge{{display:inline-block;margin-inline-start:6px;padding:0 6px;border-radius:6px;background:#3a2c0c;color:var(--acc);font-size:11px;cursor:help}} .num{{direction:ltr;unicode-bidi:embed}}
 </style></head><body><main>
 <h1>NBA × ווינר — המלצות</h1>
 <div class="mut">נוצר {now.astimezone(TZ):%d/%m/%Y %H:%M} · {len(games)} משחקים · {len(all_bets)} אפשרויות נבדקו</div>"""]
@@ -56,6 +63,12 @@ details summary{{cursor:pointer;color:var(--mut)}} .num{{direction:ltr;unicode-b
 <div class="card"><div class="mut">רווח/הפסד פרליים</div><div class="big {_ev_cls(p['pnl'])} num">{p['pnl']:+.0f} ₪</div><div class="mut">{p['n']} הוכרעו · ROI <span class="num">{_pct(p['roi'])}</span></div></div>
 <div class="card"><div class="mut">פתוחים</div><div class="big">{track['open']}</div><div class="mut">הרץ <code>settle</code> מחר</div></div></div>""")
 
+    n_anom = sum(1 for b, _ in singles if b.get("anomaly"))
+    if n_anom:
+        parts.append(f"""<div class="card warn"><b>⚠ {n_anom} מתוך {len(singles)} ההמלצות</b> מבוססות על קווי מחצית/רבע של ווינר
+שלא מתאימים לקו המשחק המלא שלהם (מסומנות "קו חריג"). זו יכולה להיות טעות תמחור של ווינר — או מידע שאין למודל.
+בפרליים, רגליים כאלה תלויות זו בזו.</div>""")
+
     # ---- singles
     parts.append("<h2>הימורים בודדים מומלצים</h2>")
     if not singles:
@@ -64,7 +77,7 @@ details summary{{cursor:pointer;color:var(--mut)}} .num{{direction:ltr;unicode-b
         parts.append("<div class='card'><table><tr><th>משחק</th><th>שוק</th><th>בחירה</th><th>יחס</th><th>הסתברות</th><th>EV</th><th>דרגה</th><th>סכום</th></tr>")
         for b, stake in singles:
             parts.append(f"<tr><td>{e(team_name(b['away']))} @ {e(team_name(b['home']))}<div class='mut'>{_t(b['start'])}</div></td>"
-                         f"<td>{e(b['market'])}</td><td><b>{e(b['label'])}</b></td><td class='num'>{b['odds']:.2f}</td>"
+                         f"<td>{e(b['market'])}</td><td><b>{e(b['label'])}</b>{_anom(b)}</td><td class='num'>{b['odds']:.2f}</td>"
                          f"<td class='num'>{_pct(b['p'])}</td><td class='pos num'>{_pct(b['ev'])}</td>"
                          f"<td><span class='pill'>{TIER_HE[b['tier']]}</span></td><td class='num'>{stake:.0f} ₪</td></tr>")
         parts.append("</table></div>")
@@ -74,12 +87,15 @@ details summary{{cursor:pointer;color:var(--mut)}} .num{{direction:ltr;unicode-b
     if not parlays:
         parts.append('<div class="card">אין פרליי עם תוחלת חיובית היום. פרליי מרגליים עם EV שלילי רק מכפיל את ההפסד הצפוי.</div>')
     for par, stake in parlays:
-        legs = "".join(f"<li>{e(team_name(l['away']))} @ {e(team_name(l['home']))} — <b>{e(l['label'])}</b> "
+        n_anom = sum(1 for l in par["legs"] if l.get("anomaly"))
+        corr = ("<div class='neg'>⚠ " + str(n_anom) + " מהרגליים נשענות על קו חריג של ווינר מאותו סוג — "
+                "אם ההנחה שגויה הן נוטות להפסיד ביחד, והסיכוי האמיתי נמוך מהמוצג.</div>") if n_anom >= 2 else ""
+        legs = "".join(f"<li>{e(team_name(l['away']))} @ {e(team_name(l['home']))} — <b>{e(l['label'])}</b>{_anom(l)} "
                        f"<span class='mut'>({e(l['market'])}, <span class='num'>{l['odds']:.2f}</span>, {_pct(l['p'])})</span></li>"
                        for l in par["legs"])
         parts.append(f"<div class='card'><div><b>{len(par['legs'])} רגליים</b> · יחס <b class='num'>{par['odds']:.2f}</b> · "
                      f"סיכוי <span class='num'>{_pct(par['p'])}</span> · EV <span class='pos num'>{_pct(par['ev'])}</span> · "
-                     f"סכום <span class='num'>{stake:.0f} ₪</span></div><ul>{legs}</ul></div>")
+                     f"סכום <span class='num'>{stake:.0f} ₪</span></div>{corr}<ul>{legs}</ul></div>")
 
     # ---- per game research
     parts.append("<h2>מחקר לפי משחק</h2>")
@@ -106,6 +122,7 @@ details summary{{cursor:pointer;color:var(--mut)}} .num{{direction:ltr;unicode-b
 <div class="mut">דירוג: {e(g['home'])} <span class="num">{model.rating(g['home']):+.1f}</span> · {e(g['away'])} <span class="num">{model.rating(g['away']):+.1f}</span>
 {(' · בק-טו-בק: ' + e(', '.join(b2b))) if b2b else ''}</div>
 {('<div class="mut">פציעות: ' + ' | '.join(injs) + '</div>') if injs else ''}
+{''.join('<div class="warn-line">⚠ ' + e(a) + '</div>' for a in proj.get('anomalies', []))}
 {('<div class="neg">⚠ פער גדול בין המודל לשוק — כנראה מידע שהמודל לא יודע (פציעה/מנוחה). ההימורים במשחק הזה נחסמו.</div>') if proj.get('gap_margin') or proj.get('gap_total') else ''}</div>""")
 
     # ---- all options

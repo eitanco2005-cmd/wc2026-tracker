@@ -11,10 +11,11 @@ th{color:var(--mut);font-weight:500}.pos{color:var(--pos);font-weight:600}.neg{c
 .pill{display:inline-block;padding:1px 8px;border-radius:99px;background:#232836;font-size:12px;color:var(--mut)}
 .warn{border-color:#5a4313;background:#1f1a10}.big{font-size:20px;font-weight:700}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
-details summary{cursor:pointer;color:var(--mut)} .num{direction:ltr;unicode-bidi:embed}
+details summary{cursor:pointer;color:var(--mut)} .warn-line{color:var(--acc);font-size:13px;margin-top:4px}
+.badge{display:inline-block;margin-inline-start:6px;padding:0 6px;border-radius:6px;background:#3a2c0c;color:var(--acc);font-size:11px;cursor:help} .num{direction:ltr;unicode-bidi:embed}
 </style></head><body><main>
 <h1>NBA × ווינר — המלצות</h1>
-<div class="mut">נוצר 15/11/2026 19:21 · 9 משחקים · 110 אפשרויות נבדקו</div>
+<div class="mut">נוצר 15/11/2026 19:32 · 9 משחקים · 110 אפשרויות נבדקו</div>
 <div class="card warn"><b>לפני הכול:</b> המרווח של ווינר בשווקי NBA דו-כיווניים הוא בממוצע
 <b class="num">13.1%</b> לשוק (יחס 1.75/1.75 ⇐ צריך לנצח 57.1% רק כדי לא להפסיד). בפרליי המרווח מצטבר בכל רגל.
 המערכת ממליצה רק כשההסתברות המשוקללת מכסה את המרווח — ולכן בהרבה ימים התשובה הנכונה היא "אין הימור".</div>
@@ -23,20 +24,23 @@ details summary{cursor:pointer;color:var(--mut)} .num{direction:ltr;unicode-bidi
 <div class="card"><div class="mut">רווח/הפסד בודדים</div><div class="big  num">+0 ₪</div><div class="mut">ROI <span class="num">0.0%</span> · צפוי <span class="num">+0</span></div></div>
 <div class="card"><div class="mut">רווח/הפסד פרליים</div><div class="big  num">+0 ₪</div><div class="mut">0 הוכרעו · ROI <span class="num">0.0%</span></div></div>
 <div class="card"><div class="mut">פתוחים</div><div class="big">10</div><div class="mut">הרץ <code>settle</code> מחר</div></div></div>
+<div class="card warn"><b>⚠ 6 מתוך 6 ההמלצות</b> מבוססות על קווי מחצית/רבע של ווינר
+שלא מתאימים לקו המשחק המלא שלהם (מסומנות "קו חריג"). זו יכולה להיות טעות תמחור של ווינר — או מידע שאין למודל.
+בפרליים, רגליים כאלה תלויות זו בזו.</div>
 <h2>הימורים בודדים מומלצים</h2>
 <div class='card'><table><tr><th>משחק</th><th>שוק</th><th>בחירה</th><th>יחס</th><th>הסתברות</th><th>EV</th><th>דרגה</th><th>סכום</th></tr>
-<tr><td>Houston Rockets @ Washington Wizards<div class='mut'>16/11 02:00</div></td><td>מעל/מתחת – מחצית ראשונה</td><td><b>מעל 107.5</b></td><td class='num'>1.75</td><td class='num'>68.6%</td><td class='pos num'>20.1%</td><td><span class='pill'>B · נגזר</span></td><td class='num'>20 ₪</td></tr>
-<tr><td>Oklahoma City Thunder @ Sacramento Kings<div class='mut'>16/11 04:00</div></td><td>מעל/מתחת – מחצית ראשונה</td><td><b>מעל 107.5</b></td><td class='num'>1.80</td><td class='num'>66.5%</td><td class='pos num'>19.6%</td><td><span class='pill'>B · נגזר</span></td><td class='num'>20 ₪</td></tr>
-<tr><td>Houston Rockets @ Washington Wizards<div class='mut'>16/11 02:00</div></td><td>מעל/מתחת – רבע ראשון</td><td><b>מעל 53.5</b></td><td class='num'>1.70</td><td class='num'>66.8%</td><td class='pos num'>13.6%</td><td><span class='pill'>C · רועש</span></td><td class='num'>20 ₪</td></tr>
-<tr><td>Charlotte Hornets @ LA Clippers<div class='mut'>15/11 23:30</div></td><td>מעל/מתחת – מחצית ראשונה</td><td><b>מעל 104.5</b></td><td class='num'>1.75</td><td class='num'>63.6%</td><td class='pos num'>11.3%</td><td><span class='pill'>B · נגזר</span></td><td class='num'>20 ₪</td></tr>
-<tr><td>Oklahoma City Thunder @ Sacramento Kings<div class='mut'>16/11 04:00</div></td><td>מעל/מתחת – רבע ראשון</td><td><b>מעל 53.5</b></td><td class='num'>1.70</td><td class='num'>65.2%</td><td class='pos num'>10.8%</td><td><span class='pill'>C · רועש</span></td><td class='num'>20 ₪</td></tr>
-<tr><td>Charlotte Hornets @ LA Clippers<div class='mut'>15/11 23:30</div></td><td>מעל/מתחת – רבע ראשון</td><td><b>מעל 52.5</b></td><td class='num'>1.80</td><td class='num'>60.7%</td><td class='pos num'>9.3%</td><td><span class='pill'>C · רועש</span></td><td class='num'>20 ₪</td></tr>
+<tr><td>Houston Rockets @ Washington Wizards<div class='mut'>16/11 02:00</div></td><td>מעל/מתחת – מחצית ראשונה</td><td><b>מעל 107.5</b><span class='badge' title='קו סך המחצית של ווינר (107.5) רחוק 5.0 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (112.5). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.'>קו חריג</span></td><td class='num'>1.75</td><td class='num'>68.6%</td><td class='pos num'>20.1%</td><td><span class='pill'>B · נגזר</span></td><td class='num'>20 ₪</td></tr>
+<tr><td>Oklahoma City Thunder @ Sacramento Kings<div class='mut'>16/11 04:00</div></td><td>מעל/מתחת – מחצית ראשונה</td><td><b>מעל 107.5</b><span class='badge' title='קו סך המחצית של ווינר (107.5) רחוק 4.5 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (112.0). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.'>קו חריג</span></td><td class='num'>1.80</td><td class='num'>66.5%</td><td class='pos num'>19.6%</td><td><span class='pill'>B · נגזר</span></td><td class='num'>20 ₪</td></tr>
+<tr><td>Houston Rockets @ Washington Wizards<div class='mut'>16/11 02:00</div></td><td>מעל/מתחת – רבע ראשון</td><td><b>מעל 53.5</b><span class='badge' title='קו סך הרבע של ווינר (53.5) רחוק 3.1 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (56.6). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.'>קו חריג</span></td><td class='num'>1.70</td><td class='num'>66.8%</td><td class='pos num'>13.6%</td><td><span class='pill'>C · רועש</span></td><td class='num'>20 ₪</td></tr>
+<tr><td>Charlotte Hornets @ LA Clippers<div class='mut'>15/11 23:30</div></td><td>מעל/מתחת – מחצית ראשונה</td><td><b>מעל 104.5</b><span class='badge' title='קו סך המחצית של ווינר (104.5) רחוק 3.9 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (108.4). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.'>קו חריג</span></td><td class='num'>1.75</td><td class='num'>63.6%</td><td class='pos num'>11.3%</td><td><span class='pill'>B · נגזר</span></td><td class='num'>20 ₪</td></tr>
+<tr><td>Oklahoma City Thunder @ Sacramento Kings<div class='mut'>16/11 04:00</div></td><td>מעל/מתחת – רבע ראשון</td><td><b>מעל 53.5</b><span class='badge' title='קו סך הרבע של ווינר (53.5) רחוק 2.9 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (56.4). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.'>קו חריג</span></td><td class='num'>1.70</td><td class='num'>65.2%</td><td class='pos num'>10.8%</td><td><span class='pill'>C · רועש</span></td><td class='num'>20 ₪</td></tr>
+<tr><td>Charlotte Hornets @ LA Clippers<div class='mut'>15/11 23:30</div></td><td>מעל/מתחת – רבע ראשון</td><td><b>מעל 52.5</b><span class='badge' title='קו סך הרבע של ווינר (52.5) רחוק 2.1 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (54.6). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.'>קו חריג</span></td><td class='num'>1.80</td><td class='num'>60.7%</td><td class='pos num'>9.3%</td><td><span class='pill'>C · רועש</span></td><td class='num'>20 ₪</td></tr>
 </table></div>
 <h2>פרליים</h2>
-<div class='card'><div><b>3 רגליים</b> · יחס <b class='num'>5.51</b> · סיכוי <span class='num'>29.0%</span> · EV <span class='pos num'>60.0%</span> · סכום <span class='num'>5 ₪</span></div><ul><li>Houston Rockets @ Washington Wizards — <b>מעל 107.5</b> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.75</span>, 68.6%)</span></li><li>Oklahoma City Thunder @ Sacramento Kings — <b>מעל 107.5</b> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.80</span>, 66.5%)</span></li><li>Charlotte Hornets @ LA Clippers — <b>מעל 104.5</b> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.75</span>, 63.6%)</span></li></ul></div>
-<div class='card'><div><b>2 רגליים</b> · יחס <b class='num'>3.15</b> · סיכוי <span class='num'>45.6%</span> · EV <span class='pos num'>43.7%</span> · סכום <span class='num'>5 ₪</span></div><ul><li>Houston Rockets @ Washington Wizards — <b>מעל 107.5</b> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.75</span>, 68.6%)</span></li><li>Oklahoma City Thunder @ Sacramento Kings — <b>מעל 107.5</b> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.80</span>, 66.5%)</span></li></ul></div>
-<div class='card'><div><b>2 רגליים</b> · יחס <b class='num'>3.06</b> · סיכוי <span class='num'>43.7%</span> · EV <span class='pos num'>33.7%</span> · סכום <span class='num'>5 ₪</span></div><ul><li>Houston Rockets @ Washington Wizards — <b>מעל 107.5</b> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.75</span>, 68.6%)</span></li><li>Charlotte Hornets @ LA Clippers — <b>מעל 104.5</b> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.75</span>, 63.6%)</span></li></ul></div>
-<div class='card'><div><b>2 רגליים</b> · יחס <b class='num'>3.15</b> · סיכוי <span class='num'>42.3%</span> · EV <span class='pos num'>33.2%</span> · סכום <span class='num'>5 ₪</span></div><ul><li>Oklahoma City Thunder @ Sacramento Kings — <b>מעל 107.5</b> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.80</span>, 66.5%)</span></li><li>Charlotte Hornets @ LA Clippers — <b>מעל 104.5</b> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.75</span>, 63.6%)</span></li></ul></div>
+<div class='card'><div><b>3 רגליים</b> · יחס <b class='num'>5.51</b> · סיכוי <span class='num'>29.0%</span> · EV <span class='pos num'>60.0%</span> · סכום <span class='num'>5 ₪</span></div><div class='neg'>⚠ 3 מהרגליים נשענות על קו חריג של ווינר מאותו סוג — אם ההנחה שגויה הן נוטות להפסיד ביחד, והסיכוי האמיתי נמוך מהמוצג.</div><ul><li>Houston Rockets @ Washington Wizards — <b>מעל 107.5</b><span class='badge' title='קו סך המחצית של ווינר (107.5) רחוק 5.0 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (112.5). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.'>קו חריג</span> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.75</span>, 68.6%)</span></li><li>Oklahoma City Thunder @ Sacramento Kings — <b>מעל 107.5</b><span class='badge' title='קו סך המחצית של ווינר (107.5) רחוק 4.5 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (112.0). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.'>קו חריג</span> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.80</span>, 66.5%)</span></li><li>Charlotte Hornets @ LA Clippers — <b>מעל 104.5</b><span class='badge' title='קו סך המחצית של ווינר (104.5) רחוק 3.9 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (108.4). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.'>קו חריג</span> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.75</span>, 63.6%)</span></li></ul></div>
+<div class='card'><div><b>2 רגליים</b> · יחס <b class='num'>3.15</b> · סיכוי <span class='num'>45.6%</span> · EV <span class='pos num'>43.7%</span> · סכום <span class='num'>5 ₪</span></div><div class='neg'>⚠ 2 מהרגליים נשענות על קו חריג של ווינר מאותו סוג — אם ההנחה שגויה הן נוטות להפסיד ביחד, והסיכוי האמיתי נמוך מהמוצג.</div><ul><li>Houston Rockets @ Washington Wizards — <b>מעל 107.5</b><span class='badge' title='קו סך המחצית של ווינר (107.5) רחוק 5.0 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (112.5). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.'>קו חריג</span> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.75</span>, 68.6%)</span></li><li>Oklahoma City Thunder @ Sacramento Kings — <b>מעל 107.5</b><span class='badge' title='קו סך המחצית של ווינר (107.5) רחוק 4.5 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (112.0). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.'>קו חריג</span> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.80</span>, 66.5%)</span></li></ul></div>
+<div class='card'><div><b>2 רגליים</b> · יחס <b class='num'>3.06</b> · סיכוי <span class='num'>43.7%</span> · EV <span class='pos num'>33.7%</span> · סכום <span class='num'>5 ₪</span></div><div class='neg'>⚠ 2 מהרגליים נשענות על קו חריג של ווינר מאותו סוג — אם ההנחה שגויה הן נוטות להפסיד ביחד, והסיכוי האמיתי נמוך מהמוצג.</div><ul><li>Houston Rockets @ Washington Wizards — <b>מעל 107.5</b><span class='badge' title='קו סך המחצית של ווינר (107.5) רחוק 5.0 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (112.5). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.'>קו חריג</span> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.75</span>, 68.6%)</span></li><li>Charlotte Hornets @ LA Clippers — <b>מעל 104.5</b><span class='badge' title='קו סך המחצית של ווינר (104.5) רחוק 3.9 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (108.4). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.'>קו חריג</span> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.75</span>, 63.6%)</span></li></ul></div>
+<div class='card'><div><b>2 רגליים</b> · יחס <b class='num'>3.15</b> · סיכוי <span class='num'>42.3%</span> · EV <span class='pos num'>33.2%</span> · סכום <span class='num'>5 ₪</span></div><div class='neg'>⚠ 2 מהרגליים נשענות על קו חריג של ווינר מאותו סוג — אם ההנחה שגויה הן נוטות להפסיד ביחד, והסיכוי האמיתי נמוך מהמוצג.</div><ul><li>Oklahoma City Thunder @ Sacramento Kings — <b>מעל 107.5</b><span class='badge' title='קו סך המחצית של ווינר (107.5) רחוק 4.5 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (112.0). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.'>קו חריג</span> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.80</span>, 66.5%)</span></li><li>Charlotte Hornets @ LA Clippers — <b>מעל 104.5</b><span class='badge' title='קו סך המחצית של ווינר (104.5) רחוק 3.9 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (108.4). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.'>קו חריג</span> <span class='mut'>(מעל/מתחת – מחצית ראשונה, <span class='num'>1.75</span>, 63.6%)</span></li></ul></div>
 <h2>מחקר לפי משחק</h2>
 <div class="card"><b>Indiana Pacers @ Philadelphia 76ers</b> <span class="mut">15/11 20:00</span>
 <table><tr><th></th><th>הפרש בית צפוי</th><th>סך נקודות</th></tr>
@@ -46,6 +50,7 @@ details summary{cursor:pointer;color:var(--mut)} .num{direction:ltr;unicode-bidi
 <div class="mut">דירוג: PHI <span class="num">+0.3</span> · IND <span class="num">-5.3</span>
 </div>
 <div class="mut">פציעות: <b>Philadelphia 76ers</b> (−2.3): Joel Embiid [out, 2.3] | <b>Indiana Pacers</b> (−2.0): Andrew Nembhard [out, 1.8], Aaron Nesmith [day-to-day, 0.2]</div>
+
 </div>
 <div class="card"><b>Los Angeles Lakers @ Phoenix Suns</b> <span class="mut">15/11 23:00</span>
 <table><tr><th></th><th>הפרש בית צפוי</th><th>סך נקודות</th></tr>
@@ -55,6 +60,7 @@ details summary{cursor:pointer;color:var(--mut)} .num{direction:ltr;unicode-bidi
 <div class="mut">דירוג: PHX <span class="num">+0.1</span> · LAL <span class="num">+3.7</span>
 </div>
 <div class="mut">פציעות: <b>Phoenix Suns</b> (−1.4): Mark Williams [out, 1.4] | <b>Los Angeles Lakers</b> (−3.7): Collin Sexton [day-to-day, 0.4], Austin Reaves [out, 3.3]</div>
+
 </div>
 <div class="card"><b>Charlotte Hornets @ LA Clippers</b> <span class="mut">15/11 23:30</span>
 <table><tr><th></th><th>הפרש בית צפוי</th><th>סך נקודות</th></tr>
@@ -64,6 +70,7 @@ details summary{cursor:pointer;color:var(--mut)} .num{direction:ltr;unicode-bidi
 <div class="mut">דירוג: LAC <span class="num">-0.9</span> · CHA <span class="num">-2.2</span>
 </div>
 <div class="mut">פציעות: <b>LA Clippers</b> (−3.6): Brandon Ingram [out, 2.9], Jordan Miller [out, 0.7]</div>
+<div class="warn-line">⚠ קו סך המחצית של ווינר (104.5) רחוק 3.9 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (108.4). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.</div><div class="warn-line">⚠ קו סך הרבע של ווינר (52.5) רחוק 2.1 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (54.6). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.</div>
 </div>
 <div class="card"><b>San Antonio Spurs @ Utah Jazz</b> <span class="mut">16/11 00:00</span>
 <table><tr><th></th><th>הפרש בית צפוי</th><th>סך נקודות</th></tr>
@@ -73,6 +80,7 @@ details summary{cursor:pointer;color:var(--mut)} .num{direction:ltr;unicode-bidi
 <div class="mut">דירוג: UTAH <span class="num">-7.4</span> · SA <span class="num">+9.2</span>
 </div>
 <div class="mut">פציעות: <b>Utah Jazz</b> (−4.5): Jaxson Hayes [out, 0.5], Trey Alexander [out, 0.3], Lauri Markkanen [out, 2.1], Jusuf Nurkic [out, 1.5] | <b>San Antonio Spurs</b> (−1.3): Tobias Harris [out, 1.3]</div>
+
 </div>
 <div class="card"><b>New York Knicks @ Toronto Raptors</b> <span class="mut">16/11 01:00</span>
 <table><tr><th></th><th>הפרש בית צפוי</th><th>סך נקודות</th></tr>
@@ -82,6 +90,7 @@ details summary{cursor:pointer;color:var(--mut)} .num{direction:ltr;unicode-bidi
 <div class="mut">דירוג: TOR <span class="num">+1.3</span> · NY <span class="num">+6.0</span>
 </div>
 <div class="mut">פציעות: <b>Toronto Raptors</b> (−3.9): Scottie Barnes [out, 3.9]</div>
+
 </div>
 <div class="card"><b>Dallas Mavericks @ Boston Celtics</b> <span class="mut">16/11 01:00</span>
 <table><tr><th></th><th>הפרש בית צפוי</th><th>סך נקודות</th></tr>
@@ -91,6 +100,7 @@ details summary{cursor:pointer;color:var(--mut)} .num{direction:ltr;unicode-bidi
 <div class="mut">דירוג: BOS <span class="num">+7.3</span> · DAL <span class="num">-2.3</span>
  · בק-טו-בק: Dallas Mavericks</div>
 <div class="mut">פציעות: <b>Dallas Mavericks</b> (−0.5): Daniel Gafford [day-to-day, 0.3], Dereck Lively II [out, 0.2]</div>
+
 </div>
 <div class="card"><b>Houston Rockets @ Washington Wizards</b> <span class="mut">16/11 02:00</span>
 <table><tr><th></th><th>הפרש בית צפוי</th><th>סך נקודות</th></tr>
@@ -100,6 +110,7 @@ details summary{cursor:pointer;color:var(--mut)} .num{direction:ltr;unicode-bidi
 <div class="mut">דירוג: WSH <span class="num">-7.9</span> · HOU <span class="num">+5.7</span>
 </div>
 <div class="mut">פציעות: <b>Washington Wizards</b> (−1.9): Alex Sarr [day-to-day, 0.3], Tre Johnson [day-to-day, 0.0], Tristan Vukcevic [out, 1.3], Jamir Watkins [out, 0.3] | <b>Houston Rockets</b> (−1.6): Clint Capela [out, 0.1], Fred VanVleet [out, 1.5]</div>
+<div class="warn-line">⚠ קו סך המחצית של ווינר (107.5) רחוק 5.0 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (112.5). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.</div><div class="warn-line">⚠ קו סך הרבע של ווינר (53.5) רחוק 3.1 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (56.6). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.</div>
 </div>
 <div class="card"><b>Atlanta Hawks @ Milwaukee Bucks</b> <span class="mut">16/11 03:00</span>
 <table><tr><th></th><th>הפרש בית צפוי</th><th>סך נקודות</th></tr>
@@ -109,6 +120,7 @@ details summary{cursor:pointer;color:var(--mut)} .num{direction:ltr;unicode-bidi
 <div class="mut">דירוג: MIL <span class="num">-7.8</span> · ATL <span class="num">+0.1</span>
 </div>
 <div class="mut">פציעות: <b>Atlanta Hawks</b> (−0.3): Kingston Flemings [out, 0.3]</div>
+
 </div>
 <div class="card"><b>Oklahoma City Thunder @ Sacramento Kings</b> <span class="mut">16/11 04:00</span>
 <table><tr><th></th><th>הפרש בית צפוי</th><th>סך נקודות</th></tr>
@@ -118,6 +130,7 @@ details summary{cursor:pointer;color:var(--mut)} .num{direction:ltr;unicode-bidi
 <div class="mut">דירוג: SAC <span class="num">-8.7</span> · OKC <span class="num">+7.6</span>
 </div>
 <div class="mut">פציעות: <b>Sacramento Kings</b> (−1.4): Maxime Raynaud [out, 1.1], Keegan Murray [day-to-day, 0.1], Precious Achiuwa [day-to-day, 0.2] | <b>Oklahoma City Thunder</b> (−0.8): Ajay Mitchell [day-to-day, 0.8]</div>
+<div class="warn-line">⚠ קו סך המחצית של ווינר (107.5) רחוק 4.5 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (112.0). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.</div><div class="warn-line">⚠ קו סך הרבע של ווינר (53.5) רחוק 2.9 נק&#x27; ממה שקו המשחק המלא שלהם מרמז (56.4). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.</div>
 </div>
 <h2>כל האפשרויות שנבדקו</h2><details><summary>הצג (110)</summary><div class='card'><table><tr><th>משחק</th><th>שוק</th><th>בחירה</th><th>יחס</th><th>הסתברות</th><th>EV</th><th>דרגה</th></tr>
 <tr><td>HOU@WSH</td><td>מעל/מתחת – מחצית ראשונה</td><td>מעל 107.5</td><td class='num'>1.75</td><td class='num'>68.6%</td><td class='pos num'>20.1%</td><td>B</td></tr>

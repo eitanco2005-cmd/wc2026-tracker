@@ -77,6 +77,8 @@ def project(game, model, inj_home, inj_away):
 
 
 def evaluate(game, markets, proj, sd, fr):
+    anomalies = line_anomalies(markets, fr)
+    proj["anomalies"] = sorted(set(anomalies.values()))
     margin, total = proj["margin"], proj["total"]
     anchored_m, anchored_t = proj["anchored_m"], proj["anchored_t"]
     gap_m, gap_t = proj["gap_margin"], proj["gap_total"]
@@ -122,7 +124,8 @@ def evaluate(game, markets, proj, sd, fr):
                 market=_market_name(m), kind=kind, period=per, side=o["side"], team=team,
                 line=o["line"], odds=o["odds"], label=o["label"], p=p, ev=e,
                 kelly=kelly(p, o["odds"]), tier=tier, vig=vig, mu=mu, sd=s,
-                blocked=blocked, qualifies=e >= config.MIN_EV[tier] and not blocked, winner_mid=m["mid"], flag=m.get("flag")))
+                blocked=blocked, qualifies=e >= config.MIN_EV[tier] and not blocked, winner_mid=m["mid"], flag=m.get("flag"),
+                anomaly=anomalies.get(m["mid"])))
     return bets
 
 
@@ -177,3 +180,35 @@ def price_sheet(game, model, inj_home, inj_away):
         row = sheet.setdefault(key, {}).setdefault(float(L), {"tier": b["tier"], "blocked": b["blocked"]})
         row[b["side"]] = ((1 + config.MIN_EV[b["tier"]]) / b["p"], b["p"])
     return proj, sheet
+
+
+# Winner's half/quarter lines vs its own full-game line
+ANOMALY_PTS = {("H1", "total"): 3.0, ("Q1", "total"): 2.0, ("H1", "spread"): 2.5, ("Q1", "spread"): 2.0}
+SPREAD_FRAC = {"H1": 0.5, "Q1": 0.25}
+
+
+def line_anomalies(markets, frac):
+    """{mid: note} for H1/Q1 markets whose line is far from what Winner's own FG line implies."""
+    fg = {}
+    for m in markets:
+        if m["period"] == "FG" and m["kind"] in ("spread", "total"):
+            home = next((o for o in m["outcomes"] if o["side"] in ("home", "over")), m["outcomes"][0])
+            fg[m["kind"]] = home["line"]
+    out = {}
+    for m in markets:
+        key = (m["period"], m["kind"])
+        if key not in ANOMALY_PTS or m["kind"] not in fg:
+            continue
+        o = next((o for o in m["outcomes"] if o["side"] in ("home", "over")), m["outcomes"][0])
+        if m["kind"] == "total":
+            implied = fg["total"] * frac[f"{m['period']}_total"]
+            what = "סך"
+        else:
+            implied = fg["spread"] * SPREAD_FRAC[m["period"]]
+            what = "יתרון"
+        diff = o["line"] - implied
+        if abs(diff) >= ANOMALY_PTS[key]:
+            per = "מחצית" if m["period"] == "H1" else "רבע"
+            out[m["mid"]] = (f"קו {what} ה{per} של ווינר ({o['line']:g}) רחוק {abs(diff):.1f} נק' ממה שקו המשחק המלא "
+                             f"שלהם מרמז ({implied:.1f}). או טעות תמחור של ווינר, או שהם יודעים משהו — בדוק לפני.")
+    return out
