@@ -54,7 +54,12 @@ def blend(market, model):
 
 
 def evaluate_game(game, markets, model, inj_home, inj_away):
-    sd, fr = model.sd, model.frac
+    proj = project(game, model, inj_home, inj_away)
+    return proj, evaluate(game, markets, proj, model.sd, model.frac)
+
+
+def project(game, model, inj_home, inj_away):
+    sd = model.sd
     pm = model.predict(game["home"], game["away"], game["start"], game.get("neutral"),
                        inj_home, inj_away)
     mk_margin, mk_total = market_projection(game.get("odds"), sd)
@@ -66,8 +71,15 @@ def evaluate_game(game, markets, model, inj_home, inj_away):
                 model_margin=pm["margin"], model_total=pm["total"],
                 market_margin=mk_margin, market_total=mk_total,
                 margin=margin, total=total, home_pts=(total + margin) / 2,
-                away_pts=(total - margin) / 2, b2b_home=pm["b2b_home"], b2b_away=pm["b2b_away"])
+                away_pts=(total - margin) / 2, b2b_home=pm["b2b_home"], b2b_away=pm["b2b_away"],
+                anchored_m=anchored_m, anchored_t=anchored_t)
+    return proj
 
+
+def evaluate(game, markets, proj, sd, fr):
+    margin, total = proj["margin"], proj["total"]
+    anchored_m, anchored_t = proj["anchored_m"], proj["anchored_t"]
+    gap_m, gap_t = proj["gap_margin"], proj["gap_total"]
     bets = []
     for m in markets:
         per, kind = m["period"], m["kind"]
@@ -111,7 +123,7 @@ def evaluate_game(game, markets, model, inj_home, inj_away):
                 line=o["line"], odds=o["odds"], label=o["label"], p=p, ev=e,
                 kelly=kelly(p, o["odds"]), tier=tier, vig=vig, mu=mu, sd=s,
                 blocked=blocked, qualifies=e >= config.MIN_EV[tier] and not blocked, winner_mid=m["mid"], flag=m.get("flag")))
-    return proj, bets
+    return bets
 
 
 _PER_HE = {"FG": "משחק מלא", "H1": "מחצית ראשונה", "Q1": "רבע ראשון"}

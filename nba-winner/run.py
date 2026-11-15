@@ -73,6 +73,10 @@ def cmd_today(args):
         rows.append((g, proj, {"home": ih, "away": ia}))
         all_bets += bets
 
+    publish(now, rows, all_bets, model, warnings, args)
+
+
+def publish(now, rows, all_bets, model, warnings, args):
     singles = sorted([b for b in all_bets if b["qualifies"]], key=lambda b: -b["ev"])
     # one single per market (never both sides)
     seen, s2 = set(), []
@@ -128,6 +132,7 @@ def cmd_sheet(now):
         ia = team_injury_impact(inj.get(ABBR_TO_NAME.get(g["away"]), []), model.cur_gp[g["away"]], espn.athlete_stats)
         proj, sheet = engine.price_sheet(g, model, ih[0], ia[0])
         rows.append((g, proj, {"home": ih, "away": ia}, sheet))
+    save_snapshot(now, model, rows)
     html = report.render_sheet(now, rows, model)
     md = report.markdown_sheet(now, rows)
     config.REPORTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -142,6 +147,57 @@ def cmd_sheet(now):
             f.write(md + "\n")
     log(md)
     log(f"\nReport: {out}")
+
+
+def save_snapshot(now, model, rows):
+    """Projections for later use with Winner odds captured elsewhere (Claude in Chrome)."""
+    import json
+    snap = dict(created=now.isoformat(), sd=model.sd, frac=model.frac, hca=model.hca,
+                b2b=model.b2b_coef, ratings={t: model.rating(t) for t in model.teams},
+                games=[dict(game={k: (v.isoformat() if k == "start" else v) for k, v in g.items()
+                                  if k in ("id", "start", "home", "away", "odds", "neutral")},
+                            proj=proj, inj={"home": inj["home"], "away": inj["away"]})
+                       for g, proj, inj, *_ in rows])
+    config.DATA_DIR.mkdir(parents=True, exist_ok=True)
+    (config.DATA_DIR / "projections.json").write_text(json.dumps(snap, ensure_ascii=False, indent=1, default=lambda o: o.item() if hasattr(o, "item") else str(o)),
+                                                      encoding="utf-8")
+
+
+class SnapModel:
+    def __init__(self, snap):
+        self.sd, self.frac, self.hca, self.b2b_coef = snap["sd"], snap["frac"], snap["hca"], snap["b2b"]
+        self._r = snap["ratings"]
+
+    def rating(self, t):
+        return self._r.get(t, 0.0)
+
+
+def cmd_picks(args):
+    """Winner odds (captured via Claude in Chrome) + saved projections -> picks & parlays."""
+    import json
+    from datetime import datetime
+    now = espn.now_utc()
+    snap = json.loads((config.DATA_DIR / "projections.json").read_text(encoding="utf-8"))
+    model = SnapModel(snap)
+    log(f"Projections from {snap['created']}")
+    raw = json.loads(open(args.winner_file, encoding="utf-8").read())
+    raw = raw["markets"] if isinstance(raw, dict) else raw
+    wm = winner.parse(raw)
+    games = []
+    for x in snap["games"]:
+        g = dict(x["game"]); g["start"] = datetime.fromisoformat(g["start"])
+        if g["start"] > now + timedelta(minutes=5):
+            games.append((g, x["proj"], x["inj"]))
+    matched = engine.match_games(wm, [g for g, _, _ in games])
+    by_id = {g["id"]: (proj, inj) for g, proj, inj in games}
+    rows, all_bets, warnings = [], [], []
+    for gid, (g, mkts) in sorted(matched.items(), key=lambda kv: kv[1][0]["start"]):
+        proj, inj = by_id[gid]
+        bets = engine.evaluate(g, mkts, proj, model.sd, model.frac)
+        rows.append((g, proj, {k: tuple(v) for k, v in inj.items()}))
+        all_bets += bets
+    log(f"{len(wm)} Winner markets, {len(rows)} games matched")
+    publish(now, rows, all_bets, model, warnings, args)
 
 
 def cmd_settle(_):
@@ -167,14 +223,14 @@ def main():
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", nargs="?", default="today", choices=["today", "settle", "ratings"])
+    ap.add_argument("cmd", nargs="?", default="today", choices=["today", "settle", "ratings", "picks"])
     ap.add_argument("--winner-file")
     ap.add_argument("--show-browser", action="store_true")
     ap.add_argument("--no-open", action="store_true")
     ap.add_argument("--no-log", action="store_true")
     ap.add_argument("--show-negative", action="store_true")
     a = ap.parse_args()
-    {"today": cmd_today, "settle": cmd_settle, "ratings": cmd_ratings}[a.cmd](a)
+    {"today": cmd_today, "settle": cmd_settle, "ratings": cmd_ratings, "picks": cmd_picks}[a.cmd](a)
 
 
 if __name__ == "__main__":
