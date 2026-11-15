@@ -52,7 +52,7 @@ jobs:
         run: |
           git config user.name "nba-winner-bot"
           git config user.email "nba-winner-bot@users.noreply.github.com"
-          git add nba-winner/data nba-winner/reports || true
+          git add nba-winner/data nba-winner/reports nba-winner/index.html || true
           git diff --cached --quiet || git commit -m "NBA picks $(date -u +%Y-%m-%d)"
           git pull --rebase --autostash || true
           git push || true

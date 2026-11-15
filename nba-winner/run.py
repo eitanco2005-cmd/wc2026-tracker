@@ -91,6 +91,7 @@ def cmd_today(args):
     out = config.REPORTS_DIR / f"{now.astimezone(ZoneInfo(config.TZ)):%Y-%m-%d_%H%M}.html"
     out.write_text(html, encoding="utf-8")
     (config.REPORTS_DIR / "latest.html").write_text(html, encoding="utf-8")
+    (config.ROOT / "index.html").write_text(html, encoding="utf-8")
     md = report.markdown(now, singles, pars, all_bets, tracker.summary())
     (config.REPORTS_DIR / "latest.md").write_text(md, encoding="utf-8")
     import os
@@ -133,6 +134,7 @@ def cmd_sheet(now):
     out = config.REPORTS_DIR / f"{now.astimezone(ZoneInfo(config.TZ)):%Y-%m-%d_%H%M}_sheet.html"
     out.write_text(html, encoding="utf-8")
     (config.REPORTS_DIR / "latest.html").write_text(html, encoding="utf-8")
+    (config.ROOT / "index.html").write_text(html, encoding="utf-8")
     (config.REPORTS_DIR / "latest.md").write_text(md, encoding="utf-8")
     import os
     if os.environ.get("GITHUB_STEP_SUMMARY"):
