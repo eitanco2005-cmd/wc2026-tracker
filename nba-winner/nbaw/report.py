@@ -155,3 +155,95 @@ def markdown(now, singles, parlays, all_bets, track):
     L += ["", f"Track record (singles): {s['n']} graded, P&L {s['pnl']:+.0f}₪, ROI {_pct(s['roi'])}, "
               f"expected {s['expected_pnl']:+.0f}₪"]
     return "\n".join(L)
+
+
+def _head(title):
+    return f"""<!DOCTYPE html><html lang="he" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>{title}</title>
+<style>
+:root{{--bg:#0f1115;--card:#171a21;--line:#272b35;--tx:#e8eaf0;--mut:#9aa1b2;--pos:#2fbf71;--neg:#e5534b}}
+*{{box-sizing:border-box}}body{{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Arial}}
+main{{max-width:900px;margin:0 auto;padding:20px 14px 60px}}h1{{font-size:22px;margin:0 0 4px}}h2{{font-size:17px;margin:26px 0 8px}}
+.mut{{color:var(--mut)}}.card{{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0}}
+table{{width:100%;border-collapse:collapse;font-size:14px}}th,td{{padding:6px 7px;border-bottom:1px solid var(--line);text-align:right}}
+th{{color:var(--mut);font-weight:500}}.pos{{color:var(--pos);font-weight:700}}.neg{{color:var(--neg)}}.warn{{border-color:#5a4313;background:#1f1a10}}
+.num{{direction:ltr;unicode-bidi:embed}}
+</style></head><body><main>"""
+
+
+_PER = {"FG": "משחק מלא", "H1": "מחצית ראשונה", "Q1": "רבע ראשון"}
+
+
+def _odds_cell(x):
+    need, p = x
+    cls = "pos" if need <= 1.85 else "mut" if need <= 2.0 else "neg"
+    return f"<td class='{cls} num'>{need:.2f}</td>"
+
+
+def render_sheet(now, rows, model):
+    e = html.escape
+    P = [_head(f"NBA דף מחירים — {now.astimezone(TZ):%d/%m}"),
+         f"<h1>NBA — דף מחירים להיום</h1><div class='mut'>נוצר {now.astimezone(TZ):%d/%m/%Y %H:%M} · {len(rows)} משחקים</div>",
+         """<div class="card warn"><b>איך משתמשים:</b> פתח את המשחק בווינר, מצא את הקו שהם מציעים בטבלה המתאימה,
+והשווה: אם היחס בווינר <b>גבוה או שווה</b> למספר בטבלה — יש ערך. אם נמוך — לא להמר.
+<span class="pos">ירוק</span> = ווינר נוטה להציע כזה יחס (≤1.85) ⇐ שווה לבדוק. אפור/אדום = כמעט אף פעם לא.</div>"""]
+    for g, proj, inj, sheet in rows:
+        H, A = ABBR_TO_HE_(g["home"]), ABBR_TO_HE_(g["away"])
+        injs = []
+        for side in ("home", "away"):
+            tot, det = inj[side]
+            if det:
+                injs.append(f"<b>{e(ABBR_TO_HE_(g[side]))}</b> (−{tot:.1f}): " + ", ".join(
+                    f"{e(d['name'])} [{e(d['status'])}]" for d in det))
+        mm = '—' if proj['market_margin'] is None else f"{proj['market_margin']:+.1f}"
+        mt = '—' if proj['market_total'] is None else f"{proj['market_total']:.1f}"
+        P.append(f"""<h2>{e(A)} @ {e(H)} <span class="mut">{_t(g['start'])}</span></h2><div class="card">
+<div class="mut">צפי משוקלל: {e(H)} <span class="num">{proj['margin']:+.1f}</span> · סך <span class="num">{proj['total']:.1f}</span>
+&nbsp;|&nbsp; מודל <span class="num">{proj['model_margin']:+.1f} / {proj['model_total']:.1f}</span>
+&nbsp;|&nbsp; שוק <span class="num">{mm} / {mt}</span></div>
+{('<div class="mut">פציעות: ' + ' | '.join(injs) + '</div>') if injs else ''}""")
+        for per in ("FG", "H1", "Q1"):
+            sp, to = sheet.get((per, "spread"), {}), sheet.get((per, "total"), {})
+            P.append(f"<div style='margin-top:10px'><b>{_PER[per]}</b></div><div style='display:flex;gap:14px;flex-wrap:wrap'>")
+            P.append(f"<table style='flex:1;min-width:260px'><tr><th>יתרון {e(H)}</th><th>{e(H)}</th><th>{e(A)}</th></tr>")
+            for L in sorted(sp):
+                row = sp[L]
+                if row["blocked"]:
+                    P.append(f"<tr><td class='num'>{L:+g}</td><td colspan=2 class='neg'>חסום</td></tr>"); continue
+                P.append(f"<tr><td class='num'>{L:+g}</td>{_odds_cell(row['home'])}{_odds_cell(row['away'])}</tr>")
+            P.append("</table><table style='flex:1;min-width:220px'><tr><th>קו</th><th>מעל</th><th>מתחת</th></tr>")
+            for L in sorted(to):
+                row = to[L]
+                if row["blocked"]:
+                    P.append(f"<tr><td class='num'>{L:g}</td><td colspan=2 class='neg'>חסום</td></tr>"); continue
+                P.append(f"<tr><td class='num'>{L:g}</td>{_odds_cell(row['over'])}{_odds_cell(row['under'])}</tr>")
+            P.append("</table></div>")
+        P.append("</div>")
+    sd = model.sd
+    P.append(f"""<p class="mut">מודל: דירוגי קבוצות (עונה נוכחית + קודמת), ביתיות <span class="num">{model.hca:+.2f}</span>,
+בק-טו-בק <span class="num">{model.b2b_coef:+.2f}</span>, פציעות, ושוק DraftKings ללא מרווח ({int(config.MARKET_WEIGHT*100)}%).
+σ הפרש <span class="num">{sd['FG_margin']:.1f}</span>, σ סך <span class="num">{sd['FG_total']:.1f}</span>.
+המספר בטבלה כבר כולל את סף ה-EV: משחק מלא {_pct(config.MIN_EV['A'],0)}, מחצית {_pct(config.MIN_EV['B'],0)}, רבע {_pct(config.MIN_EV['C'],0)}.</p></main></body></html>""")
+    return "\n".join(P)
+
+
+def markdown_sheet(now, rows):
+    L = [f"# NBA price sheet — {now.astimezone(TZ):%d/%m/%Y %H:%M}",
+         "Find Winner's line below; bet only if Winner's odds are **≥** the number. Full tables (halves/quarters) in reports/latest.html.", ""]
+    for g, proj, inj, sheet in rows:
+        L.append(f"### {g['away']} @ {g['home']} — {_t(g['start'])}  (proj {g['home']} {proj['margin']:+.1f}, total {proj['total']:.1f})")
+        sp, to = sheet.get(("FG", "spread"), {}), sheet.get(("FG", "total"), {})
+        L.append(f"| {g['home']} line | {g['home']} | {g['away']} | | Total | Over | Under |")
+        L.append("|---|---|---|---|---|---|---|")
+        for a, b in zip(sorted(sp), sorted(to)):
+            ra, rb = sp[a], to[b]
+            fa = "blocked | blocked" if ra["blocked"] else f"{ra['home'][0]:.2f} | {ra['away'][0]:.2f}"
+            fb = "blocked | blocked" if rb["blocked"] else f"{rb['over'][0]:.2f} | {rb['under'][0]:.2f}"
+            L.append(f"| {a:+g} | {fa} | | {b:g} | {fb} |")
+        L.append("")
+    return "\n".join(L)
+
+
+def ABBR_TO_HE_(a):
+    from .teams import ABBR_TO_HE
+    return ABBR_TO_HE.get(a, a)

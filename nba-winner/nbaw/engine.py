@@ -4,7 +4,7 @@ from datetime import timedelta
 from . import config
 from .pricing import (devig2, ev, kelly, margin_of, mu_from_ml, mu_from_spread,
                       mu_from_total, p_cover, p_over)
-from .teams import ABBR_TO_NAME
+from .teams import ABBR_TO_HE, ABBR_TO_NAME
 
 
 def match_games(winner_markets, espn_games):
@@ -121,6 +121,8 @@ _KIND_HE = {"spread": "הימור יתרון", "total": "מעל/מתחת", "team
 
 def _market_name(m):
     n = f"{_KIND_HE[m['kind']]} – {_PER_HE[m['period']]}"
+    if not m.get("mp") and m["kind"] != "team_total":
+        return n
     if m["kind"] == "team_total":
         n += f" ({m['home_he'] if m['team'] == m['home'] else m['away_he']})"
     return n
@@ -133,3 +135,33 @@ def stake_for(p_kelly, cap_pct):
 
 def team_name(abbr):
     return ABBR_TO_NAME.get(abbr, abbr)
+
+
+def price_sheet(game, model, inj_home, inj_away):
+    """Without Winner odds: lookup table. For each market and each line near the projection,
+    the minimum decimal odds each side needs to clear the EV threshold."""
+    proj, _ = evaluate_game(game, [], model, inj_home, inj_away)
+    fr = model.frac
+    base = dict(home=game["home"], away=game["away"], home_he=game["home"], away_he=game["away"],
+                start=game["start"], flag=None, mp="")
+    synth = []
+    for per, mf, tf in (("FG", 1.0, 1.0), ("H1", fr["H1_margin"], fr["H1_total"]),
+                        ("Q1", fr["Q1_margin"], fr["Q1_total"])):
+        hl = round(-proj["margin"] * mf) + 0.5          # home handicap near fair
+        for L in [hl + k for k in range(-2, 3)]:
+            synth.append(dict(base, mid=f"{per}|spread|{L}", period=per, kind="spread",
+                              outcomes=[dict(label="", side="home", line=L, odds=1.0),
+                                        dict(label="", side="away", line=-L, odds=1.0)]))
+        tl = round(proj["total"] * tf) + 0.5
+        for L in [tl + k for k in range(-2, 3)]:
+            synth.append(dict(base, mid=f"{per}|total|{L}", period=per, kind="total",
+                              outcomes=[dict(label="", side="over", line=L, odds=1.0),
+                                        dict(label="", side="under", line=L, odds=1.0)]))
+    _, bets = evaluate_game(game, synth, model, inj_home, inj_away)
+    sheet = {}
+    for b in bets:
+        per, kind, L = b["winner_mid"].split("|")
+        key = (per, kind)
+        row = sheet.setdefault(key, {}).setdefault(float(L), {"tier": b["tier"], "blocked": b["blocked"]})
+        row[b["side"]] = ((1 + config.MIN_EV[b["tier"]]) / b["p"], b["p"])
+    return proj, sheet

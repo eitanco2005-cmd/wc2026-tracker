@@ -37,7 +37,11 @@ def cmd_today(args):
     now = espn.now_utc()
     warnings = []
     log("[0] Fetching Winner NBA line...")
-    raw = winner.fetch_line(args.winner_file, args.show_browser)
+    try:
+        raw = winner.fetch_line(args.winner_file, args.show_browser)
+    except Exception as e:  # noqa: BLE001
+        log(f"    Winner unavailable ({str(e).splitlines()[0]}) -> price-sheet mode")
+        return cmd_sheet(now)
     wm = winner.parse(raw)
     log(f"    {len(raw)} NBA markets on Winner, {len(wm)} supported")
     if not wm:
@@ -108,6 +112,34 @@ def cmd_today(args):
     log(f"\nReport: {out}")
     if not args.no_open:
         webbrowser.open(out.resolve().as_uri())
+
+
+def cmd_sheet(now):
+    """No Winner odds: minimum odds needed per line, to compare in the Winner app."""
+    model = build_model(now)
+    log("[2] Games, market lines, injuries...")
+    games = [g for g in espn.todays_games(now) if g["start"] > now + timedelta(minutes=5)
+             and g["start"] < now + timedelta(hours=20)]
+    inj = espn.injuries()
+    rows = []
+    for g in sorted(games, key=lambda x: x["start"]):
+        ih = team_injury_impact(inj.get(ABBR_TO_NAME.get(g["home"]), []), model.cur_gp[g["home"]], espn.athlete_stats)
+        ia = team_injury_impact(inj.get(ABBR_TO_NAME.get(g["away"]), []), model.cur_gp[g["away"]], espn.athlete_stats)
+        proj, sheet = engine.price_sheet(g, model, ih[0], ia[0])
+        rows.append((g, proj, {"home": ih, "away": ia}, sheet))
+    html = report.render_sheet(now, rows, model)
+    md = report.markdown_sheet(now, rows)
+    config.REPORTS_DIR.mkdir(parents=True, exist_ok=True)
+    out = config.REPORTS_DIR / f"{now.astimezone(ZoneInfo(config.TZ)):%Y-%m-%d_%H%M}_sheet.html"
+    out.write_text(html, encoding="utf-8")
+    (config.REPORTS_DIR / "latest.html").write_text(html, encoding="utf-8")
+    (config.REPORTS_DIR / "latest.md").write_text(md, encoding="utf-8")
+    import os
+    if os.environ.get("GITHUB_STEP_SUMMARY"):
+        with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as f:
+            f.write(md + "\n")
+    log(md)
+    log(f"\nReport: {out}")
 
 
 def cmd_settle(_):
