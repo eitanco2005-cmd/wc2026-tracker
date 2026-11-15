@@ -76,47 +76,68 @@ def cmd_today(args):
     publish(now, rows, all_bets, model, warnings, args)
 
 
-def publish(now, rows, all_bets, model, warnings, args):
-    singles = sorted([b for b in all_bets if b["qualifies"]], key=lambda b: -b["ev"])
-    # one single per market (never both sides)
-    seen, s2 = set(), []
-    for b in singles:
-        if b["winner_mid"] not in seen:
-            seen.add(b["winner_mid"]); s2.append(b)
-    singles = [(b, engine.stake_for(b["kelly"], config.MAX_SINGLE_STAKE_PCT)) for b in s2]
-    pars = parlays.build(all_bets, allow_negative=args.show_negative)
-    pars = [(p, engine.stake_for(p["kelly"], config.MAX_PARLAY_STAKE_PCT) if p["ev"] > 0 else 0.0)
-            for p in pars]
+def choose_tickets(all_bets, args):
+    """Best singles (one per game) + best rule-valid parlay."""
+    from nbaw import rules
+    cands = sorted([b for b in all_bets if b["qualifies"] and rules.single_ok(b)], key=lambda b: -b["ev"])
+    singles, games = [], set()
+    for b in cands:
+        if b["game_id"] in games:
+            continue
+        games.add(b["game_id"]); singles.append(b)
+        if len(singles) >= config.MAX_SINGLES_PER_DAY:
+            break
+    pars = [p for p in parlays.build(all_bets, allow_negative=args.show_negative)
+            if p["ev"] > 0 and not rules.parlay_problems(p["legs"])][: config.MAX_PARLAYS_PER_DAY]
+    return singles, pars
 
+
+def publish(now, rows, all_bets, model, warnings, args):
+    from nbaw import project
+    st = project.state(tracker.load())
+    singles, pars = choose_tickets(all_bets, args) if st["status"] == "active" else ([], [])
+    singles, pars = project.size_day(st["balance"], singles, pars)
     if not args.no_log:
-        tracker.log(now, singles, [p for p in pars if p[0]["ev"] > 0])
-    html = report.render(now, rows, singles, pars, all_bets, model, tracker.summary(), warnings)
+        tracker.log(now, singles, pars)
+    write_meta(picks_at=now.isoformat())
+    full = report.render(now, rows, singles, pars, all_bets, model, tracker.summary(), warnings)
     config.REPORTS_DIR.mkdir(parents=True, exist_ok=True)
-    out = config.REPORTS_DIR / f"{now.astimezone(ZoneInfo(config.TZ)):%Y-%m-%d_%H%M}.html"
-    out.write_text(html, encoding="utf-8")
-    (config.REPORTS_DIR / "latest.html").write_text(html, encoding="utf-8")
-    (config.ROOT / "index.html").write_text(html, encoding="utf-8")
-    md = report.markdown(now, singles, pars, all_bets, tracker.summary())
-    (config.REPORTS_DIR / "latest.md").write_text(md, encoding="utf-8")
-    import os
-    if os.environ.get("GITHUB_STEP_SUMMARY"):
-        with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as f:
-            f.write(md + "\n")
+    stamp = f"{now.astimezone(ZoneInfo(config.TZ)):%Y-%m-%d_%H%M}"
+    (config.REPORTS_DIR / f"{stamp}.html").write_text(full, encoding="utf-8")
+    (config.REPORTS_DIR / "latest_full.html").write_text(full, encoding="utf-8")
+    render_site(now)
 
     log("\n================ SUMMARY ================")
-    log(f"{len(all_bets)} options checked in {len(rows)} games")
-    if singles:
-        for b, st in singles:
-            log(f"  BET {b['away']}@{b['home']} | {b['label']} | {b['market']} | {b['odds']:.2f} | "
-                f"p={b['p']:.1%} EV={b['ev']:+.1%} [{b['tier']}] | {st:.0f}₪")
-    else:
-        log("  No single bet with positive value today.")
-    for p, st in pars:
-        log(f"  PARLAY {len(p['legs'])} legs @ {p['odds']:.2f} p={p['p']:.1%} EV={p['ev']:+.1%} {st:.0f}₪: "
-            + " + ".join(l["label"] for l in p["legs"]))
-    log(f"\nReport: {out}")
-    if not args.no_open:
-        webbrowser.open(out.resolve().as_uri())
+    log(f"{len(all_bets)} options checked in {len(rows)} games | balance {st['balance']:.0f} ({st['status']})")
+    for b, stk in singles:
+        log(f"  SINGLE {b['away']}@{b['home']} | {b['label']} | {b['market']} | {b['odds']:.2f} | "
+            f"p={b['p']:.1%} EV={b['ev']:+.1%} [{b['tier']}] | {stk} ILS")
+    for p, stk in pars:
+        log(f"  PARLAY {len(p['legs'])} legs @ {p['odds']:.2f} p={p['p']:.1%} EV={p['ev']:+.1%} {stk} ILS: "
+            + " + ".join(f"{l['away']}@{l['home']} {l['label']}" for l in p["legs"]))
+    if not singles and not pars:
+        log("  No bets today.")
+
+
+def write_meta(**kw):
+    import json
+    p = config.DATA_DIR / "meta.json"
+    m = json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+    m.update(kw)
+    config.DATA_DIR.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(m, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
+def render_site(now):
+    import json
+    from nbaw import project, site
+    rows = tracker.load()
+    mp = config.DATA_DIR / "meta.json"
+    meta = json.loads(mp.read_text(encoding="utf-8")) if mp.exists() else {}
+    html = site.render(now, project.state(rows), rows, meta)
+    (config.ROOT / "index.html").write_text(html, encoding="utf-8")
+    config.REPORTS_DIR.mkdir(parents=True, exist_ok=True)
+    (config.REPORTS_DIR / "latest.html").write_text(html, encoding="utf-8")
 
 
 def cmd_sheet(now):
@@ -138,9 +159,9 @@ def cmd_sheet(now):
     config.REPORTS_DIR.mkdir(parents=True, exist_ok=True)
     out = config.REPORTS_DIR / f"{now.astimezone(ZoneInfo(config.TZ)):%Y-%m-%d_%H%M}_sheet.html"
     out.write_text(html, encoding="utf-8")
-    (config.REPORTS_DIR / "latest.html").write_text(html, encoding="utf-8")
-    (config.ROOT / "index.html").write_text(html, encoding="utf-8")
+    (config.REPORTS_DIR / "latest_full.html").write_text(html, encoding="utf-8")
     (config.REPORTS_DIR / "latest.md").write_text(md, encoding="utf-8")
+    render_site(now)
     import os
     if os.environ.get("GITHUB_STEP_SUMMARY"):
         with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as f:

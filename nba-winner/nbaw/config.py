@@ -12,7 +12,7 @@ TZ = "Asia/Jerusalem"
 BANKROLL = 1000.0          # ₪ — your total betting bankroll
 KELLY_FRACTION = 0.25      # quarter-Kelly
 MAX_SINGLE_STAKE_PCT = 0.02
-MAX_PARLAY_STAKE_PCT = 0.005
+MAX_PARLAY_STAKE_PCT = 0.01
 MIN_STAKE = 5.0            # Winner minimum-ish; stakes below this are rounded up/shown as minimum
 
 # ---- Which bets qualify -------------------------------------------------
@@ -23,7 +23,7 @@ MIN_STAKE = 5.0            # Winner minimum-ish; stakes below this are rounded u
 MIN_EV = {"A": 0.02, "B": 0.04, "C": 0.06}
 
 # ---- Parlays ------------------------------------------------------------
-PARLAY_MAX_LEGS = 4
+PARLAY_MAX_LEGS = 3
 PARLAY_MIN_LEGS = 2
 PARLAY_MIN_PROB = 0.12     # don't suggest lottery tickets
 PARLAY_TOP_N = 5
@@ -52,3 +52,13 @@ INJURY_WEIGHT = {"out": 1.0, "doubtful": 0.75, "questionable": 0.4, "day-to-day"
 INJURY_TEAM_CAP = 12.0     # max points of impact per team
 
 HTTP_TIMEOUT = 20
+
+# ---- The project ---------------------------------------------------------
+PROJECT_NAME = "פרויקט NBA בווינר"
+PROJECT_START_DATE = "2026-11-15"
+START_BALANCE = 1000.0      # ₪ starting bankroll
+PROFIT_TARGET = 500.0       # ₪ profit goal -> stop when balance reaches START + TARGET
+STOP_LOSS_PCT = 0.40        # stop the project if balance falls 40% below start
+DAILY_MAX_EXPOSURE = 0.10   # never put more than 10% of balance on one day
+MAX_SINGLES_PER_DAY = 4
+MAX_PARLAYS_PER_DAY = 1
