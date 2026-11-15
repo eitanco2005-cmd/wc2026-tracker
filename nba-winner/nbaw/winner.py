@@ -19,13 +19,24 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
 def _fetch_playwright(headless=True) -> dict:
     from playwright.sync_api import sync_playwright
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=headless)
-        ctx = browser.new_context(locale="he-IL", user_agent=UA)
+        browser = p.chromium.launch(headless=headless,
+                                    args=["--disable-blink-features=AutomationControlled"])
+        ctx = browser.new_context(locale="he-IL", user_agent=UA, timezone_id="Asia/Jerusalem",
+                                  viewport={"width": 1366, "height": 800})
         page = ctx.new_page()
-        page.goto(HOME_URL, wait_until="networkidle", timeout=90_000)
-        txt = page.evaluate(
-            "async (u) => { const r = await fetch(u); return await r.text(); }",
-            LINE_URL.replace("https://www.winner.co.il", ""))
+        resp = page.goto(HOME_URL, wait_until="domcontentloaded", timeout=90_000)
+        print(f"    winner home: HTTP {resp.status if resp else '?'}")
+        txt = ""
+        for attempt in range(4):
+            page.wait_for_timeout(6000)
+            res = page.evaluate(
+                "async (u) => { const r = await fetch(u); return [r.status, await r.text()]; }",
+                LINE_URL.replace("https://www.winner.co.il", ""))
+            print(f"    winner line attempt {attempt + 1}: HTTP {res[0]}, {len(res[1])} bytes, starts {res[1][:80]!r}")
+            if res[0] == 200 and res[1].lstrip().startswith("{"):
+                txt = res[1]
+                break
+            page.reload(wait_until="domcontentloaded")
         browser.close()
     return json.loads(txt)
 
