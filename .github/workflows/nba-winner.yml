@@ -2,7 +2,8 @@ name: NBA x Winner daily picks
 
 on:
   schedule:
-    - cron: "47 15 * * *"   # 17:47 Israel (winter) / 18:47 (summer)
+    - cron: "0 8 * * *"     # 10:00 Israel (winter) / 11:00 (summer): grade last night's bets, update balance on site
+    - cron: "47 15 * * *"   # 17:47 Israel (winter) / 18:47 (summer): fresh projections + injuries before the 18:30 picks task
   workflow_dispatch:
 
 permissions:
