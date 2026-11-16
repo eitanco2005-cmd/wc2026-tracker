@@ -9,12 +9,18 @@ Site (GitHub Pages, public): https://eitanco2005-cmd.github.io/wc2026-tracker/nb
 
 | Step | Where | What |
 |---|---|---|
-| 1. Projections | GitHub Actions `.github/workflows/nba-winner.yml`, daily 15:47 UTC + manual dispatch | `python run.py settle` grades finished bets → `python run.py` tries Winner (always 403 from GitHub) → falls back to price-sheet mode, writes `data/projections.json`, re-renders the site |
+| 1. Projections | GitHub Actions `.github/workflows/nba-winner.yml`, daily 08:00 UTC (10:00 Israel winter: settle last night, update site) and 15:47 UTC (fresh projections before picks) + manual dispatch | `python run.py settle` grades finished bets → `python run.py` tries Winner (always 403 from GitHub) → falls back to price-sheet mode, writes `data/projections.json`, re-renders the site |
 | 2. Winner odds | **Claude in Chrome** on the owner's PC (Winner blocks non-Israeli/server IPs) | run `tools/winner_capture.js` on https://www.winner.co.il/ |
 | 3. Picks | this repo, locally in the session | `python run.py picks --winner-file data/winner_nba_latest.json --no-open` → logs tickets to `data/picks.csv`, renders `index.html`, commit + push → Pages deploys |
 
 The session sandbox has **no network access to ESPN or Winner**; never try to fetch them from Bash. ESPN data only
 comes from the Action; Winner odds only via Claude in Chrome. GitHub (git push, `gh`) works.
+
+## Automatic daily picks
+
+A Claude desktop-app scheduled task `nba-winner-daily-picks` (file `C:\Users\eitan\.claude\scheduled-tasks\nba-winner-daily-picks\SKILL.md`)
+runs the `/picks` procedure below every day at 18:30 local time. It needs the PC on, the Claude app open, and Chrome open
+with the extension connected; if the app was closed, it runs on next launch.
 
 ## `/picks` procedure (when Ethan says "picks")
 
