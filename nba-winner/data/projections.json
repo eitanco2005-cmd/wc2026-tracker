@@ -1,426 +1,125 @@
 {
- "created": "2026-11-16T15:55:34.145610+00:00",
+ "created": "2026-11-17T08:03:21.443297+00:00",
  "sd": {
-  "FG_margin": 14.45314975055755,
-  "FG_total": 18.761988500271684,
-  "team_pts": 11.842033797709094,
-  "H1_margin": 11.183373110939566,
-  "H1_total": 12.31347746925689,
-  "Q1_margin": 8.33347502129567,
-  "Q1_total": 8.3250165041018
+  "FG_margin": 14.441132079465424,
+  "FG_total": 18.768123474722113,
+  "team_pts": 11.840726778516357,
+  "H1_margin": 11.195508359740838,
+  "H1_total": 12.31549938944396,
+  "Q1_margin": 8.344477224603398,
+  "Q1_total": 8.341799653236947
  },
  "frac": {
-  "H1_margin": 0.6558027138338209,
-  "H1_total": 0.5052794008010125,
-  "Q1_margin": 0.34504600744078257,
-  "Q1_total": 0.2543272592772393
+  "H1_margin": 0.6662723224000408,
+  "H1_total": 0.505139260153488,
+  "Q1_margin": 0.3505353620119406,
+  "Q1_total": 0.25414331292575665
  },
- "hca": 1.9508886995516204,
- "b2b": -2.2055583414600686,
+ "hca": 1.9213778251165947,
+ "b2b": -2.431417717964607,
  "ratings": {
-  "ATL": 0.11971315975073267,
-  "BKN": -6.818999788881762,
-  "BOS": 8.123850047513749,
-  "CHA": -2.294719457006912,
-  "CHI": -5.24699963270308,
-  "CLE": 2.2843515995768855,
-  "DAL": -3.1454383650721582,
-  "DEN": 3.2088430475608565,
-  "DET": 4.732026010724946,
-  "GS": 2.218703537787166,
-  "HOU": 6.177047740120741,
-  "IND": -5.318464627146889,
-  "LAC": -0.7085582039421154,
-  "LAL": 3.8942485775216547,
-  "MEM": -0.38769456750614867,
-  "MIA": 0.9884154091332269,
-  "MIL": -7.724052827216485,
-  "MIN": 5.057549438914936,
-  "NO": -6.460871810694643,
-  "NY": 6.070995997748293,
-  "OKC": 7.855149906809267,
-  "ORL": -1.2618383477001707,
-  "PHI": 0.28654226247386694,
-  "PHX": -0.08379729011553745,
-  "POR": 2.9212557110130213,
-  "SA": 8.934061420067946,
-  "SAC": -9.000712319357266,
-  "TOR": 1.3217915824651933,
-  "UTAH": -7.236738692693383,
-  "WSH": -8.505659519145938
+  "ATL": 0.1218089130257684,
+  "BKN": -7.130042797630133,
+  "BOS": 7.507100229930863,
+  "CHA": -2.2455913611060194,
+  "CHI": -5.301949300220328,
+  "CLE": 2.360682811667669,
+  "DAL": -3.1999358654727734,
+  "DEN": 2.5574179803753205,
+  "DET": 4.766780029742068,
+  "GS": 1.3097108825781074,
+  "HOU": 5.502914101100722,
+  "IND": -5.311226144410335,
+  "LAC": -0.6627850844507959,
+  "LAL": 3.8630726724682325,
+  "MEM": -0.15399834774253607,
+  "MIA": 1.6416556414478964,
+  "MIL": -7.728980158882999,
+  "MIN": 5.158675838697098,
+  "NO": -5.550629500011425,
+  "NY": 6.093610413084756,
+  "OKC": 7.845938873605264,
+  "ORL": -0.6257944862063878,
+  "PHI": 0.5301883865684273,
+  "PHX": 0.5254358304229676,
+  "POR": 2.770327089533327,
+  "SA": 8.892862674479169,
+  "SAC": -8.938361356185993,
+  "TOR": 1.333194476198581,
+  "UTAH": -7.178790207909179,
+  "WSH": -8.753292234697309
  },
  "games": [
   {
    "game": {
-    "id": "401909994",
-    "start": "2026-11-17T00:00:00+00:00",
-    "home": "BOS",
-    "away": "ORL",
+    "id": "401910002",
+    "start": "2026-11-18T00:30:00+00:00",
+    "home": "TOR",
+    "away": "NY",
     "neutral": false,
     "odds": {
-     "provider": "Draft Kings",
-     "spread": -8.5,
-     "total": 212.5,
-     "spread_home_line": -8.5,
-     "spread_home_odds": 1.9345794392523366,
-     "spread_away_odds": 1.8849557522123894,
-     "spread_open_home_line": -9.5,
-     "total_line": 212.5,
-     "over_odds": 1.9090909090909092,
-     "under_odds": 1.9090909090909092,
-     "total_open_line": 211.5,
-     "ml_home": 1.2777777777777777,
-     "ml_away": 3.87
-    }
-   },
-   "proj": {
-    "gap_margin": false,
-    "gap_total": false,
-    "model_margin": 9.13101875330547,
-    "model_total": 218.25399898065092,
-    "market_margin": 9.047146087431514,
-    "market_total": 212.5,
-    "margin": 9.072307887193702,
-    "total": 214.2261996941953,
-    "home_pts": 111.6492537906945,
-    "away_pts": 102.57694590350079,
-    "b2b_home": true,
-    "b2b_away": false,
-    "anchored_m": true,
-    "anchored_t": true,
-    "anomalies": []
-   },
-   "inj": {
-    "home": [
-     0.0,
-     []
-    ],
-    "away": [
-     0.0,
-     []
-    ]
-   }
-  },
-  {
-   "game": {
-    "id": "401909995",
-    "start": "2026-11-17T00:00:00+00:00",
-    "home": "CLE",
-    "away": "CHI",
-    "neutral": false,
-    "odds": {
-     "provider": "Draft Kings",
-     "spread": -8.5,
-     "total": 241.5,
-     "spread_home_line": -8.5,
-     "spread_home_odds": 1.847457627118644,
-     "spread_away_odds": 1.970873786407767,
-     "spread_open_home_line": -10.5,
-     "total_line": 241.5,
-     "over_odds": 1.9090909090909092,
-     "under_odds": 1.9090909090909092,
-     "total_open_line": 241.5,
-     "ml_home": 1.2785515320334262,
-     "ml_away": 3.86
-    }
-   },
-   "proj": {
-    "gap_margin": false,
-    "gap_total": false,
-    "model_margin": 9.682859931831587,
-    "model_total": 240.3208185974941,
-    "market_margin": 9.44404631010683,
-    "market_total": 241.5,
-    "margin": 9.515690396624256,
-    "total": 241.14624557924822,
-    "home_pts": 125.33096798793623,
-    "away_pts": 115.81527759131198,
-    "b2b_home": false,
-    "b2b_away": false,
-    "anchored_m": true,
-    "anchored_t": true,
-    "anomalies": []
-   },
-   "inj": {
-    "home": [
-     2.731119999999999,
-     [
-      {
-       "name": "Jaylon Tyson",
-       "status": "day-to-day",
-       "impact": 0.1
-      },
-      {
-       "name": "Peyton Watson",
-       "status": "day-to-day",
-       "impact": 0.1
-      },
-      {
-       "name": "Evan Mobley",
-       "status": "out",
-       "impact": 2.2
-      },
-      {
-       "name": "Sam Merrill",
-       "status": "out",
-       "impact": 0.1
-      },
-      {
-       "name": "Nae'Qwan Tomlin",
-       "status": "out",
-       "impact": 0.2
-      }
-     ]
-    ],
-    "away": [
-     2.9317399999999996,
-     [
-      {
-       "name": "Jalen Smith",
-       "status": "day-to-day",
-       "impact": 0.5
-      },
-      {
-       "name": "Caleb Wilson",
-       "status": "out",
-       "impact": 2.4
-      }
-     ]
-    ]
-   }
-  },
-  {
-   "game": {
-    "id": "401909996",
-    "start": "2026-11-17T00:00:00+00:00",
-    "home": "WSH",
-    "away": "MEM",
-    "neutral": false,
-    "odds": {
-     "provider": "Draft Kings",
-     "spread": 3.5,
-     "total": 232.5,
-     "spread_home_line": 3.5,
-     "spread_home_odds": 1.9090909090909092,
-     "spread_away_odds": 1.9090909090909092,
-     "spread_open_home_line": 6.5,
-     "total_line": 232.5,
-     "over_odds": 1.9433962264150944,
-     "under_odds": 1.8771929824561404,
-     "total_open_line": 230.5,
-     "ml_home": 2.3600000000000003,
-     "ml_away": 1.62111801242236
-    }
-   },
-   "proj": {
-    "gap_margin": false,
-    "gap_total": false,
-    "model_margin": -4.729974593548237,
-    "model_total": 235.23882272278573,
-    "market_margin": -3.446432703881356,
-    "market_total": 232.09250538595714,
-    "margin": -3.8314952707814207,
-    "total": 233.0364005870057,
-    "home_pts": 114.60245265811213,
-    "away_pts": 118.43394792889356,
-    "b2b_home": true,
-    "b2b_away": false,
-    "anchored_m": true,
-    "anchored_t": true,
-    "anomalies": []
-   },
-   "inj": {
-    "home": [
-     1.5951599999999995,
-     [
-      {
-       "name": "Tre Johnson",
-       "status": "day-to-day",
-       "impact": 0.0
-      },
-      {
-       "name": "Tristan Vukcevic",
-       "status": "out",
-       "impact": 1.3
-      },
-      {
-       "name": "Jamir Watkins",
-       "status": "out",
-       "impact": 0.3
-      }
-     ]
-    ],
-    "away": [
-     5.237820000000001,
-     [
-      {
-       "name": "GG Jackson",
-       "status": "out",
-       "impact": 0.4
-      },
-      {
-       "name": "Isaiah Stewart",
-       "status": "day-to-day",
-       "impact": 0.4
-      },
-      {
-       "name": "Ty Jerome",
-       "status": "out",
-       "impact": 4.3
-      },
-      {
-       "name": "Zach Edey",
-       "status": "day-to-day",
-       "impact": 0.1
-      }
-     ]
-    ]
-   }
-  },
-  {
-   "game": {
-    "id": "401909997",
-    "start": "2026-11-17T00:30:00+00:00",
-    "home": "BKN",
-    "away": "PHI",
-    "neutral": false,
-    "odds": {
-     "provider": "Draft Kings",
-     "spread": 5.5,
-     "total": 226.5,
-     "spread_home_line": 5.5,
-     "spread_home_odds": 1.8928571428571428,
-     "spread_away_odds": 1.925925925925926,
-     "spread_open_home_line": 5.5,
-     "total_line": 226.5,
-     "over_odds": 1.9433962264150944,
-     "under_odds": 1.8695652173913042,
-     "total_open_line": 226.5,
-     "ml_home": 2.8,
-     "ml_away": 1.4608294930875576
-    }
-   },
-   "proj": {
-    "gap_margin": false,
-    "gap_total": false,
-    "model_margin": -2.2481150103439402,
-    "model_total": 224.4614937941852,
-    "market_margin": -5.596124518369415,
-    "market_total": 226.04463690547698,
-    "margin": -4.591721665961773,
-    "total": 225.56969397208945,
-    "home_pts": 110.48898615306383,
-    "away_pts": 115.08070781902562,
-    "b2b_home": false,
-    "b2b_away": true,
-    "anchored_m": true,
-    "anchored_t": true,
-    "anomalies": []
-   },
-   "inj": {
-    "home": [
-     0.0,
-     []
-    ],
-    "away": [
-     0.7009799999999999,
-     [
-      {
-       "name": "Joel Embiid",
-       "status": "day-to-day",
-       "impact": 0.7
-      }
-     ]
-    ]
-   }
-  },
-  {
-   "game": {
-    "id": "401909998",
-    "start": "2026-11-17T00:30:00+00:00",
-    "home": "MIA",
-    "away": "HOU",
-    "neutral": false,
-    "odds": {
-     "provider": "Draft Kings",
+     "provider": "DraftKings",
      "spread": 2.5,
-     "total": 231.5,
+     "total": 216.5,
      "spread_home_line": 2.5,
      "spread_home_odds": 1.9523809523809523,
      "spread_away_odds": 1.8695652173913042,
-     "spread_open_home_line": 2.5,
-     "total_line": 231.5,
-     "over_odds": 1.9523809523809523,
-     "under_odds": 1.8620689655172413,
-     "total_open_line": 228.5,
-     "ml_home": 2.24,
-     "ml_away": 1.6756756756756757
+     "spread_open_home_line": 3.5,
+     "total_line": 216.5,
+     "over_odds": 1.8695652173913042,
+     "under_odds": 1.9523809523809523,
+     "total_open_line": 216.5,
+     "ml_home": 2.2800000000000002,
+     "ml_away": 1.6578947368421053
     }
    },
    "proj": {
     "gap_margin": false,
     "gap_total": false,
-    "model_margin": -0.608125289975824,
-    "model_total": 233.63838427961255,
-    "market_margin": -2.758771719265419,
-    "market_total": 230.9431784512992,
-    "margin": -2.11357779047854,
-    "total": 231.7517401997932,
-    "home_pts": 114.81908120465734,
-    "away_pts": 116.93265899513587,
+    "model_margin": -2.8390381117695798,
+    "model_total": 218.83897490236663,
+    "market_margin": -2.8852414751398303,
+    "market_total": 217.0097561563143,
+    "margin": -2.8713804661287554,
+    "total": 217.55852178013,
+    "home_pts": 107.34357065700063,
+    "away_pts": 110.21495112312938,
     "b2b_home": false,
-    "b2b_away": true,
+    "b2b_away": false,
     "anchored_m": true,
     "anchored_t": true,
     "anomalies": []
    },
    "inj": {
     "home": [
-     0.12179999999999995,
-     [
-      {
-       "name": "Pelle Larsson",
-       "status": "day-to-day",
-       "impact": 0.1
-      }
-     ]
+     0.0,
+     []
     ],
     "away": [
-     0.5458600000000007,
-     [
-      {
-       "name": "Fred VanVleet",
-       "status": "day-to-day",
-       "impact": 0.5
-      },
-      {
-       "name": "Clint Capela",
-       "status": "out",
-       "impact": 0.1
-      }
-     ]
+     0.0,
+     []
     ]
    }
   },
   {
    "game": {
-    "id": "401909999",
-    "start": "2026-11-17T01:00:00+00:00",
+    "id": "401910003",
+    "start": "2026-11-18T01:00:00+00:00",
     "home": "MIN",
     "away": "POR",
     "neutral": false,
     "odds": {
-     "provider": "Draft Kings",
+     "provider": "DraftKings",
      "spread": -2.5,
-     "total": 227.5,
+     "total": 226.5,
      "spread_home_line": -2.5,
      "spread_home_odds": 1.9803921568627452,
-     "spread_away_odds": 1.8403361344537816,
-     "spread_open_home_line": -3.5,
-     "total_line": 227.5,
-     "over_odds": 1.9433962264150944,
-     "under_odds": 1.8771929824561404,
-     "total_open_line": 228.5,
+     "spread_away_odds": 1.847457627118644,
+     "spread_open_home_line": -2.5,
+     "total_line": 226.5,
+     "over_odds": 1.9090909090909092,
+     "under_odds": 1.9090909090909092,
+     "total_open_line": 226.5,
      "ml_home": 1.7407407407407407,
      "ml_away": 2.1399999999999997
     }
@@ -428,24 +127,29 @@
    "proj": {
     "gap_margin": false,
     "gap_total": false,
-    "model_margin": 6.380382427453536,
-    "model_total": 227.60731962081948,
-    "market_margin": 1.8522944485971315,
-    "market_total": 227.09250538595714,
-    "margin": 3.210720842254053,
-    "total": 227.24694965641584,
-    "home_pts": 115.22883524933495,
-    "away_pts": 112.01811440708089,
-    "b2b_home": false,
-    "b2b_away": false,
+    "model_margin": 6.353026574280367,
+    "model_total": 225.84376155200732,
+    "market_margin": 1.8692646273723863,
+    "market_total": 226.5,
+    "margin": 3.2143932114447806,
+    "total": 226.30312846560219,
+    "home_pts": 114.75876083852349,
+    "away_pts": 111.5443676270787,
+    "b2b_home": true,
+    "b2b_away": true,
     "anchored_m": true,
     "anchored_t": true,
     "anomalies": []
    },
    "inj": {
     "home": [
-     0.7909999999999999,
+     1.0408999999999997,
      [
+      {
+       "name": "Jonathan Kuminga",
+       "status": "day-to-day",
+       "impact": 0.2
+      },
       {
        "name": "Donte DiVincenzo",
        "status": "out",
@@ -472,38 +176,38 @@
   },
   {
    "game": {
-    "id": "401910000",
-    "start": "2026-11-17T01:00:00+00:00",
-    "home": "NO",
-    "away": "GS",
+    "id": "401910004",
+    "start": "2026-11-18T01:00:00+00:00",
+    "home": "SA",
+    "away": "DET",
     "neutral": false,
     "odds": {
-     "provider": "Draft Kings",
-     "spread": 3.5,
-     "total": 223.5,
-     "spread_home_line": 3.5,
-     "spread_home_odds": 1.925925925925926,
-     "spread_away_odds": 1.8928571428571428,
-     "spread_open_home_line": 2.5,
-     "total_line": 223.5,
-     "over_odds": 1.9090909090909092,
-     "under_odds": 1.9090909090909092,
-     "total_open_line": 226.5,
-     "ml_home": 2.4,
-     "ml_away": 1.5988023952095807
+     "provider": "DraftKings",
+     "spread": -9.5,
+     "total": 221.5,
+     "spread_home_line": -9.5,
+     "spread_home_odds": 1.9523809523809523,
+     "spread_away_odds": 1.8620689655172413,
+     "spread_open_home_line": -7.5,
+     "total_line": 221.5,
+     "over_odds": 1.8695652173913042,
+     "under_odds": 1.9523809523809523,
+     "total_open_line": 220.5,
+     "ml_home": 1.2695417789757413,
+     "ml_away": 3.95
     }
    },
    "proj": {
     "gap_margin": false,
     "gap_total": false,
-    "model_margin": 2.4727133510698103,
-    "model_total": 229.7016181077218,
-    "market_margin": -3.662625375722551,
-    "market_total": 223.5,
-    "margin": -1.8220237576848424,
-    "total": 225.36048543231652,
-    "home_pts": 111.76923083731585,
-    "away_pts": 113.59125459500068,
+    "model_margin": 6.691460469853695,
+    "model_total": 222.85924127313524,
+    "market_margin": 9.56089392256836,
+    "market_total": 222.0097561563143,
+    "margin": 8.70006388675396,
+    "total": 222.26460169136058,
+    "home_pts": 115.48233278905727,
+    "away_pts": 106.78226890230331,
     "b2b_home": false,
     "b2b_away": false,
     "anchored_m": true,
@@ -512,52 +216,27 @@
    },
    "inj": {
     "home": [
-     2.7986,
+     1.2824000000000007,
      [
       {
-       "name": "Trey Murphy III",
+       "name": "Tobias Harris",
        "status": "out",
        "impact": 1.3
-      },
-      {
-       "name": "Trendon Watford",
-       "status": "out",
-       "impact": 0.4
-      },
-      {
-       "name": "Dejounte Murray",
-       "status": "out",
-       "impact": 1.1
       }
      ]
     ],
     "away": [
-     12.0,
+     1.9264,
      [
       {
-       "name": "Stephen Curry",
+       "name": "Ronald Holland II",
        "status": "out",
-       "impact": 5.5
+       "impact": 0.2
       },
       {
-       "name": "Brandon Williams",
+       "name": "Duncan Robinson",
        "status": "out",
-       "impact": 1.5
-      },
-      {
-       "name": "Kristaps Porzingis",
-       "status": "out",
-       "impact": 2.7
-      },
-      {
-       "name": "Moses Moody",
-       "status": "out",
-       "impact": 0.9
-      },
-      {
-       "name": "Jimmy Butler III",
-       "status": "out",
-       "impact": 3.2
+       "impact": 1.7
       }
      ]
     ]
@@ -565,64 +244,141 @@
   },
   {
    "game": {
-    "id": "401910001",
-    "start": "2026-11-17T02:00:00+00:00",
-    "home": "DEN",
-    "away": "PHX",
+    "id": "401910006",
+    "start": "2026-11-18T03:30:00+00:00",
+    "home": "LAC",
+    "away": "UTAH",
     "neutral": false,
     "odds": {
-     "provider": "Draft Kings",
-     "spread": -9.5,
-     "total": 228.5,
-     "spread_home_line": -9.5,
-     "spread_home_odds": 1.9090909090909092,
-     "spread_away_odds": 1.9090909090909092,
-     "spread_open_home_line": -10.5,
-     "total_line": 228.5,
-     "over_odds": 1.8695652173913042,
-     "under_odds": 1.9523809523809523,
-     "total_open_line": 228.5,
-     "ml_home": 1.2463054187192117,
-     "ml_away": 4.2
+     "provider": "DraftKings",
+     "spread": -6.5,
+     "total": 225.5,
+     "spread_home_line": -6.5,
+     "spread_home_odds": 1.9345794392523366,
+     "spread_away_odds": 1.8849557522123894,
+     "spread_open_home_line": -5.5,
+     "total_line": 225.5,
+     "over_odds": 1.9090909090909092,
+     "under_odds": 1.9090909090909092,
+     "total_open_line": 223.5,
+     "ml_home": 1.4201680672268908,
+     "ml_away": 2.9699999999999998
     }
    },
    "proj": {
     "gap_margin": false,
     "gap_total": false,
-    "model_margin": 8.363287378688083,
-    "model_total": 230.1021796959057,
-    "market_margin": 10.117097042093913,
-    "market_total": 229.00958952585714,
-    "margin": 9.590954143072164,
-    "total": 229.33736657687172,
-    "home_pts": 119.46416035997194,
-    "away_pts": 109.87320621689977,
+    "model_margin": 9.025382948574975,
+    "model_total": 229.21098165264996,
+    "market_margin": 6.439197394968476,
+    "market_total": 225.5,
+    "margin": 7.215053061050425,
+    "total": 226.613294495795,
+    "home_pts": 116.91417377842271,
+    "away_pts": 109.6991207173723,
     "b2b_home": false,
-    "b2b_away": true,
+    "b2b_away": false,
     "anchored_m": true,
     "anchored_t": true,
     "anomalies": []
    },
    "inj": {
     "home": [
-     0.5054,
+     3.599400000000001,
      [
       {
-       "name": "Julian Strawther",
+       "name": "Brandon Ingram",
        "status": "out",
-       "impact": 0.5
+       "impact": 2.9
+      },
+      {
+       "name": "Jordan Miller",
+       "status": "out",
+       "impact": 0.7
       }
      ]
     ],
     "away": [
-     1.4196000000000002,
+     4.187399999999999,
      [
       {
-       "name": "Mark Williams",
+       "name": "Jaxson Hayes",
        "status": "out",
-       "impact": 1.4
+       "impact": 0.5
+      },
+      {
+       "name": "Lauri Markkanen",
+       "status": "out",
+       "impact": 2.1
+      },
+      {
+       "name": "Jusuf Nurkic",
+       "status": "out",
+       "impact": 1.5
       }
      ]
+    ]
+   }
+  },
+  {
+   "game": {
+    "id": "401910005",
+    "start": "2026-11-18T04:00:00+00:00",
+    "home": "LAL",
+    "away": "CHA",
+    "neutral": false,
+    "odds": {
+     "provider": "DraftKings",
+     "spread": -7.5,
+     "total": 218.5,
+     "spread_home_line": -7.5,
+     "spread_home_odds": 1.9090909090909092,
+     "spread_away_odds": 1.9090909090909092,
+     "spread_open_home_line": -10.5,
+     "total_line": 218.5,
+     "over_odds": 1.8771929824561404,
+     "under_odds": 1.9433962264150944,
+     "total_open_line": 218.5,
+     "ml_home": 1.3164556962025316,
+     "ml_away": 3.55
+    }
+   },
+   "proj": {
+    "gap_margin": false,
+    "gap_total": false,
+    "model_margin": 2.749241858690847,
+    "model_total": 221.42965886369686,
+    "market_margin": 8.163586728908058,
+    "market_total": 218.9076278605293,
+    "margin": 6.539283267842894,
+    "total": 219.66423716147955,
+    "home_pts": 113.10176021466123,
+    "away_pts": 106.56247694681832,
+    "b2b_home": false,
+    "b2b_away": false,
+    "anchored_m": true,
+    "anchored_t": true,
+    "anomalies": []
+   },
+   "inj": {
+    "home": [
+     5.2808,
+     [
+      {
+       "name": "Austin Reaves",
+       "status": "out",
+       "impact": 3.3
+      },
+      {
+       "name": "Walker Kessler",
+       "status": "out",
+       "impact": 1.9
+      }
+     ]
+    ],
+    "away": [
+     0.0,
+     []
     ]
    }
   }
