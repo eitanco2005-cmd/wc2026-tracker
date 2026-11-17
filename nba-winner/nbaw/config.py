@@ -11,7 +11,7 @@ TZ = "Asia/Jerusalem"
 # ---- Bankroll / staking -------------------------------------------------
 BANKROLL = 1000.0          # ₪ — your total betting bankroll
 KELLY_FRACTION = 0.25      # quarter-Kelly
-MAX_SINGLE_STAKE_PCT = 0.02
+MAX_SINGLE_STAKE_PCT = 0.03   # raised from 2% at owner request (17/11/2026)
 MAX_PARLAY_STAKE_PCT = 0.01
 MIN_STAKE = 5.0            # Winner minimum-ish; stakes below this are rounded up/shown as minimum
 
