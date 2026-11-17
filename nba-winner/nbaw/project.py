@@ -58,7 +58,9 @@ def stake(balance, kelly_f, cap_pct):
 
 def size_day(balance, singles, parlays):
     """Stakes for today's tickets, scaled down to the daily exposure cap."""
-    out_s = [(b, stake(balance, b["kelly"], config.MAX_SINGLE_STAKE_PCT)) for b in singles]
+    out_s = [(b, stake(balance, b["kelly"], min(config.MAX_SINGLE_STAKE_PCT,
+                                                config.MAX_SINGLE_STAKE_PCT_BY_TIER.get(b.get("tier"), 0.015))))
+             for b in singles]
     out_p = [(p, stake(balance, p["kelly"], config.MAX_PARLAY_STAKE_PCT)) for p in parlays]
     total = sum(s for _, s in out_s) + sum(s for _, s in out_p)
     cap = balance * config.DAILY_MAX_EXPOSURE

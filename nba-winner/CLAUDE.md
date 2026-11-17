@@ -55,7 +55,8 @@ If the Chrome extension isn't connected: tell Ethan (Chrome must be open, extens
 ## Project settings — `nbaw/config.py`
 
 `START_BALANCE`, `PROFIT_TARGET`, `STOP_LOSS_PCT`, `DAILY_MAX_EXPOSURE`, `MAX_SINGLES_PER_DAY`,
-`MAX_PARLAYS_PER_DAY`, `KELLY_FRACTION`, `MAX_SINGLE_STAKE_PCT`, `MAX_PARLAY_STAKE_PCT`, `MIN_EV` per tier.
+`MAX_PARLAYS_PER_DAY`, `KELLY_FRACTION`, `MAX_SINGLE_STAKE_PCT`, `MAX_SINGLE_STAKE_PCT_BY_TIER`, `MAX_PARLAY_STAKE_PCT`, `MIN_EV` per tier.
+Since 17/11/2026 (Ethan delegated the call): single cap A 3% / B 2.5% / C 1.5% / P 1.5% of balance; profit target kept at 500.
 Balance = START_BALANCE + sum of settled P&L in `data/picks.csv`. The ledger assumes Ethan placed exactly what the site
 showed. A new `picks` run replaces pending tickets whose games haven't started; started/settled ones stand.
 Project auto-stops (no new tickets) at target or at the stop-loss floor.
