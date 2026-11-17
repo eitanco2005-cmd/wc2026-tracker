@@ -69,14 +69,25 @@ Project auto-stops (no new tickets) at target or at the stop-loss floor.
   tiers A (full game) / B (half, team total) / C (quarter); blocks games where model and market disagree a lot;
   `line_anomalies` flags Winner half/quarter lines inconsistent with Winner's own full-game line ("קו חריג").
 - Winner margin is ~11–14% per two-way market; most days the honest answer is "no bet".
+- `nbaw/players.py` — **player points props** ("מעל/מתחת נקודות שחקן"). The Action pulls this season's ESPN box
+  scores (`espn.boxscore`, cached per game), projects each rotation player (points-per-minute × expected minutes ×
+  team's projected points tonight / team average), calibrates sd = a + b·mu walk-forward, and stores
+  `proj["players"]` in `projections.json`. In `picks`, Winner's Hebrew name is matched to tonight's ESPN players
+  (transliteration + `config.PLAYER_NAME_SEED` + optional `data/player_names.json` overrides); unmatched → warning, skipped.
+  Tier **P**, `MIN_EV["P"]`=10%, singles only (never in parlays), max `MAX_PROPS_PER_DAY`. Blocked if the player is
+  on the injury report (anything but probable), projects < `PROP_MIN_MINUTES`, |model − line| > `PROP_MAX_GAP`, or the
+  game total is blocked. Whole-number lines have an "exactly" outcome on Winner: over N = N+1 or more, landing on N
+  loses. Did-not-play is graded as void — **assumption, Winner's rule not verified**. As of 17/11/2026 Winner lists
+  player points only for Deni Avdija (one market per game).
 
 ## Files
 
 - `run.py` — CLI: `today` (default), `picks`, `settle`, `ratings`.
 - `nbaw/site.py` — the mobile Hebrew site (rendered from the ledger). `nbaw/report.py` — technical full report
   (`reports/latest_full.html`) and price sheet. `nbaw/hebrew.py` — team names + plain-Hebrew bet sentences.
-- `nbaw/compact.py` + `tools/winner_capture.js` — browser capture format: `mId|HOME-AWAY|YYMMDDHHMM|<FG|H1|Q1><S|O|T<team>>|sel:price,...;`
+- `nbaw/compact.py` + `tools/winner_capture.js` — browser capture format: `mId|HOME-AWAY|YYMMDDHHMM|<FG|H1|Q1><S|O|T<team>|P<hebrew player>>|sel:price,...;`
 - `tests/offline_test.py`, `tests/offline_sheet.py` — offline end-to-end tests with fixtures (synthetic history).
+- `tests/offline_props.py` — player props: decode, name matching, probabilities, grading, sheet → picks → settle.
 - `data/` — `picks.csv` (ledger), `projections.json`, `meta.json`, Winner captures. Committed on purpose.
 
 ## Conventions

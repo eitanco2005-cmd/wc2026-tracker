@@ -134,6 +134,25 @@ def parse(raw: list[dict]) -> list[dict]:
                 base["outcomes"].append(dict(label=_disp(o["desc"]), side=side,
                                              line=float(mm.group(2).replace(" ", "")),
                                              odds=float(o["price"])))
+        elif mp.startswith("מעל/מתחת נקודות שחקן"):
+            if period != "FG":
+                continue
+            base["kind"], base["team"] = "player_points", None
+            for o in outs:
+                d = norm(o["desc"])
+                if " - " not in d:
+                    continue
+                name, rest = d.rsplit(" - ", 1)
+                mm = _TOTAL.match(rest.strip())
+                if not mm or mm.group(1) == "בדיוק":
+                    continue
+                if base.get("player_he") not in (None, name.strip()):
+                    continue  # one player per market
+                base["player_he"] = name.strip()
+                base["player_disp"] = _disp(o["desc"]).rsplit(" - ", 1)[0].strip()
+                base["outcomes"].append(dict(label=_disp(o["desc"]),
+                                             side="over" if mm.group(1) == "מעל" else "under",
+                                             line=float(mm.group(2)), odds=float(o["price"])))
         elif mp.startswith("מעל/מתחת נקודות") and period:
             parts = [p.strip() for p in mp.split(" - ")]
             team = to_abbr(parts[1]) if len(parts) == 3 else None

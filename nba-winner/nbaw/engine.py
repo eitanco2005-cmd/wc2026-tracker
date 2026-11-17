@@ -85,6 +85,9 @@ def evaluate(game, markets, proj, sd, fr):
     bets = []
     for m in markets:
         per, kind = m["period"], m["kind"]
+        if kind == "player_points":
+            bets += _prop_bets(game, m, proj)
+            continue
         if kind in ("spread", "ml"):
             if per == "FG":
                 mu, s = margin, sd["FG_margin"]
@@ -129,13 +132,42 @@ def evaluate(game, markets, proj, sd, fr):
     return bets
 
 
+def _prop_bets(game, m, proj):
+    """Player points over/under: own projection only (no sharp market for props) -> tier P."""
+    from .players import match, p_side
+    pl = match(m.get("player_he", ""), proj.get("players") or [])
+    if not pl:
+        proj.setdefault("unmatched_players", []).append(m.get("player_disp") or m.get("player_he"))
+        return []
+    status = (pl.get("status") or "").lower()
+    healthy = status == "" or any(s and s in status for s in config.PROP_OK_STATUS)
+    vig = margin_of([o["odds"] for o in m["outcomes"]])
+    out = []
+    for o in m["outcomes"]:
+        p = p_side(o["side"], o["line"], pl["mu"], pl["sd"])
+        e = ev(p, o["odds"])
+        blocked = (not healthy or pl["min"] < config.PROP_MIN_MINUTES
+                   or abs(pl["mu"] - o["line"]) > config.PROP_MAX_GAP or proj.get("gap_total"))
+        out.append(dict(
+            game_id=game["id"], home=game["home"], away=game["away"], start=game["start"],
+            market=_market_name(m), kind="player_points", period="FG", side=o["side"], team=pl["team"],
+            line=o["line"], odds=o["odds"], label=o["label"], p=p, ev=e, kelly=kelly(p, o["odds"]),
+            tier="P", vig=vig, mu=pl["mu"], sd=pl["sd"], blocked=bool(blocked),
+            qualifies=e >= config.MIN_EV["P"] and not blocked, winner_mid=m["mid"], flag=m.get("flag"),
+            anomaly=None, player=m.get("player_disp") or m.get("player_he"), athlete_id=pl["athlete_id"],
+            player_en=pl["name"], player_status=status))
+    return out
+
+
 _PER_HE = {"FG": "משחק מלא", "H1": "מחצית ראשונה", "Q1": "רבע ראשון"}
 _KIND_HE = {"spread": "הימור יתרון", "total": "מעל/מתחת", "team_total": "סך נקודות קבוצתי",
-            "ml": "מנצחת"}
+            "ml": "מנצחת", "player_points": "נקודות שחקן"}
 
 
 def _market_name(m):
     n = f"{_KIND_HE[m['kind']]} – {_PER_HE[m['period']]}"
+    if m["kind"] == "player_points":
+        return f"{n} ({m.get('player_disp') or m.get('player_he', '')})"
     if not m.get("mp") and m["kind"] != "team_total":
         return n
     if m["kind"] == "team_total":

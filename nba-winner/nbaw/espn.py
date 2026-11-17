@@ -177,6 +177,45 @@ def injuries():
     return res
 
 
+# ---------------------------------------------------------------- box scores
+def boxscore(event_id, use_cache=True):
+    """Player lines of one completed game: [{team, athlete_id, name, min, pts, dnp}].
+    Cached (compact) once the game is final. None if unavailable."""
+    cp = _cache_path(f"box_{event_id}.json")
+    if use_cache and cp.exists():
+        return json.loads(cp.read_text(encoding="utf-8"))
+    data = _get(f"{SITE}/summary", {"event": event_id})
+    if not data:
+        return None
+    try:
+        final = data["header"]["competitions"][0]["status"]["type"]["completed"]
+    except (KeyError, IndexError, TypeError):
+        final = False
+    out = []
+    for tp in (data.get("boxscore") or {}).get("players", []):
+        team = (tp.get("team") or {}).get("abbreviation")
+        for st in tp.get("statistics", [])[:1]:
+            keys = st.get("keys") or []
+            names = [n.upper() for n in st.get("names") or []]
+            i_min = keys.index("minutes") if "minutes" in keys else (names.index("MIN") if "MIN" in names else None)
+            i_pts = keys.index("points") if "points" in keys else (names.index("PTS") if "PTS" in names else None)
+            for a in st.get("athletes", []):
+                ath, stats = a.get("athlete") or {}, a.get("stats") or []
+                dnp = bool(a.get("didNotPlay")) or not stats
+                try:
+                    mins = float(stats[i_min]) if not dnp and i_min is not None else 0.0
+                    pts = float(stats[i_pts]) if not dnp and i_pts is not None else 0.0
+                except (ValueError, IndexError, TypeError):
+                    mins, pts = 0.0, 0.0
+                out.append(dict(team=team, athlete_id=str(ath.get("id")), name=ath.get("displayName"),
+                                min=mins, pts=pts, dnp=dnp or mins == 0))
+    if not out:
+        return None
+    if final:
+        cp.write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")
+    return out
+
+
 _ath_cache = {}
 
 

@@ -17,6 +17,9 @@ def decode(text, fix=None):
         H, A = ABBR_TO_HE[home], ABBR_TO_HE[away]
         if kind == "S":
             mp = f"הימור יתרון - {PER[per]}"
+        elif kind == "P":
+            player = code[3:]
+            mp = f"מעל/מתחת נקודות שחקן - {PER[per]}"
         elif kind == "O":
             mp = f"מעל/מתחת נקודות - {PER[per]}"
         else:
@@ -30,6 +33,8 @@ def decode(text, fix=None):
                 line = sel[len(ab):]
                 ab = game_fix.get(ab, ab)
                 o.append({"desc": f"{ABBR_TO_HE[ab]} ({line})", "price": price})
+            elif kind == "P":
+                o.append({"desc": f"{player} - " + ("מעל " if sel[0] == "o" else "מתחת ") + sel[1:], "price": price})
             else:
                 o.append({"desc": ("מעל " if sel[0] == "o" else "מתחת ") + sel[1:], "price": price})
         out.append({"mId": int(mid), "desc": f"{H} - {A}", "mp": mp, "league": "NBA",

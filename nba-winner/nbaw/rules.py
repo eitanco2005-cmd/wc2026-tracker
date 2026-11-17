@@ -9,7 +9,8 @@ MIN_COMBO, MAX_COMBO = 2, 10
 
 
 def single_ok(bet):
-    return bet.get("kind") in ("spread", "total", "team_total", "ml")  # all SD on NBA games
+    # all SD on NBA games; player points has the same market type (301G03) as game totals
+    return bet.get("kind") in ("spread", "total", "team_total", "ml", "player_points")
 
 
 def parlay_problems(legs):

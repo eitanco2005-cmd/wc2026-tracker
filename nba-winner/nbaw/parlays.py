@@ -9,6 +9,7 @@ from .pricing import kelly
 def build(bets, allow_negative=False):
     pool = [b for b in bets if b["qualifies"]] if not allow_negative else \
         [b for b in bets if not b.get("blocked")]
+    pool = [b for b in pool if b.get("kind") != "player_points"]  # props: singles only (model-only, riskier)
     # best leg per game
     best = {}
     for b in sorted(pool, key=lambda x: -x["ev"]):

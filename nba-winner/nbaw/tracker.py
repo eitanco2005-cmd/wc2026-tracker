@@ -35,7 +35,9 @@ def _leg(b):
     return dict(game_id=b["game_id"], kind=b["kind"], period=b["period"], side=b["side"],
                 team=b["team"], line=b["line"], odds=b["odds"], home=b["home"], away=b["away"],
                 label=b["label"], start=b["start"].isoformat(), title=title, hint=hint,
-                game=game(b["home"], b["away"]), tier=b["tier"], p=b["p"], anomaly=b.get("anomaly") or "")
+                game=game(b["home"], b["away"]), tier=b["tier"], p=b["p"], anomaly=b.get("anomaly") or "",
+                **({"player": b.get("player"), "athlete_id": b.get("athlete_id"), "player_en": b.get("player_en")}
+                   if b["kind"] == "player_points" else {}))
 
 
 def log(now, singles, parlays):
@@ -77,6 +79,18 @@ def log(now, singles, parlays):
                          stake=stake, result="", pnl="", title=f"פרליי {len(legs)} משחקים",
                          hint="", tier="", first_start=min(l["start"] for l in legs)))
     save(rows)
+
+
+def _grade_prop(leg, box):
+    """Player points. Did not play -> void (P): assumption, Winner's exact rule not verified.
+    Whole-number line: landing exactly on it loses both over and under (Winner has an 'exactly' outcome)."""
+    row = next((p for p in box if str(p["athlete_id"]) == str(leg.get("athlete_id"))), None)
+    if row is None or row["dnp"]:
+        return "P"
+    pts, line = row["pts"], float(leg["line"])
+    if pts == line:
+        return "L"
+    return "W" if (pts > line) == (leg["side"] == "over") else "L"
 
 
 def _grade_leg(leg, g):
@@ -121,6 +135,13 @@ def settle():
             if not g:
                 res = None
                 break
+            if leg["kind"] == "player_points":
+                box = espn.boxscore(gid)
+                if not box:
+                    res = None
+                    break
+                res.append(_grade_prop(leg, box))
+                continue
             res.append(_grade_leg(leg, g))
         if not res:
             continue

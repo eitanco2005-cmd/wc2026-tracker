@@ -15,6 +15,7 @@ from nbaw.teams import TEAMS  # noqa: E402
 config.DATA_DIR = ROOT / "tests" / "_out" / "data"
 config.REPORTS_DIR = ROOT / "tests" / "_out" / "reports"
 config.CACHE_DIR = ROOT / "tests" / "_out" / "cache"
+config.ROOT = ROOT / "tests" / "_out"   # keep the real site index.html untouched
 
 NOW = datetime(2026, 11, 15, 15, 30, tzinfo=timezone.utc)
 random.seed(7)
@@ -54,6 +55,7 @@ espn.athlete_stats = lambda aid: {"1": dict(gamesPlayed=12, avgMinutes=34, avgPo
                                   "2": dict(gamesPlayed=11, avgMinutes=31, avgPoints=19, avgAssists=3, avgRebounds=11,
                                             avgSteals=.8, avgBlocks=1.5, avgTurnovers=2)}.get(aid)
 espn.now_utc = lambda: NOW
+espn.boxscore = lambda gid, use_cache=True: None   # no player data -> no props
 
 import run  # noqa: E402
 

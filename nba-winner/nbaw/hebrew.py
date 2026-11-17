@@ -13,7 +13,7 @@ FULL = {
 }
 PER = {"FG": "במשחק כולו (כולל הארכות)", "H1": "במחצית הראשונה", "Q1": "ברבע הראשון"}
 PER_SHORT = {"FG": "משחק מלא", "H1": "מחצית ראשונה", "Q1": "רבע ראשון"}
-CONF = {"A": "גבוה", "B": "בינוני", "C": "נמוך"}
+CONF = {"A": "גבוה", "B": "בינוני", "C": "נמוך", "P": "נמוך (הימור שחקן)"}
 
 
 def team(a):
@@ -45,6 +45,15 @@ def describe(b):
         w = "מעל" if side == "over" else "מתחת"
         s = f"{'יותר' if side == 'over' else 'פחות'} מ-{_n(line)} נקודות ביחד {PER[per]}"
         hint = f"מעל/מתחת נקודות – {PER_SHORT[per]} ← {w} {_n(line)}"
+    elif k == "player_points":
+        who = b.get("player") or ""
+        w = "מעל" if side == "over" else "מתחת"
+        if line == int(line):   # whole line: Winner also has "exactly", so over/under exclude it
+            s = (f"{who} קולע {int(line) + 1} נקודות או יותר {PER[per]}" if side == "over"
+                 else f"{who} קולע {int(line) - 1} נקודות או פחות {PER[per]}")
+        else:
+            s = f"{who} קולע {'יותר' if side == 'over' else 'פחות'} מ-{_n(line)} נקודות {PER[per]}"
+        hint = f"מעל/מתחת נקודות שחקן ← {who} – {w} {_n(line)}"
     else:
         t = team(b["team"])
         w = "מעל" if side == "over" else "מתחת"

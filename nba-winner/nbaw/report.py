@@ -6,7 +6,7 @@ from . import config
 from .engine import team_name
 
 TZ = ZoneInfo(config.TZ)
-TIER_HE = {"A": "A · מעוגן בשוק", "B": "B · נגזר", "C": "C · רועש"}
+TIER_HE = {"A": "A · מעוגן בשוק", "B": "B · נגזר", "C": "C · רועש", "P": "P · שחקן (מודל בלבד)"}
 
 
 def _pct(x, d=1):

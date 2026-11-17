@@ -33,6 +33,40 @@ def build_model(now):
     return Model(hist, now)
 
 
+def player_context(model, now):
+    """Box-score logs + calibration for player props. Never fatal: props are optional."""
+    from nbaw import players
+    try:
+        log("[2b] Player box scores (for player props)...")
+        logs, names, n = players.season_logs(model.games, espn.boxscore, progress=log)
+        cal = players.calibrate(logs)
+        team_avg = players.team_avg_points(model.games, now)
+        log(f"    {n} box scores, {len(logs)} players | sd = {cal['a']:.2f} + {cal['b']:.3f}*mu, "
+            f"bias {cal['bias']:.3f} (calibrated on {cal['n']} player-games)")
+        return dict(logs=logs, names=names, cal=cal, team_avg=team_avg)
+    except Exception as e:  # noqa: BLE001
+        log(f"    player props unavailable: {e!r}"[:300])
+        return None
+
+
+def add_players(g, proj, pctx, inj, now):
+    from nbaw import players
+    if not pctx:
+        proj["players"] = []
+        return
+    by_team = {g[s]: inj.get(ABBR_TO_NAME.get(g[s]), []) for s in ("home", "away")}
+    proj["players"] = players.project_game(g, proj, pctx["logs"], pctx["names"], pctx["team_avg"],
+                                           pctx["cal"], by_team, now)
+
+
+def prop_warnings(rows):
+    out = []
+    for g, proj, *_ in rows:
+        for n in proj.get("unmatched_players") or []:
+            out.append(f"הימור שחקן של {n} ({g['away']}@{g['home']}) — לא זוהה שחקן תואם ב-ESPN, דילגנו.")
+    return out
+
+
 def cmd_today(args):
     now = espn.now_utc()
     warnings = []
@@ -60,6 +94,7 @@ def cmd_today(args):
         warnings.append("משחקים בווינר שלא הותאמו ל-ESPN: " + ", ".join(f"{a}-{b}" for a, b in unmatched))
     inj = espn.injuries()
     name_inj = {k: v for k, v in inj.items()}
+    pctx = player_context(model, now)
 
     rows, all_bets = [], []
     for gid, (g, mkts) in sorted(matched.items(), key=lambda kv: kv[1][0]["start"]):
@@ -69,21 +104,27 @@ def cmd_today(args):
                                 model.cur_gp[g["home"]], espn.athlete_stats)
         ia = team_injury_impact(name_inj.get(ABBR_TO_NAME.get(g["away"]), []),
                                 model.cur_gp[g["away"]], espn.athlete_stats)
-        proj, bets = engine.evaluate_game(g, mkts, model, ih[0], ia[0])
+        proj = engine.project(g, model, ih[0], ia[0])
+        add_players(g, proj, pctx, name_inj, now)
+        bets = engine.evaluate(g, mkts, proj, model.sd, model.frac)
         rows.append((g, proj, {"home": ih, "away": ia}))
         all_bets += bets
 
-    publish(now, rows, all_bets, model, warnings, args)
+    publish(now, rows, all_bets, model, warnings + prop_warnings(rows), args)
 
 
 def choose_tickets(all_bets, args):
     """Best singles (one per game) + best rule-valid parlay."""
     from nbaw import rules
     cands = sorted([b for b in all_bets if b["qualifies"] and rules.single_ok(b)], key=lambda b: -b["ev"])
-    singles, games = [], set()
+    singles, games, props = [], set(), 0
     for b in cands:
         if b["game_id"] in games:
             continue
+        if b["kind"] == "player_points":
+            if props >= config.MAX_PROPS_PER_DAY:
+                continue
+            props += 1
         games.add(b["game_id"]); singles.append(b)
         if len(singles) >= config.MAX_SINGLES_PER_DAY:
             break
@@ -147,13 +188,15 @@ def cmd_sheet(now):
     games = [g for g in espn.todays_games(now) if g["start"] > now + timedelta(minutes=5)
              and g["start"] < now + timedelta(hours=20)]
     inj = espn.injuries()
+    pctx = player_context(model, now)
     rows = []
     for g in sorted(games, key=lambda x: x["start"]):
         ih = team_injury_impact(inj.get(ABBR_TO_NAME.get(g["home"]), []), model.cur_gp[g["home"]], espn.athlete_stats)
         ia = team_injury_impact(inj.get(ABBR_TO_NAME.get(g["away"]), []), model.cur_gp[g["away"]], espn.athlete_stats)
         proj, sheet = engine.price_sheet(g, model, ih[0], ia[0])
+        add_players(g, proj, pctx, inj, now)
         rows.append((g, proj, {"home": ih, "away": ia}, sheet))
-    save_snapshot(now, model, rows)
+    save_snapshot(now, model, rows, pctx["cal"] if pctx else None)
     html = report.render_sheet(now, rows, model)
     md = report.markdown_sheet(now, rows)
     config.REPORTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -170,10 +213,10 @@ def cmd_sheet(now):
     log(f"\nReport: {out}")
 
 
-def save_snapshot(now, model, rows):
+def save_snapshot(now, model, rows, prop_cal=None):
     """Projections for later use with Winner odds captured elsewhere (Claude in Chrome)."""
     import json
-    snap = dict(created=now.isoformat(), sd=model.sd, frac=model.frac, hca=model.hca,
+    snap = dict(created=now.isoformat(), prop_cal=prop_cal, sd=model.sd, frac=model.frac, hca=model.hca,
                 b2b=model.b2b_coef, ratings={t: model.rating(t) for t in model.teams},
                 games=[dict(game={k: (v.isoformat() if k == "start" else v) for k, v in g.items()
                                   if k in ("id", "start", "home", "away", "odds", "neutral")},
@@ -218,7 +261,12 @@ def cmd_picks(args):
         rows.append((g, proj, {k: tuple(v) for k, v in inj.items()}))
         all_bets += bets
     log(f"{len(wm)} Winner markets, {len(rows)} games matched")
-    publish(now, rows, all_bets, model, warnings, args)
+    for b in all_bets:
+        if b["kind"] == "player_points":
+            log(f"  prop {b['player']} ({b['player_en']}) {b['side']} {b['line']:g} @ {b['odds']:.2f}: "
+                f"model {b['mu']:.1f}±{b['sd']:.1f} p={b['p']:.1%} EV={b['ev']:+.1%}"
+                + (" [blocked]" if b["blocked"] else ""))
+    publish(now, rows, all_bets, model, warnings + prop_warnings(rows), args)
 
 
 def cmd_settle(_):
