@@ -10,7 +10,7 @@ const j=await g('https://api.winner.co.il/v2/publicapi/GetCMobileLine?lineChecks
 const byId=new Map(j.markets.map(m=>[m.mId,m]));
 try{const d=await g('https://api.winner.co.il/v2/publicapi/GetDMobileLine?lineChecksum='+j.hashes.lineChecksum);const L=d.lines||d;(L.u||[]).concat(L.a||[]).forEach(m=>byId.set(m.mId,m));(L.d||[]).forEach(x=>byId.delete(x.mId||x));}catch(e){}
 j.markets=[...byId.values()];
-const ok=/^(הימור יתרון|מעל\/מתחת נקודות)/;
+const ok=/^(הימור יתרון|מעל\/מתחת נקודות(?! שחקן))/; // exclude player props ("מעל/מתחת נקודות שחקן")
 window.__c=j.markets.filter(m=>m.league==='NBA'&&ok.test(strip(m.mp||''))).map(m=>{
  const [hh,aa]=strip(m.desc).split(' - ');const mp=strip(m.mp);let k;
  if(mp.startsWith('הימור יתרון'))k='S';else{const p=mp.split(' - ');k=p.length===3?'T'+ab(p[1]):'O'}
