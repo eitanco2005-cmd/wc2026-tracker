@@ -1,814 +1,95 @@
 {
- "created": "2026-11-19T15:52:00.061281+00:00",
+ "created": "2026-11-20T08:02:46.020738+00:00",
  "prop_cal": {
-  "a": 4.205279154280013,
-  "b": 0.1681177753888551,
-  "bias": 1.0177699479127467,
-  "n": 2244
+  "a": 4.173080690192504,
+  "b": 0.1694588347979362,
+  "bias": 1.020307163706936,
+  "n": 2317
  },
  "sd": {
-  "FG_margin": 14.471650567750398,
-  "FG_total": 18.761860213777158,
-  "team_pts": 11.84757902251184,
-  "H1_margin": 11.197917113397533,
-  "H1_total": 12.303286026779132,
-  "Q1_margin": 8.3520778253044,
-  "Q1_total": 8.324196381243754
+  "FG_margin": 14.48150465826671,
+  "FG_total": 18.757509809653186,
+  "team_pts": 11.848729001286008,
+  "H1_margin": 11.195954118317356,
+  "H1_total": 12.29367738228528,
+  "Q1_margin": 8.344843142964526,
+  "Q1_total": 8.327029677155597
  },
  "frac": {
-  "H1_margin": 0.6879035091072987,
-  "H1_total": 0.5052910203338944,
-  "Q1_margin": 0.3574691920040057,
-  "Q1_total": 0.254281717690943
+  "H1_margin": 0.6848790293264652,
+  "H1_total": 0.5052676057136861,
+  "Q1_margin": 0.35727893794033405,
+  "Q1_total": 0.2542119576776594
  },
- "hca": 1.5166023683911618,
- "b2b": -2.455218041552362,
+ "hca": 1.5820245632588406,
+ "b2b": -2.4343759989424107,
  "ratings": {
-  "ATL": 0.6092253833357117,
-  "BKN": -8.105474330812832,
-  "BOS": 7.306798050715832,
-  "CHA": -2.0033019557142446,
-  "CHI": -4.262767834762526,
-  "CLE": 2.2427183765928675,
-  "DAL": -2.43577554468113,
-  "DEN": 2.78768517381589,
-  "DET": 5.538215552314883,
-  "GS": 0.34133171455952843,
-  "HOU": 5.709995633594837,
-  "IND": -5.459019170477857,
-  "LAC": -1.8670907690299712,
-  "LAL": 2.8891151436898235,
-  "MEM": -0.029488138174188508,
-  "MIA": 1.5614928685545548,
-  "MIL": -7.502063740410727,
-  "MIN": 5.035020165236991,
-  "NO": -5.653714567369904,
-  "NY": 6.296631744083549,
-  "OKC": 7.30621829968863,
-  "ORL": -0.751947023974128,
-  "PHI": 0.7252106965871028,
-  "PHX": 0.8645845848808857,
-  "POR": 2.677964930945832,
-  "SA": 8.452917194708304,
-  "SAC": -9.404215706195448,
-  "TOR": 0.7258199473987211,
-  "UTAH": -5.34421818753138,
-  "WSH": -8.251868491569741
+  "ATL": 0.6300652379788911,
+  "BKN": -8.056339645633154,
+  "BOS": 7.305911373001968,
+  "CHA": -1.9573312730557502,
+  "CHI": -4.243060300427978,
+  "CLE": 2.2808928178065795,
+  "DAL": -2.481809174689757,
+  "DEN": 2.788974038790735,
+  "DET": 5.553087306326381,
+  "GS": -0.5436358627408535,
+  "HOU": 5.665794592629547,
+  "IND": -5.430833752445435,
+  "LAC": -1.8901707112227388,
+  "LAL": 2.8327405498096163,
+  "MEM": 0.8051178274104176,
+  "MIA": 1.538846377096032,
+  "MIL": -7.447936988120502,
+  "MIN": 4.879153756465853,
+  "NO": -5.6572335134352105,
+  "NY": 6.413288910775515,
+  "OKC": 7.329034364889276,
+  "ORL": -0.7546949416006474,
+  "PHI": 0.738345074339979,
+  "PHX": 0.8032982371840867,
+  "POR": 2.633922117234965,
+  "SA": 8.413279755242337,
+  "SAC": -9.370546963845905,
+  "TOR": 0.7662486977892574,
+  "UTAH": -5.330765972500454,
+  "WSH": -8.21364193505302
  },
  "games": [
   {
    "game": {
-    "id": "401910019",
-    "start": "2026-11-20T01:00:00+00:00",
-    "home": "MEM",
-    "away": "GS",
+    "id": "401909305",
+    "start": "2026-11-21T00:00:00+00:00",
+    "home": "ATL",
+    "away": "CHA",
     "neutral": false,
     "odds": {
-     "provider": "DraftKings",
+     "provider": "Draft Kings",
      "spread": -6.5,
-     "total": 225.5,
+     "total": 219.5,
      "spread_home_line": -6.5,
-     "spread_home_odds": 1.9345794392523366,
-     "spread_away_odds": 1.8849557522123894,
-     "spread_open_home_line": -8.5,
-     "total_line": 225.5,
-     "over_odds": 1.8695652173913042,
-     "under_odds": 1.9523809523809523,
-     "total_open_line": 225.5,
-     "ml_home": 1.4115226337448559,
-     "ml_away": 3.0
+     "spread_home_odds": 1.9433962264150944,
+     "spread_away_odds": 1.8771929824561404,
+     "spread_open_home_line": -5.5,
+     "total_line": 219.5,
+     "over_odds": 1.9090909090909092,
+     "under_odds": 1.9090909090909092,
+     "total_open_line": 218.5,
+     "ml_home": 1.434782608695652,
+     "ml_away": 2.91
     }
    },
    "proj": {
     "gap_margin": false,
     "gap_total": false,
-    "model_margin": 8.043202515657445,
-    "model_total": 225.3933543956339,
-    "market_margin": 6.517114563282259,
-    "market_total": 226.00958604150077,
-    "margin": 6.974940948994814,
-    "total": 225.8247165477407,
-    "home_pts": 116.39982874836777,
-    "away_pts": 109.42488779937294,
-    "b2b_home": true,
-    "b2b_away": true,
-    "anchored_m": true,
-    "anchored_t": true,
-    "anomalies": [],
-    "players": [
-     {
-      "athlete_id": "4903027",
-      "name": "Cedric Coward",
-      "team": "MEM",
-      "mu": 14.49,
-      "sd": 6.64,
-      "min": 29.4,
-      "ppm": 0.511,
-      "games": 14,
-      "status": ""
-     },
-     {
-      "athlete_id": "5041935",
-      "name": "Cameron Boozer",
-      "team": "MEM",
-      "mu": 15.94,
-      "sd": 6.88,
-      "min": 30.1,
-      "ppm": 0.548,
-      "games": 15,
-      "status": ""
-     },
-     {
-      "athlete_id": "5112087",
-      "name": "Jaylen Wells",
-      "team": "MEM",
-      "mu": 9.97,
-      "sd": 5.88,
-      "min": 26.7,
-      "ppm": 0.386,
-      "games": 15,
-      "status": ""
-     },
-     {
-      "athlete_id": "4600663",
-      "name": "Zach Edey",
-      "team": "MEM",
-      "mu": 9.38,
-      "sd": 5.78,
-      "min": 20.9,
-      "ppm": 0.464,
-      "games": 12,
-      "status": ""
-     },
-     {
-      "athlete_id": "4065733",
-      "name": "Ty Jerome",
-      "team": "MEM",
-      "mu": 23.86,
-      "sd": 8.22,
-      "min": 30.5,
-      "ppm": 0.809,
-      "games": 11,
-      "status": "out"
-     },
-     {
-      "athlete_id": "2991070",
-      "name": "Jerami Grant",
-      "team": "MEM",
-      "mu": 10.82,
-      "sd": 6.02,
-      "min": 22.8,
-      "ppm": 0.492,
-      "games": 14,
-      "status": ""
-     },
-     {
-      "athlete_id": "5105550",
-      "name": "GG Jackson",
-      "team": "MEM",
-      "mu": 6.08,
-      "sd": 5.23,
-      "min": 14.1,
-      "ppm": 0.445,
-      "games": 12,
-      "status": "out"
-     },
-     {
-      "athlete_id": "4433083",
-      "name": "Cam Spencer",
-      "team": "MEM",
-      "mu": 12.52,
-      "sd": 6.31,
-      "min": 24.7,
-      "ppm": 0.526,
-      "games": 15,
-      "status": ""
-     },
-     {
-      "athlete_id": "4595400",
-      "name": "Olivier-Maxence Prosper",
-      "team": "MEM",
-      "mu": 5.97,
-      "sd": 5.21,
-      "min": 10.8,
-      "ppm": 0.572,
-      "games": 9,
-      "status": ""
-     },
-     {
-      "athlete_id": "4684806",
-      "name": "Taylor Hendricks",
-      "team": "MEM",
-      "mu": 10.38,
-      "sd": 5.95,
-      "min": 16.5,
-      "ppm": 0.651,
-      "games": 10,
-      "status": ""
-     },
-     {
-      "athlete_id": "4432810",
-      "name": "Isaiah Stewart",
-      "team": "MEM",
-      "mu": 10.36,
-      "sd": 5.95,
-      "min": 17.9,
-      "ppm": 0.6,
-      "games": 10,
-      "status": "day-to-day"
-     },
-     {
-      "athlete_id": "4781746",
-      "name": "Javon Small",
-      "team": "MEM",
-      "mu": 8.85,
-      "sd": 5.69,
-      "min": 22.4,
-      "ppm": 0.41,
-      "games": 8,
-      "status": ""
-     },
-     {
-      "athlete_id": "6589",
-      "name": "Draymond Green",
-      "team": "GS",
-      "mu": 3.06,
-      "sd": 4.72,
-      "min": 24.6,
-      "ppm": 0.125,
-      "games": 13,
-      "status": "day-to-day"
-     },
-     {
-      "athlete_id": "4997536",
-      "name": "Gui Santos",
-      "team": "GS",
-      "mu": 5.79,
-      "sd": 5.18,
-      "min": 17.6,
-      "ppm": 0.331,
-      "games": 12,
-      "status": ""
-     },
-     {
-      "athlete_id": "5175737",
-      "name": "Yaxel Lendeborg",
-      "team": "GS",
-      "mu": 19.67,
-      "sd": 7.51,
-      "min": 31.0,
-      "ppm": 0.64,
-      "games": 15,
-      "status": ""
-     },
-     {
-      "athlete_id": "3975",
-      "name": "Stephen Curry",
-      "team": "GS",
-      "mu": 25.81,
-      "sd": 8.54,
-      "min": 24.7,
-      "ppm": 1.053,
-      "games": 10,
-      "status": "out"
-     },
-     {
-      "athlete_id": "4066436",
-      "name": "De'Anthony Melton",
-      "team": "GS",
-      "mu": 8.63,
-      "sd": 5.66,
-      "min": 21.4,
-      "ppm": 0.407,
-      "games": 15,
-      "status": ""
-     },
-     {
-      "athlete_id": "2990969",
-      "name": "Georges Niang",
-      "team": "GS",
-      "mu": 7.09,
-      "sd": 5.4,
-      "min": 18.1,
-      "ppm": 0.395,
-      "games": 15,
-      "status": ""
-     },
-     {
-      "athlete_id": "3213",
-      "name": "Al Horford",
-      "team": "GS",
-      "mu": 3.52,
-      "sd": 4.8,
-      "min": 16.0,
-      "ppm": 0.222,
-      "games": 12,
-      "status": "day-to-day"
-     },
-     {
-      "athlete_id": "3134903",
-      "name": "Gary Payton II",
-      "team": "GS",
-      "mu": 4.57,
-      "sd": 4.97,
-      "min": 12.9,
-      "ppm": 0.359,
-      "games": 13,
-      "status": ""
-     },
-     {
-      "athlete_id": "4397040",
-      "name": "Brandon Williams",
-      "team": "GS",
-      "mu": 9.66,
-      "sd": 5.83,
-      "min": 15.3,
-      "ppm": 0.638,
-      "games": 10,
-      "status": "out"
-     },
-     {
-      "athlete_id": "4433149",
-      "name": "LJ Cryer",
-      "team": "GS",
-      "mu": 8.83,
-      "sd": 5.69,
-      "min": 15.9,
-      "ppm": 0.559,
-      "games": 11,
-      "status": ""
-     },
-     {
-      "athlete_id": "4897262",
-      "name": "Will Richard",
-      "team": "GS",
-      "mu": 8.15,
-      "sd": 5.58,
-      "min": 21.4,
-      "ppm": 0.383,
-      "games": 14,
-      "status": ""
-     },
-     {
-      "athlete_id": "4709138",
-      "name": "Brandin Podziemski",
-      "team": "GS",
-      "mu": 15.17,
-      "sd": 6.76,
-      "min": 31.0,
-      "ppm": 0.494,
-      "games": 13,
-      "status": ""
-     },
-     {
-      "athlete_id": "4397886",
-      "name": "Charles Bassey",
-      "team": "GS",
-      "mu": 8.57,
-      "sd": 5.65,
-      "min": 16.0,
-      "ppm": 0.54,
-      "games": 13,
-      "status": ""
-     }
-    ]
-   },
-   "inj": {
-    "home": [
-     5.102580000000001,
-     [
-      {
-       "name": "Isaiah Stewart",
-       "status": "day-to-day",
-       "impact": 0.4
-      },
-      {
-       "name": "GG Jackson",
-       "status": "out",
-       "impact": 0.4
-      },
-      {
-       "name": "Ty Jerome",
-       "status": "out",
-       "impact": 4.3
-      }
-     ]
-    ],
-    "away": [
-     12.0,
-     [
-      {
-       "name": "Brandon Williams",
-       "status": "out",
-       "impact": 1.5
-      },
-      {
-       "name": "Stephen Curry",
-       "status": "out",
-       "impact": 5.5
-      },
-      {
-       "name": "Kristaps Porzingis",
-       "status": "out",
-       "impact": 2.7
-      },
-      {
-       "name": "Moses Moody",
-       "status": "out",
-       "impact": 0.9
-      },
-      {
-       "name": "Jimmy Butler III",
-       "status": "out",
-       "impact": 3.2
-      }
-     ]
-    ]
-   }
-  },
-  {
-   "game": {
-    "id": "401910020",
-    "start": "2026-11-20T01:00:00+00:00",
-    "home": "MIL",
-    "away": "POR",
-    "neutral": false,
-    "odds": {
-     "provider": "DraftKings",
-     "spread": 10.5,
-     "total": 229.5,
-     "spread_home_line": 10.5,
-     "spread_home_odds": 1.925925925925926,
-     "spread_away_odds": 1.8928571428571428,
-     "spread_open_home_line": 9.5,
-     "total_line": 229.5,
-     "over_odds": 1.9523809523809523,
-     "under_odds": 1.8695652173913042,
-     "total_open_line": 225.5,
-     "ml_home": 4.6,
-     "ml_away": 1.214132762312634
-    }
-   },
-   "proj": {
-    "gap_margin": false,
-    "gap_total": false,
-    "model_margin": -6.125964344517761,
-    "model_total": 225.74744141517968,
-    "market_margin": -11.193220253592632,
-    "market_total": 228.99041395849923,
-    "margin": -9.67304348087017,
-    "total": 228.01752219550337,
-    "home_pts": 109.1722393573166,
-    "away_pts": 118.84528283818678,
-    "b2b_home": true,
-    "b2b_away": false,
-    "anchored_m": true,
-    "anchored_t": true,
-    "anomalies": [],
-    "players": [
-     {
-      "athlete_id": "3134907",
-      "name": "Kyle Kuzma",
-      "team": "MIL",
-      "mu": 13.24,
-      "sd": 6.43,
-      "min": 27.1,
-      "ppm": 0.472,
-      "games": 15,
-      "status": ""
-     },
-     {
-      "athlete_id": "4432848",
-      "name": "Jaime Jaquez Jr.",
-      "team": "MIL",
-      "mu": 15.39,
-      "sd": 6.79,
-      "min": 27.1,
-      "ppm": 0.549,
-      "games": 15,
-      "status": ""
-     },
-     {
-      "athlete_id": "3133628",
-      "name": "Myles Turner",
-      "team": "MIL",
-      "mu": 7.16,
-      "sd": 5.41,
-      "min": 25.9,
-      "ppm": 0.267,
-      "games": 14,
-      "status": ""
-     },
-     {
-      "athlete_id": "4395725",
-      "name": "Tyler Herro",
-      "team": "MIL",
-      "mu": 18.7,
-      "sd": 7.35,
-      "min": 28.9,
-      "ppm": 0.625,
-      "games": 14,
-      "status": ""
-     },
-     {
-      "athlete_id": "4591725",
-      "name": "Ryan Rollins",
-      "team": "MIL",
-      "mu": 10.64,
-      "sd": 5.99,
-      "min": 23.4,
-      "ppm": 0.439,
-      "games": 13,
-      "status": "day-to-day"
-     },
-     {
-      "athlete_id": "4997526",
-      "name": "Ousmane Dieng",
-      "team": "MIL",
-      "mu": 4.34,
-      "sd": 4.93,
-      "min": 12.5,
-      "ppm": 0.335,
-      "games": 10,
-      "status": "out"
-     },
-     {
-      "athlete_id": "4277922",
-      "name": "Jericho Sims",
-      "team": "MIL",
-      "mu": 1.63,
-      "sd": 4.48,
-      "min": 12.0,
-      "ppm": 0.131,
-      "games": 10,
-      "status": ""
-     },
-     {
-      "athlete_id": "5105623",
-      "name": "Kel'el Ware",
-      "team": "MIL",
-      "mu": 8.78,
-      "sd": 5.68,
-      "min": 18.2,
-      "ppm": 0.466,
-      "games": 15,
-      "status": ""
-     },
-     {
-      "athlete_id": "4397475",
-      "name": "AJ Green",
-      "team": "MIL",
-      "mu": 5.28,
-      "sd": 5.09,
-      "min": 14.1,
-      "ppm": 0.361,
-      "games": 15,
-      "status": ""
-     },
-     {
-      "athlete_id": "5082206",
-      "name": "Brayden Burries",
-      "team": "MIL",
-      "mu": 11.38,
-      "sd": 6.12,
-      "min": 24.2,
-      "ppm": 0.454,
-      "games": 15,
-      "status": ""
-     },
-     {
-      "athlete_id": "5214640",
-      "name": "Kasparas Jakucionis",
-      "team": "MIL",
-      "mu": 9.67,
-      "sd": 5.83,
-      "min": 18.6,
-      "ppm": 0.502,
-      "games": 14,
-      "status": ""
-     },
-     {
-      "athlete_id": "5164559",
-      "name": "Nate Ament",
-      "team": "MIL",
-      "mu": 7.81,
-      "sd": 5.52,
-      "min": 18.4,
-      "ppm": 0.411,
-      "games": 13,
-      "status": ""
-     },
-     {
-      "athlete_id": "4277843",
-      "name": "Gary Trent Jr.",
-      "team": "MIL",
-      "mu": 6.33,
-      "sd": 5.27,
-      "min": 14.4,
-      "ppm": 0.424,
-      "games": 7,
-      "status": ""
-     },
-     {
-      "athlete_id": "4431736",
-      "name": "Toumani Camara",
-      "team": "POR",
-      "mu": 12.55,
-      "sd": 6.32,
-      "min": 30.3,
-      "ppm": 0.397,
-      "games": 14,
-      "status": "day-to-day"
-     },
-     {
-      "athlete_id": "4683021",
-      "name": "Deni Avdija",
-      "team": "POR",
-      "mu": 25.63,
-      "sd": 8.51,
-      "min": 32.8,
-      "ppm": 0.75,
-      "games": 13,
-      "status": "day-to-day"
-     },
-     {
-      "athlete_id": "5105565",
-      "name": "Donovan Clingan",
-      "team": "POR",
-      "mu": 11.72,
-      "sd": 6.18,
-      "min": 26.6,
-      "ppm": 0.423,
-      "games": 14,
-      "status": ""
-     },
-     {
-      "athlete_id": "6606",
-      "name": "Damian Lillard",
-      "team": "POR",
-      "mu": 20.87,
-      "sd": 7.71,
-      "min": 29.1,
-      "ppm": 0.688,
-      "games": 14,
-      "status": ""
-     },
-     {
-      "athlete_id": "4066211",
-      "name": "Robert Williams III",
-      "team": "POR",
-      "mu": 6.48,
-      "sd": 5.29,
-      "min": 16.0,
-      "ppm": 0.387,
-      "games": 12,
-      "status": "out"
-     },
-     {
-      "athlete_id": "3995",
-      "name": "Jrue Holiday",
-      "team": "POR",
-      "mu": 14.19,
-      "sd": 6.59,
-      "min": 27.1,
-      "ppm": 0.503,
-      "games": 14,
-      "status": ""
-     },
-     {
-      "athlete_id": "4578893",
-      "name": "Vit Krejci",
-      "team": "POR",
-      "mu": 2.99,
-      "sd": 4.71,
-      "min": 10.3,
-      "ppm": 0.277,
-      "games": 7,
-      "status": "out"
-     },
-     {
-      "athlete_id": "4683678",
-      "name": "Scoot Henderson",
-      "team": "POR",
-      "mu": 9.16,
-      "sd": 5.75,
-      "min": 22.3,
-      "ppm": 0.393,
-      "games": 14,
-      "status": ""
-     },
-     {
-      "athlete_id": "5081727",
-      "name": "Sidy Cissoko",
-      "team": "POR",
-      "mu": 8.29,
-      "sd": 5.6,
-      "min": 25.7,
-      "ppm": 0.309,
-      "games": 14,
-      "status": ""
-     },
-     {
-      "athlete_id": "4592435",
-      "name": "Branden Carlson",
-      "team": "POR",
-      "mu": 3.43,
-      "sd": 4.78,
-      "min": 10.3,
-      "ppm": 0.318,
-      "games": 9,
-      "status": ""
-     },
-     {
-      "athlete_id": "4706557",
-      "name": "Chris Youngblood",
-      "team": "POR",
-      "mu": 6.67,
-      "sd": 5.33,
-      "min": 14.3,
-      "ppm": 0.447,
-      "games": 6,
-      "status": "out"
-     }
-    ]
-   },
-   "inj": {
-    "home": [
-     0.28812,
-     [
-      {
-       "name": "Ryan Rollins",
-       "status": "day-to-day",
-       "impact": 0.3
-      }
-     ]
-    ],
-    "away": [
-     5.280799999999999,
-     [
-      {
-       "name": "Chris Youngblood",
-       "status": "out",
-       "impact": 0.3
-      },
-      {
-       "name": "Robert Williams III",
-       "status": "out",
-       "impact": 0.8
-      },
-      {
-       "name": "Deni Avdija",
-       "status": "day-to-day",
-       "impact": 1.2
-      },
-      {
-       "name": "Toumani Camara",
-       "status": "day-to-day",
-       "impact": 0.1
-      },
-      {
-       "name": "Shaedon Sharpe",
-       "status": "out",
-       "impact": 2.8
-      }
-     ]
-    ]
-   }
-  },
-  {
-   "game": {
-    "id": "401910021",
-    "start": "2026-11-20T01:00:00+00:00",
-    "home": "MIN",
-    "away": "NY",
-    "neutral": false,
-    "odds": {
-     "provider": "DraftKings",
-     "spread": 1.5,
-     "total": 216.5,
-     "spread_home_line": 1.5,
-     "spread_home_odds": 1.8403361344537816,
-     "spread_away_odds": 1.9803921568627452,
-     "spread_open_home_line": 1.5,
-     "total_line": 216.5,
-     "over_odds": 1.9345794392523366,
-     "under_odds": 1.8849557522123894,
-     "total_open_line": 217.5,
-     "ml_home": 1.9615384615384617,
-     "ml_away": 1.8849557522123894
-    }
-   },
-   "proj": {
-    "gap_margin": false,
-    "gap_total": false,
-    "model_margin": -0.7863292104553969,
-    "model_total": 218.42837087397578,
-    "market_margin": -0.5980257992076666,
-    "market_total": 216.19448429447036,
-    "margin": -0.6545168225819857,
-    "total": 216.86465026832195,
-    "home_pts": 108.10506672286998,
-    "away_pts": 108.75958354545197,
+    "model_margin": 3.133701074293481,
+    "model_total": 223.02819994057094,
+    "market_margin": 6.2734180573567535,
+    "market_total": 219.5,
+    "margin": 5.331502962437771,
+    "total": 220.55845998217126,
+    "home_pts": 112.94498147230452,
+    "away_pts": 107.61347850986674,
     "b2b_home": false,
     "b2b_away": false,
     "anchored_m": true,
@@ -816,242 +97,592 @@
     "anomalies": [],
     "players": [
      {
-      "athlete_id": "4431671",
-      "name": "Jaden McDaniels",
-      "team": "MIN",
-      "mu": 16.34,
-      "sd": 6.95,
-      "min": 33.7,
-      "ppm": 0.51,
+      "athlete_id": "4431680",
+      "name": "Onyeka Okongwu",
+      "team": "ATL",
+      "mu": 16.01,
+      "sd": 6.89,
+      "min": 32.5,
+      "ppm": 0.503,
       "games": 15,
       "status": ""
      },
      {
-      "athlete_id": "4433247",
-      "name": "Jonathan Kuminga",
-      "team": "MIN",
-      "mu": 11.66,
-      "sd": 6.17,
-      "min": 30.2,
-      "ppm": 0.407,
-      "games": 14,
-      "status": "day-to-day"
-     },
-     {
-      "athlete_id": "3032976",
-      "name": "Rudy Gobert",
-      "team": "MIN",
-      "mu": 7.0,
-      "sd": 5.38,
-      "min": 27.8,
-      "ppm": 0.265,
-      "games": 14,
-      "status": ""
-     },
-     {
-      "athlete_id": "4432816",
-      "name": "LaMelo Ball",
-      "team": "MIN",
-      "mu": 17.11,
-      "sd": 7.08,
-      "min": 28.2,
-      "ppm": 0.638,
-      "games": 15,
-      "status": ""
-     },
-     {
-      "athlete_id": "3136196",
-      "name": "Trey Lyles",
-      "team": "MIN",
-      "mu": 6.39,
-      "sd": 5.28,
-      "min": 20.7,
-      "ppm": 0.324,
-      "games": 15,
-      "status": ""
-     },
-     {
-      "athlete_id": "5279133",
-      "name": "Joan Beringer",
-      "team": "MIN",
-      "mu": 4.95,
-      "sd": 5.04,
-      "min": 17.7,
-      "ppm": 0.294,
-      "games": 15,
-      "status": ""
-     },
-     {
-      "athlete_id": "4397002",
-      "name": "Ayo Dosunmu",
-      "team": "MIN",
-      "mu": 18.55,
-      "sd": 7.32,
-      "min": 32.6,
-      "ppm": 0.599,
-      "games": 15,
-      "status": ""
-     },
-     {
-      "athlete_id": "4432247",
-      "name": "Jaylen Clark",
-      "team": "MIN",
-      "mu": 4.55,
-      "sd": 4.97,
-      "min": 14.6,
-      "ppm": 0.327,
+      "athlete_id": "4701230",
+      "name": "Jalen Johnson",
+      "team": "ATL",
+      "mu": 19.03,
+      "sd": 7.4,
+      "min": 35.3,
+      "ppm": 0.551,
       "games": 12,
+      "status": ""
+     },
+     {
+      "athlete_id": "2490149",
+      "name": "CJ McCollum",
+      "team": "ATL",
+      "mu": 14.55,
+      "sd": 6.64,
+      "min": 26.9,
+      "ppm": 0.553,
+      "games": 14,
       "status": "out"
      },
      {
-      "athlete_id": "4432847",
-      "name": "Terrence Shannon Jr.",
-      "team": "MIN",
-      "mu": 13.1,
-      "sd": 6.41,
-      "min": 24.0,
-      "ppm": 0.575,
-      "games": 12,
-      "status": ""
-     },
-     {
-      "athlete_id": "4592492",
-      "name": "Bones Hyland",
-      "team": "MIN",
-      "mu": 10.62,
-      "sd": 5.99,
-      "min": 15.5,
-      "ppm": 0.72,
+      "athlete_id": "4278039",
+      "name": "Nickeil Alexander-Walker",
+      "team": "ATL",
+      "mu": 21.12,
+      "sd": 7.75,
+      "min": 32.8,
+      "ppm": 0.656,
       "games": 15,
       "status": ""
      },
      {
-      "athlete_id": "3934719",
-      "name": "OG Anunoby",
-      "team": "NY",
-      "mu": 16.66,
-      "sd": 7.01,
-      "min": 34.6,
-      "ppm": 0.48,
-      "games": 14,
+      "athlete_id": "4869342",
+      "name": "Dyson Daniels",
+      "team": "ATL",
+      "mu": 9.32,
+      "sd": 5.75,
+      "min": 32.0,
+      "ppm": 0.298,
+      "games": 15,
       "status": ""
      },
      {
-      "athlete_id": "3136195",
-      "name": "Karl-Anthony Towns",
-      "team": "NY",
-      "mu": 21.89,
-      "sd": 7.89,
-      "min": 33.9,
-      "ppm": 0.643,
-      "games": 14,
+      "athlete_id": "3146557",
+      "name": "Jock Landale",
+      "team": "ATL",
+      "mu": 6.7,
+      "sd": 5.31,
+      "min": 15.2,
+      "ppm": 0.451,
+      "games": 9,
+      "status": "out"
+     },
+     {
+      "athlete_id": "4397020",
+      "name": "Luguentz Dort",
+      "team": "ATL",
+      "mu": 9.29,
+      "sd": 5.75,
+      "min": 24.4,
+      "ppm": 0.388,
+      "games": 15,
       "status": ""
      },
      {
-      "athlete_id": "3062679",
-      "name": "Josh Hart",
-      "team": "NY",
-      "mu": 5.57,
-      "sd": 5.14,
-      "min": 28.3,
-      "ppm": 0.196,
-      "games": 11,
+      "athlete_id": "4397183",
+      "name": "Aaron Wiggins",
+      "team": "ATL",
+      "mu": 13.33,
+      "sd": 6.43,
+      "min": 25.6,
+      "ppm": 0.531,
+      "games": 15,
       "status": ""
      },
      {
-      "athlete_id": "3147657",
-      "name": "Mikal Bridges",
-      "team": "NY",
-      "mu": 8.04,
-      "sd": 5.56,
-      "min": 25.8,
-      "ppm": 0.311,
-      "games": 14,
-      "status": ""
-     },
-     {
-      "athlete_id": "3934672",
-      "name": "Jalen Brunson",
-      "team": "NY",
-      "mu": 27.7,
-      "sd": 8.86,
-      "min": 34.5,
-      "ppm": 0.8,
-      "games": 14,
-      "status": ""
-     },
-     {
-      "athlete_id": "6585",
-      "name": "Andre Drummond",
-      "team": "NY",
-      "mu": 3.13,
-      "sd": 4.73,
-      "min": 12.4,
-      "ppm": 0.252,
-      "games": 14,
-      "status": ""
-     },
-     {
-      "athlete_id": "3914044",
-      "name": "Landry Shamet",
-      "team": "NY",
-      "mu": 10.97,
-      "sd": 6.05,
-      "min": 26.1,
-      "ppm": 0.419,
-      "games": 14,
-      "status": ""
-     },
-     {
-      "athlete_id": "4431823",
-      "name": "Miles McBride",
-      "team": "NY",
-      "mu": 7.17,
-      "sd": 5.41,
-      "min": 17.6,
-      "ppm": 0.405,
-      "games": 14,
-      "status": ""
-     },
-     {
-      "athlete_id": "5289900",
-      "name": "Mohamed Diawara",
-      "team": "NY",
-      "mu": 3.14,
-      "sd": 4.73,
-      "min": 13.1,
-      "ppm": 0.239,
-      "games": 6,
-      "status": ""
-     },
-     {
-      "athlete_id": "4433225",
-      "name": "Tyler Kolek",
-      "team": "NY",
-      "mu": 3.51,
-      "sd": 4.8,
-      "min": 14.0,
-      "ppm": 0.249,
+      "athlete_id": "5149077",
+      "name": "Kingston Flemings",
+      "team": "ATL",
+      "mu": 7.77,
+      "sd": 5.49,
+      "min": 21.9,
+      "ppm": 0.361,
       "games": 12,
+      "status": "day-to-day"
+     },
+     {
+      "athlete_id": "4280151",
+      "name": "Corey Kispert",
+      "team": "ATL",
+      "mu": 9.61,
+      "sd": 5.8,
+      "min": 13.6,
+      "ppm": 0.719,
+      "games": 8,
+      "status": ""
+     },
+     {
+      "athlete_id": "5106262",
+      "name": "Zuby Ejiofor",
+      "team": "ATL",
+      "mu": 4.64,
+      "sd": 4.96,
+      "min": 12.0,
+      "ppm": 0.396,
+      "games": 9,
+      "status": ""
+     },
+     {
+      "athlete_id": "4433249",
+      "name": "Moussa Diabate",
+      "team": "CHA",
+      "mu": 9.51,
+      "sd": 5.78,
+      "min": 30.6,
+      "ppm": 0.285,
+      "games": 12,
+      "status": ""
+     },
+     {
+      "athlete_id": "4433287",
+      "name": "Brandon Miller",
+      "team": "CHA",
+      "mu": 20.37,
+      "sd": 7.63,
+      "min": 29.0,
+      "ppm": 0.645,
+      "games": 12,
+      "status": ""
+     },
+     {
+      "athlete_id": "4396971",
+      "name": "Naz Reid",
+      "team": "CHA",
+      "mu": 20.09,
+      "sd": 7.58,
+      "min": 31.9,
+      "ppm": 0.577,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "3032979",
+      "name": "Dennis Schroder",
+      "team": "CHA",
+      "mu": 10.4,
+      "sd": 5.94,
+      "min": 28.9,
+      "ppm": 0.33,
+      "games": 9,
+      "status": "out"
+     },
+     {
+      "athlete_id": "4602025",
+      "name": "Sion James",
+      "team": "CHA",
+      "mu": 6.44,
+      "sd": 5.26,
+      "min": 28.7,
+      "ppm": 0.206,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "2583632",
+      "name": "Royce O'Neale",
+      "team": "CHA",
+      "mu": 6.98,
+      "sd": 5.36,
+      "min": 22.6,
+      "ppm": 0.283,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4576060",
+      "name": "Ryan Kalkbrenner",
+      "team": "CHA",
+      "mu": 5.21,
+      "sd": 5.06,
+      "min": 18.5,
+      "ppm": 0.258,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "3135045",
+      "name": "Grayson Allen",
+      "team": "CHA",
+      "mu": 16.34,
+      "sd": 6.94,
+      "min": 27.5,
+      "ppm": 0.544,
+      "games": 13,
+      "status": "out"
+     },
+     {
+      "athlete_id": "5060701",
+      "name": "Christian Anderson",
+      "team": "CHA",
+      "mu": 7.0,
+      "sd": 5.36,
+      "min": 14.9,
+      "ppm": 0.43,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "5211176",
+      "name": "Tidjane Salaun",
+      "team": "CHA",
+      "mu": 5.28,
+      "sd": 5.07,
+      "min": 12.3,
+      "ppm": 0.395,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4395651",
+      "name": "Coby White",
+      "team": "CHA",
+      "mu": 15.18,
+      "sd": 6.75,
+      "min": 20.4,
+      "ppm": 0.681,
+      "games": 7,
       "status": ""
      }
     ]
    },
    "inj": {
     "home": [
-     1.0413200000000002,
+     2.449720000000002,
      [
       {
-       "name": "Jonathan Kuminga",
-       "status": "day-to-day",
-       "impact": 0.3
+       "name": "Jock Landale",
+       "status": "out",
+       "impact": 0.6
       },
       {
-       "name": "Donte DiVincenzo",
+       "name": "Kingston Flemings",
+       "status": "day-to-day",
+       "impact": 0.1
+      },
+      {
+       "name": "CJ McCollum",
        "status": "out",
-       "impact": 0.8
+       "impact": 1.7
       }
      ]
+    ],
+    "away": [
+     1.4140000000000004,
+     [
+      {
+       "name": "Grayson Allen",
+       "status": "out",
+       "impact": 1.4
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "game": {
+    "id": "401909306",
+    "start": "2026-11-21T00:30:00+00:00",
+    "home": "BKN",
+    "away": "ORL",
+    "neutral": false,
+    "odds": {
+     "provider": "Draft Kings",
+     "spread": 5.5,
+     "total": 223.5,
+     "spread_home_line": 5.5,
+     "spread_home_odds": 1.9433962264150944,
+     "spread_away_odds": 1.8771929824561404,
+     "spread_open_home_line": 5.5,
+     "total_line": 223.5,
+     "over_odds": 1.9090909090909092,
+     "under_odds": 1.9090909090909092,
+     "total_open_line": 222.5,
+     "ml_home": 2.81,
+     "ml_away": 1.4587155963302751
+    }
+   },
+   "proj": {
+    "gap_margin": false,
+    "gap_total": false,
+    "model_margin": -5.7196201407736655,
+    "model_total": 224.43711059601566,
+    "market_margin": -5.859803003423437,
+    "market_total": 223.5,
+    "margin": -5.8177481446285055,
+    "total": 223.78113317880468,
+    "home_pts": 108.98169251708809,
+    "away_pts": 114.79944066171659,
+    "b2b_home": false,
+    "b2b_away": false,
+    "anchored_m": true,
+    "anchored_t": true,
+    "anomalies": [],
+    "players": [
+     {
+      "athlete_id": "3064514",
+      "name": "Julius Randle",
+      "team": "BKN",
+      "mu": 20.17,
+      "sd": 7.59,
+      "min": 31.5,
+      "ppm": 0.641,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4278104",
+      "name": "Michael Porter Jr.",
+      "team": "BKN",
+      "mu": 20.03,
+      "sd": 7.57,
+      "min": 32.6,
+      "ppm": 0.615,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4432194",
+      "name": "Day'Ron Sharpe",
+      "team": "BKN",
+      "mu": 8.63,
+      "sd": 5.64,
+      "min": 23.9,
+      "ppm": 0.362,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4702177",
+      "name": "Keon Ellis",
+      "team": "BKN",
+      "mu": 4.12,
+      "sd": 4.87,
+      "min": 17.0,
+      "ppm": 0.242,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "5175643",
+      "name": "Egor Demin",
+      "team": "BKN",
+      "mu": 13.42,
+      "sd": 6.45,
+      "min": 26.0,
+      "ppm": 0.517,
+      "games": 8,
+      "status": ""
+     },
+     {
+      "athlete_id": "4712896",
+      "name": "Noah Clowney",
+      "team": "BKN",
+      "mu": 7.35,
+      "sd": 5.42,
+      "min": 21.5,
+      "ppm": 0.342,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "5174655",
+      "name": "Chaney Johnson",
+      "team": "BKN",
+      "mu": 3.01,
+      "sd": 4.68,
+      "min": 12.8,
+      "ppm": 0.237,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "3150844",
+      "name": "Moritz Wagner",
+      "team": "BKN",
+      "mu": 10.1,
+      "sd": 5.88,
+      "min": 17.5,
+      "ppm": 0.579,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "5101761",
+      "name": "Mikel Brown Jr.",
+      "team": "BKN",
+      "mu": 11.25,
+      "sd": 6.08,
+      "min": 22.7,
+      "ppm": 0.497,
+      "games": 10,
+      "status": ""
+     },
+     {
+      "athlete_id": "5279130",
+      "name": "Nolan Traore",
+      "team": "BKN",
+      "mu": 14.45,
+      "sd": 6.62,
+      "min": 23.7,
+      "ppm": 0.611,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "5107173",
+      "name": "Danny Wolf",
+      "team": "BKN",
+      "mu": 9.1,
+      "sd": 5.71,
+      "min": 23.3,
+      "ppm": 0.392,
+      "games": 9,
+      "status": ""
+     },
+     {
+      "athlete_id": "3907823",
+      "name": "Terance Mann",
+      "team": "BKN",
+      "mu": 1.2,
+      "sd": 4.38,
+      "min": 12.5,
+      "ppm": 0.096,
+      "games": 8,
+      "status": ""
+     },
+     {
+      "athlete_id": "4566434",
+      "name": "Franz Wagner",
+      "team": "ORL",
+      "mu": 26.97,
+      "sd": 8.74,
+      "min": 37.3,
+      "ppm": 0.678,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4277847",
+      "name": "Wendell Carter Jr.",
+      "team": "ORL",
+      "mu": 13.87,
+      "sd": 6.52,
+      "min": 31.9,
+      "ppm": 0.408,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4066320",
+      "name": "Desmond Bane",
+      "team": "ORL",
+      "mu": 20.3,
+      "sd": 7.61,
+      "min": 36.1,
+      "ppm": 0.528,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4432165",
+      "name": "Jalen Suggs",
+      "team": "ORL",
+      "mu": 10.28,
+      "sd": 5.92,
+      "min": 27.4,
+      "ppm": 0.352,
+      "games": 6,
+      "status": ""
+     },
+     {
+      "athlete_id": "4278572",
+      "name": "Jamal Cain",
+      "team": "ORL",
+      "mu": 5.32,
+      "sd": 5.07,
+      "min": 15.3,
+      "ppm": 0.326,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4702382",
+      "name": "Tristan da Silva",
+      "team": "ORL",
+      "mu": 15.35,
+      "sd": 6.77,
+      "min": 30.5,
+      "ppm": 0.473,
+      "games": 12,
+      "status": ""
+     },
+     {
+      "athlete_id": "6478",
+      "name": "Nikola Vucevic",
+      "team": "ORL",
+      "mu": 3.02,
+      "sd": 4.69,
+      "min": 10.8,
+      "ppm": 0.263,
+      "games": 12,
+      "status": ""
+     },
+     {
+      "athlete_id": "4348700",
+      "name": "Goga Bitadze",
+      "team": "ORL",
+      "mu": 6.51,
+      "sd": 5.28,
+      "min": 15.1,
+      "ppm": 0.404,
+      "games": 12,
+      "status": ""
+     },
+     {
+      "athlete_id": "5239561",
+      "name": "Jase Richardson",
+      "team": "ORL",
+      "mu": 6.45,
+      "sd": 5.27,
+      "min": 22.3,
+      "ppm": 0.271,
+      "games": 11,
+      "status": ""
+     },
+     {
+      "athlete_id": "3133635",
+      "name": "Jevon Carter",
+      "team": "ORL",
+      "mu": 4.97,
+      "sd": 5.02,
+      "min": 14.8,
+      "ppm": 0.315,
+      "games": 10,
+      "status": ""
+     },
+     {
+      "athlete_id": "4593034",
+      "name": "Alex Morales",
+      "team": "ORL",
+      "mu": 2.8,
+      "sd": 4.65,
+      "min": 15.2,
+      "ppm": 0.173,
+      "games": 8,
+      "status": ""
+     },
+     {
+      "athlete_id": "4712849",
+      "name": "Anthony Black",
+      "team": "ORL",
+      "mu": 18.23,
+      "sd": 7.26,
+      "min": 34.4,
+      "ppm": 0.498,
+      "games": 11,
+      "status": ""
+     }
+    ]
+   },
+   "inj": {
+    "home": [
+     0.0,
+     []
     ],
     "away": [
      0.0,
@@ -1061,38 +692,38 @@
   },
   {
    "game": {
-    "id": "401910022",
-    "start": "2026-11-20T01:00:00+00:00",
-    "home": "SA",
-    "away": "LAC",
+    "id": "401909307",
+    "start": "2026-11-21T00:30:00+00:00",
+    "home": "CLE",
+    "away": "IND",
     "neutral": false,
     "odds": {
-     "provider": "DraftKings",
-     "spread": -15.5,
-     "total": 225.5,
-     "spread_home_line": -15.5,
-     "spread_home_odds": 1.9090909090909092,
-     "spread_away_odds": 1.9090909090909092,
-     "spread_open_home_line": -16.5,
-     "total_line": 225.5,
-     "over_odds": 1.8849557522123894,
-     "under_odds": 1.9345794392523366,
-     "total_open_line": 225.5,
-     "ml_home": 1.0961538461538463,
-     "ml_away": 7.7
+     "provider": "Draft Kings",
+     "spread": -6.5,
+     "total": 234.5,
+     "spread_home_line": -6.5,
+     "spread_home_odds": 1.8695652173913042,
+     "spread_away_odds": 1.9523809523809523,
+     "spread_open_home_line": -7.5,
+     "total_line": 234.5,
+     "over_odds": 1.8928571428571428,
+     "under_odds": 1.925925925925926,
+     "total_open_line": 234.5,
+     "ml_home": 1.373134328358209,
+     "ml_away": 3.2
     }
    },
    "proj": {
     "gap_margin": false,
     "gap_total": false,
-    "model_margin": 11.663010332129438,
-    "model_total": 222.75171269862489,
-    "market_margin": 16.087189968355233,
-    "market_total": 225.80551570552964,
-    "margin": 14.759936077487495,
-    "total": 224.88937480345822,
-    "home_pts": 119.82465544047287,
-    "away_pts": 105.06471936298536,
+    "model_margin": 7.374351133510854,
+    "model_total": 231.86900198775928,
+    "market_margin": 7.238282131166902,
+    "market_total": 234.70358082580492,
+    "margin": 7.279102831870087,
+    "total": 233.85320717439123,
+    "home_pts": 120.56615500313066,
+    "away_pts": 113.28705217126057,
     "b2b_home": false,
     "b2b_away": false,
     "anchored_m": true,
@@ -1100,233 +731,2179 @@
     "anomalies": [],
     "players": [
      {
-      "athlete_id": "5104157",
-      "name": "Victor Wembanyama",
-      "team": "SA",
-      "mu": 29.65,
-      "sd": 9.19,
-      "min": 29.7,
-      "ppm": 0.955,
+      "athlete_id": "4066328",
+      "name": "Jarrett Allen",
+      "team": "CLE",
+      "mu": 13.8,
+      "sd": 6.51,
+      "min": 27.2,
+      "ppm": 0.488,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4432158",
+      "name": "Evan Mobley",
+      "team": "CLE",
+      "mu": 16.93,
+      "sd": 7.04,
+      "min": 31.5,
+      "ppm": 0.518,
+      "games": 12,
+      "status": "out"
+     },
+     {
+      "athlete_id": "3992",
+      "name": "James Harden",
+      "team": "CLE",
+      "mu": 16.83,
+      "sd": 7.02,
+      "min": 33.2,
+      "ppm": 0.488,
       "games": 15,
       "status": ""
      },
      {
-      "athlete_id": "4066259",
-      "name": "De'Aaron Fox",
-      "team": "SA",
-      "mu": 12.93,
-      "sd": 6.38,
-      "min": 28.3,
+      "athlete_id": "3908809",
+      "name": "Donovan Mitchell",
+      "team": "CLE",
+      "mu": 26.43,
+      "sd": 8.65,
+      "min": 33.4,
+      "ppm": 0.762,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "4576087",
+      "name": "Peyton Watson",
+      "team": "CLE",
+      "mu": 10.77,
+      "sd": 6.0,
+      "min": 26.7,
+      "ppm": 0.388,
+      "games": 12,
+      "status": "day-to-day"
+     },
+     {
+      "athlete_id": "2995706",
+      "name": "Mario Hezonja",
+      "team": "CLE",
+      "mu": 9.83,
+      "sd": 5.84,
+      "min": 20.0,
+      "ppm": 0.472,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "4066757",
+      "name": "Sam Merrill",
+      "team": "CLE",
+      "mu": 7.67,
+      "sd": 5.47,
+      "min": 22.6,
+      "ppm": 0.326,
+      "games": 10,
+      "status": ""
+     },
+     {
+      "athlete_id": "4683747",
+      "name": "Jaylon Tyson",
+      "team": "CLE",
+      "mu": 11.15,
+      "sd": 6.06,
+      "min": 26.5,
+      "ppm": 0.405,
+      "games": 8,
+      "status": "out"
+     },
+     {
+      "athlete_id": "4701233",
+      "name": "Craig Porter Jr.",
+      "team": "CLE",
+      "mu": 2.54,
+      "sd": 4.6,
+      "min": 13.4,
+      "ppm": 0.183,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "5023693",
+      "name": "Tyrese Proctor",
+      "team": "CLE",
+      "mu": 12.07,
+      "sd": 6.22,
+      "min": 23.7,
+      "ppm": 0.49,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "3934723",
+      "name": "Thomas Bryant",
+      "team": "CLE",
+      "mu": 10.24,
+      "sd": 5.91,
+      "min": 15.8,
+      "ppm": 0.624,
+      "games": 10,
+      "status": ""
+     },
+     {
+      "athlete_id": "5041951",
+      "name": "Meleek Thomas",
+      "team": "CLE",
+      "mu": 14.24,
+      "sd": 6.59,
+      "min": 24.6,
+      "ppm": 0.556,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "3149673",
+      "name": "Pascal Siakam",
+      "team": "IND",
+      "mu": 24.42,
+      "sd": 8.31,
+      "min": 32.7,
+      "ppm": 0.719,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4017837",
+      "name": "Ivica Zubac",
+      "team": "IND",
+      "mu": 10.41,
+      "sd": 5.94,
+      "min": 24.1,
+      "ppm": 0.417,
+      "games": 10,
+      "status": ""
+     },
+     {
+      "athlete_id": "3133603",
+      "name": "Kelly Oubre Jr.",
+      "team": "IND",
+      "mu": 12.55,
+      "sd": 6.3,
+      "min": 25.4,
+      "ppm": 0.476,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4395712",
+      "name": "Andrew Nembhard",
+      "team": "IND",
+      "mu": 17.07,
+      "sd": 7.07,
+      "min": 33.6,
+      "ppm": 0.489,
+      "games": 11,
+      "status": "day-to-day"
+     },
+     {
+      "athlete_id": "2580365",
+      "name": "Larry Nance Jr.",
+      "team": "IND",
+      "mu": 4.24,
+      "sd": 4.89,
+      "min": 12.2,
+      "ppm": 0.334,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4278355",
+      "name": "Obi Toppin",
+      "team": "IND",
+      "mu": 10.23,
+      "sd": 5.91,
+      "min": 18.1,
+      "ppm": 0.545,
+      "games": 12,
+      "status": ""
+     },
+     {
+      "athlete_id": "5106060",
+      "name": "Jarace Walker",
+      "team": "IND",
+      "mu": 5.56,
+      "sd": 5.11,
+      "min": 18.1,
+      "ppm": 0.295,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4592829",
+      "name": "Quenton Jackson",
+      "team": "IND",
+      "mu": 10.62,
+      "sd": 5.97,
+      "min": 22.9,
+      "ppm": 0.446,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "4398207",
+      "name": "Jalen Slawson",
+      "team": "IND",
+      "mu": 4.01,
+      "sd": 4.85,
+      "min": 13.6,
+      "ppm": 0.284,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4065731",
+      "name": "Jay Huff",
+      "team": "IND",
+      "mu": 7.18,
+      "sd": 5.39,
+      "min": 15.6,
+      "ppm": 0.442,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4396909",
+      "name": "Aaron Nesmith",
+      "team": "IND",
+      "mu": 12.14,
+      "sd": 6.23,
+      "min": 28.8,
+      "ppm": 0.406,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "5105854",
+      "name": "Braden Smith",
+      "team": "IND",
+      "mu": 5.2,
+      "sd": 5.05,
+      "min": 16.1,
+      "ppm": 0.311,
+      "games": 8,
+      "status": "day-to-day"
+     },
+     {
+      "athlete_id": "2530530",
+      "name": "T.J. McConnell",
+      "team": "IND",
+      "mu": 8.8,
+      "sd": 5.66,
+      "min": 15.1,
+      "ppm": 0.561,
+      "games": 6,
+      "status": "day-to-day"
+     }
+    ]
+   },
+   "inj": {
+    "home": [
+     2.9349600000000002,
+     [
+      {
+       "name": "Jaylon Tyson",
+       "status": "out",
+       "impact": 0.4
+      },
+      {
+       "name": "Peyton Watson",
+       "status": "day-to-day",
+       "impact": 0.2
+      },
+      {
+       "name": "Nae'Qwan Tomlin",
+       "status": "out",
+       "impact": 0.2
+      },
+      {
+       "name": "Evan Mobley",
+       "status": "out",
+       "impact": 2.2
+      }
+     ]
+    ],
+    "away": [
+     1.01556,
+     [
+      {
+       "name": "T.J. McConnell",
+       "status": "day-to-day",
+       "impact": 0.4
+      },
+      {
+       "name": "Andrew Nembhard",
+       "status": "day-to-day",
+       "impact": 0.5
+      },
+      {
+       "name": "Braden Smith",
+       "status": "day-to-day",
+       "impact": 0.0
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "game": {
+    "id": "401909308",
+    "start": "2026-11-21T00:30:00+00:00",
+    "home": "DET",
+    "away": "TOR",
+    "neutral": false,
+    "odds": {
+     "provider": "Draft Kings",
+     "spread": -7.5,
+     "total": 217.5,
+     "spread_home_line": -7.5,
+     "spread_home_odds": 1.9090909090909092,
+     "spread_away_odds": 1.9090909090909092,
+     "spread_open_home_line": -1.5,
+     "total_line": 217.5,
+     "over_odds": 1.9345794392523366,
+     "under_odds": 1.8849557522123894,
+     "total_open_line": 227.5,
+     "ml_home": 1.343642611683849,
+     "ml_away": 3.37
+    }
+   },
+   "proj": {
+    "gap_margin": false,
+    "gap_total": false,
+    "model_margin": 6.400223171795963,
+    "model_total": 218.95250566977026,
+    "market_margin": 7.861968881701674,
+    "market_total": 217.19455513588855,
+    "margin": 7.423445168729961,
+    "total": 217.72194029605308,
+    "home_pts": 112.57269273239152,
+    "away_pts": 105.14924756366156,
+    "b2b_home": false,
+    "b2b_away": false,
+    "anchored_m": true,
+    "anchored_t": true,
+    "anomalies": [],
+    "players": [
+     {
+      "athlete_id": "3157465",
+      "name": "Duncan Robinson",
+      "team": "DET",
+      "mu": 16.82,
+      "sd": 7.02,
+      "min": 30.3,
+      "ppm": 0.561,
+      "games": 12,
+      "status": "out"
+     },
+     {
+      "athlete_id": "3908845",
+      "name": "John Collins",
+      "team": "DET",
+      "mu": 11.42,
+      "sd": 6.11,
+      "min": 26.4,
       "ppm": 0.437,
       "games": 14,
       "status": ""
      },
      {
-      "athlete_id": "4395630",
-      "name": "Devin Vassell",
-      "team": "SA",
-      "mu": 11.41,
-      "sd": 6.12,
-      "min": 30.0,
-      "ppm": 0.364,
+      "athlete_id": "4432166",
+      "name": "Cade Cunningham",
+      "team": "DET",
+      "mu": 26.89,
+      "sd": 8.73,
+      "min": 36.3,
+      "ppm": 0.749,
+      "games": 13,
+      "status": "day-to-day"
+     },
+     {
+      "athlete_id": "4684742",
+      "name": "Ausar Thompson",
+      "team": "DET",
+      "mu": 10.73,
+      "sd": 5.99,
+      "min": 29.2,
+      "ppm": 0.372,
       "games": 13,
       "status": ""
      },
      {
-      "athlete_id": "4845367",
-      "name": "Stephon Castle",
-      "team": "SA",
-      "mu": 16.07,
-      "sd": 6.91,
-      "min": 29.5,
-      "ppm": 0.522,
-      "games": 15,
+      "athlete_id": "4278562",
+      "name": "Paul Reed",
+      "team": "DET",
+      "mu": 11.2,
+      "sd": 6.07,
+      "min": 25.6,
+      "ppm": 0.442,
+      "games": 14,
       "status": ""
      },
      {
-      "athlete_id": "5037871",
-      "name": "Dylan Harper",
-      "team": "SA",
-      "mu": 19.3,
-      "sd": 7.45,
-      "min": 31.6,
-      "ppm": 0.585,
-      "games": 15,
+      "athlete_id": "4683771",
+      "name": "Ronald Holland II",
+      "team": "DET",
+      "mu": 4.91,
+      "sd": 5.01,
+      "min": 16.5,
+      "ppm": 0.301,
+      "games": 12,
       "status": "out"
      },
      {
-      "athlete_id": "6578",
-      "name": "Harrison Barnes",
-      "team": "SA",
-      "mu": 5.66,
-      "sd": 5.16,
-      "min": 15.2,
+      "athlete_id": "2596112",
+      "name": "Javonte Green",
+      "team": "DET",
+      "mu": 7.25,
+      "sd": 5.4,
+      "min": 19.9,
+      "ppm": 0.368,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4066372",
+      "name": "Kevin Huerter",
+      "team": "DET",
+      "mu": 11.48,
+      "sd": 6.12,
+      "min": 29.9,
+      "ppm": 0.387,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "5107199",
+      "name": "Daniss Jenkins",
+      "team": "DET",
+      "mu": 16.1,
+      "sd": 6.9,
+      "min": 32.8,
+      "ppm": 0.496,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4700852",
+      "name": "Chaz Lanier",
+      "team": "DET",
+      "mu": 5.42,
+      "sd": 5.09,
+      "min": 13.4,
+      "ppm": 0.409,
+      "games": 6,
+      "status": ""
+     },
+     {
+      "athlete_id": "4395625",
+      "name": "RJ Barrett",
+      "team": "TOR",
+      "mu": 20.62,
+      "sd": 7.67,
+      "min": 35.3,
+      "ppm": 0.603,
+      "games": 14,
+      "status": "out"
+     },
+     {
+      "athlete_id": "4433134",
+      "name": "Scottie Barnes",
+      "team": "TOR",
+      "mu": 23.56,
+      "sd": 8.17,
+      "min": 34.4,
+      "ppm": 0.706,
+      "games": 10,
+      "status": ""
+     },
+     {
+      "athlete_id": "3134908",
+      "name": "Jakob Poeltl",
+      "team": "TOR",
+      "mu": 8.3,
+      "sd": 5.58,
+      "min": 24.0,
       "ppm": 0.357,
       "games": 13,
       "status": ""
      },
      {
-      "athlete_id": "4395723",
-      "name": "Keldon Johnson",
-      "team": "SA",
+      "athlete_id": "4395724",
+      "name": "Immanuel Quickley",
+      "team": "TOR",
+      "mu": 17.59,
+      "sd": 7.15,
+      "min": 32.8,
+      "ppm": 0.553,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4431684",
+      "name": "Trayce Jackson-Davis",
+      "team": "TOR",
+      "mu": 3.4,
+      "sd": 4.75,
+      "min": 10.4,
+      "ppm": 0.336,
+      "games": 10,
+      "status": ""
+     },
+     {
+      "athlete_id": "4431893",
+      "name": "Jamison Battle",
+      "team": "TOR",
+      "mu": 9.16,
+      "sd": 5.73,
+      "min": 19.7,
+      "ppm": 0.481,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "5093267",
+      "name": "Collin Murray-Boyles",
+      "team": "TOR",
+      "mu": 9.08,
+      "sd": 5.71,
+      "min": 24.7,
+      "ppm": 0.38,
+      "games": 14,
+      "status": "out"
+     },
+     {
+      "athlete_id": "5149115",
+      "name": "Allen Graves",
+      "team": "TOR",
+      "mu": 4.77,
+      "sd": 4.98,
+      "min": 16.3,
+      "ppm": 0.301,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "4432241",
+      "name": "Jamal Shead",
+      "team": "TOR",
+      "mu": 8.56,
+      "sd": 5.62,
+      "min": 24.2,
+      "ppm": 0.365,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "4684272",
+      "name": "Ja'Kobe Walter",
+      "team": "TOR",
+      "mu": 12.53,
+      "sd": 6.3,
+      "min": 33.1,
+      "ppm": 0.391,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "4702656",
+      "name": "Alijah Martin",
+      "team": "TOR",
+      "mu": 5.64,
+      "sd": 5.13,
+      "min": 14.0,
+      "ppm": 0.415,
+      "games": 14,
+      "status": ""
+     }
+    ]
+   },
+   "inj": {
+    "home": [
+     3.3426400000000003,
+     [
+      {
+       "name": "Ronald Holland II",
+       "status": "out",
+       "impact": 0.2
+      },
+      {
+       "name": "Cade Cunningham",
+       "status": "day-to-day",
+       "impact": 1.4
+      },
+      {
+       "name": "Duncan Robinson",
+       "status": "out",
+       "impact": 1.7
+      }
+     ]
+    ],
+    "away": [
+     3.3739999999999988,
+     [
+      {
+       "name": "Collin Murray-Boyles",
+       "status": "out",
+       "impact": 0.5
+      },
+      {
+       "name": "RJ Barrett",
+       "status": "out",
+       "impact": 2.8
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "game": {
+    "id": "401909309",
+    "start": "2026-11-21T01:00:00+00:00",
+    "home": "CHI",
+    "away": "WSH",
+    "neutral": false,
+    "odds": {
+     "provider": "Draft Kings",
+     "spread": -3.5,
+     "total": 240.5,
+     "spread_home_line": -3.5,
+     "spread_home_odds": 1.9433962264150944,
+     "spread_away_odds": 1.8771929824561404,
+     "spread_open_home_line": -2.5,
+     "total_line": 240.5,
+     "over_odds": 1.9090909090909092,
+     "under_odds": 1.9090909090909092,
+     "total_open_line": 240.5,
+     "ml_home": 1.704225352112676,
+     "ml_away": 2.2
+    }
+   },
+   "proj": {
+    "gap_margin": false,
+    "gap_total": false,
+    "model_margin": 4.696506197883883,
+    "model_total": 241.6531385065087,
+    "market_margin": 2.750018288076482,
+    "market_total": 240.5,
+    "margin": 3.3339646610187024,
+    "total": 240.84594155195262,
+    "home_pts": 122.08995310648567,
+    "away_pts": 118.75598844546695,
+    "b2b_home": false,
+    "b2b_away": false,
+    "anchored_m": true,
+    "anchored_t": true,
+    "anomalies": [],
+    "players": [
+     {
+      "athlete_id": "4397189",
+      "name": "Jalen Smith",
+      "team": "CHI",
+      "mu": 14.92,
+      "sd": 6.7,
+      "min": 25.5,
+      "ppm": 0.551,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4711294",
+      "name": "Matas Buzelis",
+      "team": "CHI",
+      "mu": 17.16,
+      "sd": 7.08,
+      "min": 28.7,
+      "ppm": 0.562,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "5095151",
+      "name": "Caleb Wilson",
+      "team": "CHI",
+      "mu": 18.55,
+      "sd": 7.32,
+      "min": 28.3,
+      "ppm": 0.618,
+      "games": 10,
+      "status": "out"
+     },
+     {
+      "athlete_id": "2595516",
+      "name": "Norman Powell",
+      "team": "CHI",
+      "mu": 23.03,
+      "sd": 8.08,
+      "min": 29.3,
+      "ppm": 0.739,
+      "games": 12,
+      "status": ""
+     },
+     {
+      "athlete_id": "4871145",
+      "name": "Josh Giddey",
+      "team": "CHI",
+      "mu": 11.61,
+      "sd": 6.14,
+      "min": 28.5,
+      "ppm": 0.383,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4066650",
+      "name": "Zach Collins",
+      "team": "CHI",
+      "mu": 3.25,
+      "sd": 4.72,
+      "min": 12.3,
+      "ppm": 0.249,
+      "games": 9,
+      "status": ""
+     },
+     {
+      "athlete_id": "4432822",
+      "name": "Isaac Okoro",
+      "team": "CHI",
+      "mu": 8.98,
+      "sd": 5.69,
+      "min": 26.1,
+      "ppm": 0.324,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "5044385",
+      "name": "Leonard Miller",
+      "team": "CHI",
+      "mu": 4.13,
+      "sd": 4.87,
+      "min": 10.4,
+      "ppm": 0.375,
+      "games": 12,
+      "status": ""
+     },
+     {
+      "athlete_id": "5242496",
+      "name": "Noa Essengue",
+      "team": "CHI",
+      "mu": 4.9,
+      "sd": 5.0,
+      "min": 12.4,
+      "ppm": 0.373,
+      "games": 13,
+      "status": "day-to-day"
+     },
+     {
+      "athlete_id": "2990984",
+      "name": "Buddy Hield",
+      "team": "CHI",
+      "mu": 9.26,
+      "sd": 5.74,
+      "min": 17.6,
+      "ppm": 0.496,
+      "games": 12,
+      "status": ""
+     },
+     {
+      "athlete_id": "4395626",
+      "name": "Tre Jones",
+      "team": "CHI",
+      "mu": 11.82,
+      "sd": 6.18,
+      "min": 19.5,
+      "ppm": 0.571,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4431687",
+      "name": "Patrick Williams",
+      "team": "CHI",
+      "mu": 7.14,
+      "sd": 5.38,
+      "min": 20.4,
+      "ppm": 0.33,
+      "games": 7,
+      "status": ""
+     },
+     {
+      "athlete_id": "4683750",
+      "name": "Jordan Hawkins",
+      "team": "CHI",
+      "mu": 3.89,
+      "sd": 4.83,
+      "min": 10.5,
+      "ppm": 0.35,
+      "games": 7,
+      "status": ""
+     },
+     {
+      "athlete_id": "6583",
+      "name": "Anthony Davis",
+      "team": "WSH",
+      "mu": 27.18,
+      "sd": 8.78,
+      "min": 34.5,
+      "ppm": 0.722,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "5174563",
+      "name": "Kyshawn George",
+      "team": "WSH",
+      "mu": 19.86,
+      "sd": 7.54,
+      "min": 34.5,
+      "ppm": 0.526,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "5160992",
+      "name": "Alex Sarr",
+      "team": "WSH",
+      "mu": 13.68,
+      "sd": 6.49,
+      "min": 27.9,
+      "ppm": 0.449,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "4277905",
+      "name": "Trae Young",
+      "team": "WSH",
+      "mu": 18.17,
+      "sd": 7.25,
+      "min": 34.2,
+      "ppm": 0.486,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "5104155",
+      "name": "Bilal Coulibaly",
+      "team": "WSH",
+      "mu": 7.14,
+      "sd": 5.38,
+      "min": 23.9,
+      "ppm": 0.273,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "6609",
+      "name": "Khris Middleton",
+      "team": "WSH",
+      "mu": 6.04,
+      "sd": 5.2,
+      "min": 15.3,
+      "ppm": 0.36,
+      "games": 8,
+      "status": ""
+     },
+     {
+      "athlete_id": "4278129",
+      "name": "Deandre Ayton",
+      "team": "WSH",
+      "mu": 3.76,
+      "sd": 4.81,
+      "min": 11.6,
+      "ppm": 0.296,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "4845374",
+      "name": "Bub Carrington",
+      "team": "WSH",
+      "mu": 4.85,
+      "sd": 4.99,
+      "min": 16.1,
+      "ppm": 0.276,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "5238230",
+      "name": "Tre Johnson",
+      "team": "WSH",
+      "mu": 9.24,
+      "sd": 5.74,
+      "min": 21.8,
+      "ppm": 0.388,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "5142718",
+      "name": "AJ Dybantsa",
+      "team": "WSH",
+      "mu": 18.08,
+      "sd": 7.24,
+      "min": 34.4,
+      "ppm": 0.481,
+      "games": 12,
+      "status": ""
+     }
+    ]
+   },
+   "inj": {
+    "home": [
+     2.4100999999999995,
+     [
+      {
+       "name": "Noa Essengue",
+       "status": "day-to-day",
+       "impact": 0.0
+      },
+      {
+       "name": "Caleb Wilson",
+       "status": "out",
+       "impact": 2.4
+      }
+     ]
+    ],
+    "away": [
+     1.5539999999999996,
+     [
+      {
+       "name": "Tristan Vukcevic",
+       "status": "out",
+       "impact": 1.3
+      },
+      {
+       "name": "Jamir Watkins",
+       "status": "out",
+       "impact": 0.3
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "game": {
+    "id": "401909310",
+    "start": "2026-11-21T01:00:00+00:00",
+    "home": "OKC",
+    "away": "NO",
+    "neutral": false,
+    "odds": {
+     "provider": "Draft Kings",
+     "spread": -11.5,
+     "total": 229.5,
+     "spread_home_line": -11.5,
+     "spread_home_odds": 1.9433962264150944,
+     "spread_away_odds": 1.8771929824561404,
+     "spread_open_home_line": -11.5,
+     "total_line": 229.5,
+     "over_odds": 1.9174311926605505,
+     "under_odds": 1.900900900900901,
+     "total_open_line": 228.5,
+     "ml_home": 1.1831501831501832,
+     "ml_away": 5.11
+    }
+   },
+   "proj": {
+    "gap_margin": false,
+    "gap_total": false,
+    "model_margin": 16.788412441583326,
+    "model_total": 229.1406945869042,
+    "market_margin": 12.002743875622759,
+    "market_total": 229.39822430591624,
+    "margin": 13.43844444541093,
+    "total": 229.32096539021262,
+    "home_pts": 121.37970491781178,
+    "away_pts": 107.94126047240084,
+    "b2b_home": false,
+    "b2b_away": false,
+    "anchored_m": true,
+    "anchored_t": true,
+    "anomalies": [],
+    "players": [
+     {
+      "athlete_id": "4222252",
+      "name": "Isaiah Hartenstein",
+      "team": "OKC",
+      "mu": 9.42,
+      "sd": 5.77,
+      "min": 25.4,
+      "ppm": 0.337,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "4278073",
+      "name": "Shai Gilgeous-Alexander",
+      "team": "OKC",
+      "mu": 35.05,
+      "sd": 10.11,
+      "min": 33.4,
+      "ppm": 0.953,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "4432823",
+      "name": "Jaylin Williams",
+      "team": "OKC",
+      "mu": 3.1,
+      "sd": 4.7,
+      "min": 18.0,
+      "ppm": 0.157,
+      "games": 8,
+      "status": ""
+     },
+     {
+      "athlete_id": "5174983",
+      "name": "Aday Mara",
+      "team": "OKC",
+      "mu": 11.3,
+      "sd": 6.09,
+      "min": 24.1,
+      "ppm": 0.426,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "2991350",
+      "name": "Alex Caruso",
+      "team": "OKC",
+      "mu": 7.84,
+      "sd": 5.5,
+      "min": 18.8,
+      "ppm": 0.38,
+      "games": 12,
+      "status": "day-to-day"
+     },
+     {
+      "athlete_id": "3133626",
+      "name": "Kenrich Williams",
+      "team": "OKC",
       "mu": 9.02,
-      "sd": 5.72,
-      "min": 24.0,
+      "sd": 5.7,
+      "min": 22.8,
       "ppm": 0.36,
       "games": 15,
       "status": ""
      },
      {
-      "athlete_id": "4592479",
-      "name": "Julian Champagnie",
-      "team": "SA",
-      "mu": 10.21,
-      "sd": 5.92,
-      "min": 26.2,
-      "ppm": 0.373,
+      "athlete_id": "4683778",
+      "name": "Jared McCain",
+      "team": "OKC",
+      "mu": 16.21,
+      "sd": 6.92,
+      "min": 28.9,
+      "ppm": 0.51,
       "games": 15,
       "status": ""
      },
      {
-      "athlete_id": "5061568",
-      "name": "Carter Bryant",
-      "team": "SA",
-      "mu": 3.79,
-      "sd": 4.84,
-      "min": 10.2,
-      "ppm": 0.356,
-      "games": 14,
+      "athlete_id": "4900671",
+      "name": "Ajay Mitchell",
+      "team": "OKC",
+      "mu": 19.89,
+      "sd": 7.54,
+      "min": 28.9,
+      "ppm": 0.627,
+      "games": 13,
       "status": ""
      },
      {
-      "athlete_id": "3064560",
-      "name": "Luke Kornet",
-      "team": "SA",
-      "mu": 3.58,
-      "sd": 4.81,
-      "min": 14.6,
-      "ppm": 0.234,
+      "athlete_id": "5241364",
+      "name": "Bennett Stirtz",
+      "team": "OKC",
+      "mu": 8.14,
+      "sd": 5.55,
+      "min": 18.8,
+      "ppm": 0.393,
       "games": 15,
       "status": ""
      },
      {
-      "athlete_id": "3134916",
-      "name": "Jordan McLaughlin",
-      "team": "SA",
-      "mu": 3.88,
-      "sd": 4.86,
-      "min": 10.7,
-      "ppm": 0.346,
+      "athlete_id": "4432185",
+      "name": "Micah Peavy",
+      "team": "OKC",
+      "mu": 3.82,
+      "sd": 4.82,
+      "min": 16.7,
+      "ppm": 0.209,
       "games": 9,
       "status": ""
      },
      {
-      "athlete_id": "3936099",
-      "name": "Derrick Jones Jr.",
-      "team": "LAC",
-      "mu": 10.2,
-      "sd": 5.92,
-      "min": 28.3,
-      "ppm": 0.379,
+      "athlete_id": "5105800",
+      "name": "Josh Dix",
+      "team": "OKC",
+      "mu": 2.45,
+      "sd": 4.59,
+      "min": 16.9,
+      "ppm": 0.132,
+      "games": 7,
+      "status": ""
+     },
+     {
+      "athlete_id": "4395628",
+      "name": "Zion Williamson",
+      "team": "NO",
+      "mu": 20.66,
+      "sd": 7.67,
+      "min": 31.5,
+      "ppm": 0.681,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "4397688",
+      "name": "Trey Murphy III",
+      "team": "NO",
+      "mu": 15.23,
+      "sd": 6.75,
+      "min": 32.8,
+      "ppm": 0.483,
+      "games": 9,
+      "status": "out"
+     },
+     {
+      "athlete_id": "3907497",
+      "name": "Dejounte Murray",
+      "team": "NO",
+      "mu": 11.78,
+      "sd": 6.17,
+      "min": 30.2,
+      "ppm": 0.405,
+      "games": 9,
+      "status": "out"
+     },
+     {
+      "athlete_id": "5144091",
+      "name": "Jeremiah Fears",
+      "team": "NO",
+      "mu": 15.69,
+      "sd": 6.83,
+      "min": 30.7,
+      "ppm": 0.532,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "4277813",
+      "name": "Herbert Jones",
+      "team": "NO",
+      "mu": 6.6,
+      "sd": 5.29,
+      "min": 25.9,
+      "ppm": 0.265,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "4397136",
+      "name": "Saddiq Bey",
+      "team": "NO",
+      "mu": 16.95,
+      "sd": 7.05,
+      "min": 32.2,
+      "ppm": 0.548,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "4869780",
+      "name": "Derik Queen",
+      "team": "NO",
+      "mu": 11.25,
+      "sd": 6.08,
+      "min": 21.0,
+      "ppm": 0.557,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "4277956",
+      "name": "Jordan Poole",
+      "team": "NO",
+      "mu": 11.83,
+      "sd": 6.18,
+      "min": 25.4,
+      "ppm": 0.484,
+      "games": 10,
+      "status": ""
+     },
+     {
+      "athlete_id": "4683634",
+      "name": "Bennedict Mathurin",
+      "team": "NO",
+      "mu": 4.77,
+      "sd": 4.98,
+      "min": 14.4,
+      "ppm": 0.345,
+      "games": 12,
+      "status": "out"
+     },
+     {
+      "athlete_id": "4431675",
+      "name": "Trendon Watford",
+      "team": "NO",
+      "mu": 6.93,
+      "sd": 5.35,
+      "min": 17.9,
+      "ppm": 0.402,
+      "games": 6,
+      "status": "out"
+     },
+     {
+      "athlete_id": "4997538",
+      "name": "Karlo Matkovic",
+      "team": "NO",
+      "mu": 6.09,
+      "sd": 5.2,
+      "min": 17.7,
+      "ppm": 0.357,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "4576086",
+      "name": "Bryce McGowens",
+      "team": "NO",
+      "mu": 4.21,
+      "sd": 4.89,
+      "min": 12.0,
+      "ppm": 0.364,
+      "games": 7,
+      "status": "out"
+     }
+    ]
+   },
+   "inj": {
+    "home": [
+     0.1948799999999999,
+     [
+      {
+       "name": "Alex Caruso",
+       "status": "day-to-day",
+       "impact": 0.2
+      }
+     ]
+    ],
+    "away": [
+     2.4149999999999996,
+     [
+      {
+       "name": "Trey Murphy III",
+       "status": "out",
+       "impact": 1.3
+      },
+      {
+       "name": "Dejounte Murray",
+       "status": "out",
+       "impact": 1.1
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "game": {
+    "id": "401909311",
+    "start": "2026-11-21T02:30:00+00:00",
+    "home": "UTAH",
+    "away": "PHX",
+    "neutral": false,
+    "odds": {
+     "provider": "Draft Kings",
+     "spread": 4.5,
+     "total": 227.5,
+     "spread_home_line": 4.5,
+     "spread_home_odds": 1.9090909090909092,
+     "spread_away_odds": 1.9090909090909092,
+     "spread_open_home_line": 4.5,
+     "total_line": 227.5,
+     "over_odds": 1.9433962264150944,
+     "under_odds": 1.8771929824561404,
+     "total_open_line": 226.5,
+     "ml_home": 2.51,
+     "ml_away": 1.5555555555555556
+    }
+   },
+   "proj": {
+    "gap_margin": false,
+    "gap_total": false,
+    "model_margin": -6.8270396464257,
+    "model_total": 229.06058777754947,
+    "market_margin": -4.412172734655253,
+    "market_total": 227.09260265935143,
+    "margin": -5.136632808186388,
+    "total": 227.68299819481086,
+    "home_pts": 111.27318269331224,
+    "away_pts": 116.40981550149863,
+    "b2b_home": false,
+    "b2b_away": false,
+    "anchored_m": true,
+    "anchored_t": true,
+    "anomalies": [],
+    "players": [
+     {
+      "athlete_id": "4066336",
+      "name": "Lauri Markkanen",
+      "team": "UTAH",
+      "mu": 19.34,
+      "sd": 7.45,
+      "min": 31.6,
+      "ppm": 0.589,
+      "games": 8,
+      "status": "out"
+     },
+     {
+      "athlete_id": "4397077",
+      "name": "Jaxson Hayes",
+      "team": "UTAH",
+      "mu": 8.87,
+      "sd": 5.68,
+      "min": 23.4,
+      "ppm": 0.363,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4433627",
+      "name": "Keyonte George",
+      "team": "UTAH",
+      "mu": 23.15,
+      "sd": 8.1,
+      "min": 34.4,
+      "ppm": 0.646,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "5041955",
+      "name": "Darryn Peterson",
+      "team": "UTAH",
+      "mu": 17.48,
+      "sd": 7.14,
+      "min": 30.3,
+      "ppm": 0.555,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "5105839",
+      "name": "Brice Sensabaugh",
+      "team": "UTAH",
+      "mu": 12.51,
+      "sd": 6.29,
+      "min": 20.2,
+      "ppm": 0.595,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "3133602",
+      "name": "Svi Mykhailiuk",
+      "team": "UTAH",
+      "mu": 5.4,
+      "sd": 5.09,
+      "min": 20.2,
+      "ppm": 0.257,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "4065663",
+      "name": "Josh Okogie",
+      "team": "UTAH",
+      "mu": 5.34,
+      "sd": 5.08,
+      "min": 20.0,
+      "ppm": 0.256,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "4683766",
+      "name": "Isaiah Collier",
+      "team": "UTAH",
+      "mu": 6.14,
+      "sd": 5.21,
+      "min": 14.7,
+      "ppm": 0.402,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4873138",
+      "name": "Ace Bailey",
+      "team": "UTAH",
+      "mu": 13.73,
+      "sd": 6.5,
+      "min": 30.1,
+      "ppm": 0.439,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "4277919",
+      "name": "Mo Bamba",
+      "team": "UTAH",
+      "mu": 10.71,
+      "sd": 5.99,
+      "min": 22.7,
+      "ppm": 0.454,
       "games": 12,
       "status": ""
      },
      {
-      "athlete_id": "4066648",
-      "name": "Rui Hachimura",
-      "team": "LAC",
-      "mu": 12.29,
-      "sd": 6.27,
-      "min": 27.7,
-      "ppm": 0.466,
+      "athlete_id": "4432811",
+      "name": "Josh Green",
+      "team": "UTAH",
+      "mu": 5.26,
+      "sd": 5.06,
+      "min": 20.2,
+      "ppm": 0.25,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4065673",
+      "name": "Tony Bradley",
+      "team": "UTAH",
+      "mu": 2.58,
+      "sd": 4.61,
+      "min": 10.5,
+      "ppm": 0.237,
+      "games": 8,
+      "status": ""
+     },
+     {
+      "athlete_id": "3155526",
+      "name": "Dillon Brooks",
+      "team": "PHX",
+      "mu": 15.16,
+      "sd": 6.74,
+      "min": 28.5,
+      "ppm": 0.514,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4066383",
+      "name": "Miles Bridges",
+      "team": "PHX",
+      "mu": 14.44,
+      "sd": 6.62,
+      "min": 28.0,
+      "ppm": 0.498,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "5203685",
+      "name": "Khaman Maluach",
+      "team": "PHX",
+      "mu": 7.59,
+      "sd": 5.46,
+      "min": 17.6,
+      "ppm": 0.417,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "3136193",
+      "name": "Devin Booker",
+      "team": "PHX",
+      "mu": 25.48,
+      "sd": 8.49,
+      "min": 33.3,
+      "ppm": 0.738,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4437244",
+      "name": "Jalen Green",
+      "team": "PHX",
+      "mu": 12.78,
+      "sd": 6.34,
+      "min": 26.4,
+      "ppm": 0.468,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4601023",
+      "name": "Oso Ighodaro",
+      "team": "PHX",
+      "mu": 6.34,
+      "sd": 5.25,
+      "min": 23.4,
+      "ppm": 0.262,
+      "games": 12,
+      "status": ""
+     },
+     {
+      "athlete_id": "4888725",
+      "name": "Ryan Dunn",
+      "team": "PHX",
+      "mu": 5.37,
+      "sd": 5.08,
+      "min": 17.2,
+      "ppm": 0.302,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4278402",
+      "name": "Jordan Goodwin",
+      "team": "PHX",
+      "mu": 9.6,
+      "sd": 5.8,
+      "min": 20.5,
+      "ppm": 0.452,
+      "games": 10,
+      "status": ""
+     },
+     {
+      "athlete_id": "4278585",
+      "name": "Collin Gillespie",
+      "team": "PHX",
+      "mu": 9.99,
+      "sd": 5.87,
+      "min": 23.9,
+      "ppm": 0.405,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "3913174",
+      "name": "Luke Kennard",
+      "team": "PHX",
+      "mu": 9.49,
+      "sd": 5.78,
+      "min": 18.0,
+      "ppm": 0.509,
+      "games": 13,
+      "status": ""
+     }
+    ]
+   },
+   "inj": {
+    "home": [
+     3.6946,
+     [
+      {
+       "name": "Jusuf Nurkic",
+       "status": "out",
+       "impact": 1.5
+      },
+      {
+       "name": "Lauri Markkanen",
+       "status": "out",
+       "impact": 2.1
+      }
+     ]
+    ],
+    "away": [
+     1.4196000000000002,
+     [
+      {
+       "name": "Mark Williams",
+       "status": "out",
+       "impact": 1.4
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "game": {
+    "id": "401909312",
+    "start": "2026-11-21T03:00:00+00:00",
+    "home": "DEN",
+    "away": "HOU",
+    "neutral": false,
+    "odds": {
+     "provider": "Draft Kings",
+     "spread": -1.5,
+     "total": 225.5,
+     "spread_home_line": -1.5,
+     "spread_home_odds": 1.8928571428571428,
+     "spread_away_odds": 1.925925925925926,
+     "spread_open_home_line": -3.5,
+     "total_line": 225.5,
+     "over_odds": 1.9090909090909092,
+     "under_odds": 1.9090909090909092,
+     "total_open_line": 227.5,
+     "ml_home": 1.8,
+     "ml_away": 2.05
+    }
+   },
+   "proj": {
+    "gap_margin": false,
+    "gap_total": false,
+    "model_margin": -0.5994159905799717,
+    "model_total": 227.61436311674512,
+    "market_margin": 1.4185196925493346,
+    "market_total": 225.5,
+    "margin": 0.8131389876105426,
+    "total": 226.13430893502354,
+    "home_pts": 113.47372396131703,
+    "away_pts": 112.6605849737065,
+    "b2b_home": false,
+    "b2b_away": false,
+    "anchored_m": true,
+    "anchored_t": true,
+    "anomalies": [],
+    "players": [
+     {
+      "athlete_id": "3064290",
+      "name": "Aaron Gordon",
+      "team": "DEN",
+      "mu": 11.23,
+      "sd": 6.08,
+      "min": 28.8,
+      "ppm": 0.38,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "3138196",
+      "name": "Cameron Johnson",
+      "team": "DEN",
+      "mu": 11.95,
+      "sd": 6.2,
+      "min": 28.8,
+      "ppm": 0.404,
+      "games": 10,
+      "status": ""
+     },
+     {
+      "athlete_id": "3112335",
+      "name": "Nikola Jokic",
+      "team": "DEN",
+      "mu": 25.22,
+      "sd": 8.45,
+      "min": 37.1,
+      "ppm": 0.664,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "3936299",
+      "name": "Jamal Murray",
+      "team": "DEN",
+      "mu": 26.33,
+      "sd": 8.63,
+      "min": 36.2,
+      "ppm": 0.71,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4431767",
+      "name": "Christian Braun",
+      "team": "DEN",
+      "mu": 12.86,
+      "sd": 6.35,
+      "min": 33.2,
+      "ppm": 0.378,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4277848",
+      "name": "Marvin Bagley III",
+      "team": "DEN",
+      "mu": 5.65,
+      "sd": 5.13,
+      "min": 11.5,
+      "ppm": 0.477,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4565698",
+      "name": "Bryce Hopkins",
+      "team": "DEN",
+      "mu": 3.94,
+      "sd": 4.84,
+      "min": 10.1,
+      "ppm": 0.382,
+      "games": 8,
+      "status": ""
+     },
+     {
+      "athlete_id": "4698719",
+      "name": "Trevon Brazile",
+      "team": "DEN",
+      "mu": 5.99,
+      "sd": 5.19,
+      "min": 17.3,
+      "ppm": 0.338,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "3978",
+      "name": "DeMar DeRozan",
+      "team": "DEN",
+      "mu": 9.65,
+      "sd": 5.81,
+      "min": 21.7,
+      "ppm": 0.434,
+      "games": 12,
+      "status": ""
+     },
+     {
+      "athlete_id": "3135046",
+      "name": "Tyus Jones",
+      "team": "DEN",
+      "mu": 1.95,
+      "sd": 4.5,
+      "min": 10.3,
+      "ppm": 0.186,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4592427",
+      "name": "Spencer Jones",
+      "team": "DEN",
+      "mu": 4.25,
+      "sd": 4.89,
+      "min": 17.7,
+      "ppm": 0.234,
+      "games": 6,
+      "status": ""
+     },
+     {
+      "athlete_id": "3202",
+      "name": "Kevin Durant",
+      "team": "HOU",
+      "mu": 20.47,
+      "sd": 7.64,
+      "min": 32.8,
+      "ppm": 0.64,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "4432639",
+      "name": "Jabari Smith Jr.",
+      "team": "HOU",
+      "mu": 13.98,
+      "sd": 6.54,
+      "min": 31.9,
+      "ppm": 0.45,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "4871144",
+      "name": "Alperen Sengun",
+      "team": "HOU",
+      "mu": 19.89,
+      "sd": 7.54,
+      "min": 30.8,
+      "ppm": 0.663,
+      "games": 14,
+      "status": "day-to-day"
+     },
+     {
+      "athlete_id": "2991230",
+      "name": "Fred VanVleet",
+      "team": "HOU",
+      "mu": 13.3,
+      "sd": 6.43,
+      "min": 29.4,
+      "ppm": 0.464,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4684740",
+      "name": "Amen Thompson",
+      "team": "HOU",
+      "mu": 15.27,
+      "sd": 6.76,
+      "min": 32.9,
+      "ppm": 0.476,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "4433192",
+      "name": "Tari Eason",
+      "team": "HOU",
+      "mu": 10.69,
+      "sd": 5.98,
+      "min": 25.8,
+      "ppm": 0.426,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "3102529",
+      "name": "Clint Capela",
+      "team": "HOU",
+      "mu": 3.31,
+      "sd": 4.73,
+      "min": 15.2,
+      "ppm": 0.224,
+      "games": 6,
+      "status": "out"
+     },
+     {
+      "athlete_id": "2990992",
+      "name": "Marcus Smart",
+      "team": "HOU",
+      "mu": 7.03,
+      "sd": 5.36,
+      "min": 19.7,
+      "ppm": 0.367,
+      "games": 10,
+      "status": ""
+     },
+     {
+      "athlete_id": "3037789",
+      "name": "Bogdan Bogdanovic",
+      "team": "HOU",
+      "mu": 5.56,
+      "sd": 5.12,
+      "min": 13.7,
+      "ppm": 0.417,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "4711272",
+      "name": "Reed Sheppard",
+      "team": "HOU",
+      "mu": 9.59,
+      "sd": 5.8,
+      "min": 20.8,
+      "ppm": 0.472,
+      "games": 13,
+      "status": ""
+     }
+    ]
+   },
+   "inj": {
+    "home": [
+     0.5054,
+     [
+      {
+       "name": "Julian Strawther",
+       "status": "out",
+       "impact": 0.5
+      }
+     ]
+    ],
+    "away": [
+     1.2007799999999997,
+     [
+      {
+       "name": "Alperen Sengun",
+       "status": "day-to-day",
+       "impact": 1.2
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "game": {
+    "id": "401909313",
+    "start": "2026-11-21T03:00:00+00:00",
+    "home": "LAL",
+    "away": "SAC",
+    "neutral": false,
+    "odds": {
+     "provider": "Draft Kings",
+     "spread": -14.5,
+     "total": 231.5,
+     "spread_home_line": -14.5,
+     "spread_home_odds": 1.9090909090909092,
+     "spread_away_odds": 1.9090909090909092,
+     "spread_open_home_line": -14.5,
+     "total_line": 231.5,
+     "over_odds": 1.9090909090909092,
+     "under_odds": 1.9090909090909092,
+     "total_open_line": 230.5,
+     "ml_home": 1.1123595505617978,
+     "ml_away": 7.0
+    }
+   },
+   "proj": {
+    "gap_margin": false,
+    "gap_total": false,
+    "model_margin": 11.791292076914361,
+    "model_total": 230.52438778243595,
+    "market_margin": 15.166708407693083,
+    "market_total": 231.5,
+    "margin": 14.154083508459467,
+    "total": 231.20731633473076,
+    "home_pts": 122.68069992159512,
+    "away_pts": 108.52661641313564,
+    "b2b_home": false,
+    "b2b_away": false,
+    "anchored_m": true,
+    "anchored_t": true,
+    "anomalies": [],
+    "players": [
+     {
+      "athlete_id": "4433137",
+      "name": "Ziaire Williams",
+      "team": "LAL",
+      "mu": 9.03,
+      "sd": 5.7,
+      "min": 21.8,
+      "ppm": 0.398,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4433136",
+      "name": "Walker Kessler",
+      "team": "LAL",
+      "mu": 14.55,
+      "sd": 6.64,
+      "min": 30.9,
+      "ppm": 0.453,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "3907498",
+      "name": "Matisse Thybulle",
+      "team": "LAL",
+      "mu": 7.19,
+      "sd": 5.39,
+      "min": 24.9,
+      "ppm": 0.278,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "3945274",
+      "name": "Luka Doncic",
+      "team": "LAL",
+      "mu": 39.94,
+      "sd": 10.94,
+      "min": 37.0,
+      "ppm": 1.039,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4066457",
+      "name": "Austin Reaves",
+      "team": "LAL",
+      "mu": 25.41,
+      "sd": 8.48,
+      "min": 34.6,
+      "ppm": 0.706,
+      "games": 12,
+      "status": "out"
+     },
+     {
+      "athlete_id": "3155535",
+      "name": "Kevon Looney",
+      "team": "LAL",
+      "mu": 2.41,
+      "sd": 4.58,
+      "min": 10.3,
+      "ppm": 0.225,
+      "games": 6,
+      "status": ""
+     },
+     {
+      "athlete_id": "4278580",
+      "name": "Sandro Mamukelashvili",
+      "team": "LAL",
+      "mu": 9.86,
+      "sd": 5.84,
+      "min": 23.1,
+      "ppm": 0.411,
+      "games": 16,
+      "status": ""
+     },
+     {
+      "athlete_id": "4592691",
+      "name": "Jake LaRavia",
+      "team": "LAL",
+      "mu": 6.15,
+      "sd": 5.22,
+      "min": 26.4,
+      "ppm": 0.224,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "4397014",
+      "name": "Quentin Grimes",
+      "team": "LAL",
+      "mu": 15.8,
+      "sd": 6.85,
+      "min": 31.6,
+      "ppm": 0.481,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4278077",
+      "name": "Jarred Vanderbilt",
+      "team": "LAL",
+      "mu": 2.16,
+      "sd": 4.54,
+      "min": 12.0,
+      "ppm": 0.173,
       "games": 11,
       "status": ""
      },
      {
-      "athlete_id": "4432170",
-      "name": "Isaiah Jackson",
-      "team": "LAC",
-      "mu": 7.45,
-      "sd": 5.46,
-      "min": 18.5,
-      "ppm": 0.424,
+      "athlete_id": "4277811",
+      "name": "Collin Sexton",
+      "team": "LAL",
+      "mu": 11.84,
+      "sd": 6.18,
+      "min": 19.9,
+      "ppm": 0.572,
+      "games": 15,
+      "status": ""
+     },
+     {
+      "athlete_id": "3155942",
+      "name": "Domantas Sabonis",
+      "team": "SAC",
+      "mu": 12.94,
+      "sd": 6.37,
+      "min": 30.9,
+      "ppm": 0.406,
+      "games": 13,
+      "status": ""
+     },
+     {
+      "athlete_id": "4065732",
+      "name": "De'Andre Hunter",
+      "team": "SAC",
+      "mu": 14.85,
+      "sd": 6.69,
+      "min": 34.6,
+      "ppm": 0.416,
       "games": 12,
+      "status": "day-to-day"
+     },
+     {
+      "athlete_id": "4594327",
+      "name": "Keegan Murray",
+      "team": "SAC",
+      "mu": 10.72,
+      "sd": 5.99,
+      "min": 28.2,
+      "ppm": 0.369,
+      "games": 7,
       "status": ""
      },
      {
-      "athlete_id": "2991139",
-      "name": "Kris Dunn",
-      "team": "LAC",
-      "mu": 6.34,
-      "sd": 5.27,
-      "min": 24.9,
-      "ppm": 0.268,
+      "athlete_id": "3064440",
+      "name": "Zach LaVine",
+      "team": "SAC",
+      "mu": 21.04,
+      "sd": 7.74,
+      "min": 32.5,
+      "ppm": 0.629,
       "games": 13,
       "status": ""
      },
      {
-      "athlete_id": "4396907",
-      "name": "Darius Garland",
-      "team": "LAC",
-      "mu": 20.05,
-      "sd": 7.58,
-      "min": 32.8,
-      "ppm": 0.642,
+      "athlete_id": "5142620",
+      "name": "Darius Acuff Jr.",
+      "team": "SAC",
+      "mu": 27.17,
+      "sd": 8.78,
+      "min": 36.3,
+      "ppm": 0.726,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4431679",
+      "name": "Precious Achiuwa",
+      "team": "SAC",
+      "mu": 8.16,
+      "sd": 5.56,
+      "min": 21.3,
+      "ppm": 0.372,
+      "games": 12,
+      "status": "day-to-day"
+     },
+     {
+      "athlete_id": "4917149",
+      "name": "Alex Karaban",
+      "team": "SAC",
+      "mu": 0.93,
+      "sd": 4.33,
+      "min": 13.1,
+      "ppm": 0.068,
+      "games": 7,
+      "status": ""
+     },
+     {
+      "athlete_id": "5106058",
+      "name": "Emanuel Sharp",
+      "team": "SAC",
+      "mu": 5.13,
+      "sd": 5.04,
+      "min": 16.7,
+      "ppm": 0.299,
+      "games": 14,
+      "status": ""
+     },
+     {
+      "athlete_id": "4395650",
+      "name": "Leaky Black",
+      "team": "SAC",
+      "mu": 5.64,
+      "sd": 5.13,
+      "min": 21.2,
+      "ppm": 0.258,
+      "games": 9,
+      "status": ""
+     },
+     {
+      "athlete_id": "4066262",
+      "name": "Malik Monk",
+      "team": "SAC",
+      "mu": 9.26,
+      "sd": 5.74,
+      "min": 18.5,
+      "ppm": 0.484,
       "games": 13,
       "status": ""
      },
      {
-      "athlete_id": "3448",
-      "name": "Brook Lopez",
-      "team": "LAC",
-      "mu": 14.6,
-      "sd": 6.66,
-      "min": 25.2,
-      "ppm": 0.609,
-      "games": 13,
-      "status": ""
-     },
-     {
-      "athlete_id": "4702352",
-      "name": "Kobe Sanders",
-      "team": "LAC",
-      "mu": 7.56,
-      "sd": 5.48,
-      "min": 21.7,
-      "ppm": 0.365,
-      "games": 13,
-      "status": ""
-     },
-     {
-      "athlete_id": "5106258",
-      "name": "Gradey Dick",
-      "team": "LAC",
-      "mu": 7.5,
-      "sd": 5.47,
-      "min": 16.8,
-      "ppm": 0.469,
-      "games": 13,
-      "status": ""
-     },
-     {
-      "athlete_id": "5254165",
-      "name": "Keaton Wagler",
-      "team": "LAC",
-      "mu": 11.61,
-      "sd": 6.16,
-      "min": 21.7,
-      "ppm": 0.561,
-      "games": 13,
-      "status": ""
-     },
-     {
-      "athlete_id": "4065778",
-      "name": "Max Strus",
-      "team": "LAC",
-      "mu": 7.88,
-      "sd": 5.53,
-      "min": 22.3,
-      "ppm": 0.371,
+      "athlete_id": "4433174",
+      "name": "Dylan Cardwell",
+      "team": "SAC",
+      "mu": 5.9,
+      "sd": 5.17,
+      "min": 16.7,
+      "ppm": 0.342,
       "games": 7,
       "status": ""
      }
@@ -1334,32 +2911,32 @@
    },
    "inj": {
     "home": [
-     3.7729999999999997,
+     3.3404000000000007,
      [
       {
-       "name": "Dylan Harper",
+       "name": "Austin Reaves",
        "status": "out",
-       "impact": 2.5
-      },
-      {
-       "name": "Tobias Harris",
-       "status": "out",
-       "impact": 1.3
+       "impact": 3.3
       }
      ]
     ],
     "away": [
-     3.599400000000001,
+     1.3463799999999995,
      [
       {
-       "name": "Brandon Ingram",
-       "status": "out",
-       "impact": 2.9
+       "name": "Precious Achiuwa",
+       "status": "day-to-day",
+       "impact": 0.2
       },
       {
-       "name": "Jordan Miller",
+       "name": "De'Andre Hunter",
+       "status": "day-to-day",
+       "impact": 0.1
+      },
+      {
+       "name": "Maxime Raynaud",
        "status": "out",
-       "impact": 0.7
+       "impact": 1.1
       }
      ]
     ]
