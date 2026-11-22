@@ -16,7 +16,7 @@ MAX_SINGLE_STAKE_PCT = 0.03   # raised from 2% at owner request (17/11/2026); up
 # sharp market; derived/noisy/model-only estimates are more likely to be overstated.
 MAX_SINGLE_STAKE_PCT_BY_TIER = {"A": 0.03, "B": 0.025, "C": 0.015, "P": 0.015}
 MAX_PARLAY_STAKE_PCT = 0.01
-MIN_STAKE = 5.0            # Winner minimum-ish; stakes below this are rounded up/shown as minimum
+MIN_STAKE = 10.0           # Winner minimum bet (owner, 22/11/2026); smaller stakes are raised to this
 
 # ---- Which bets qualify -------------------------------------------------
 # Minimum expected value (EV) per confidence tier.

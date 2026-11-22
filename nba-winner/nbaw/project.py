@@ -53,11 +53,11 @@ STEP = 5  # stakes are always whole multiples of 5 ₪ (owner request, 18/11/202
 
 
 def _r5(x, ceiling=None):
-    """Nearest multiple of 5, never above `ceiling` (rounded down to 5), never below 5."""
+    """Nearest multiple of 5, never above `ceiling` (rounded down to 5), never below Winner's minimum."""
     v = int(round(x / STEP)) * STEP
     if ceiling is not None:
         v = min(v, int(ceiling // STEP) * STEP)
-    return max(v, STEP)
+    return max(v, int(config.MIN_STAKE))
 
 
 def stake(balance, kelly_f, cap_pct):
@@ -77,6 +77,6 @@ def size_day(balance, singles, parlays):
     cap = balance * config.DAILY_MAX_EXPOSURE
     if total > cap and total > 0:
         f = cap / total
-        out_s = [(b, max(STEP, int(s * f // STEP) * STEP)) for b, s in out_s]   # round down to stay under the cap
-        out_p = [(p, max(STEP, int(s * f // STEP) * STEP)) for p, s in out_p]
+        out_s = [(b, max(int(config.MIN_STAKE), int(s * f // STEP) * STEP)) for b, s in out_s]   # round down to stay under the cap
+        out_p = [(p, max(int(config.MIN_STAKE), int(s * f // STEP) * STEP)) for p, s in out_p]
     return out_s, out_p

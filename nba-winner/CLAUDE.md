@@ -50,7 +50,8 @@ If the Chrome extension isn't connected: tell Ethan (Chrome must be open, extens
 - NBA game markets are marked **SD** → allowed as single, double or more.
 - No two options from the same event in one combination → max one leg per game.
 - Cancelled game → odds 1 (settlement treats a push leg as 1.0).
-- The board may cap max payout per ticket (amount not published). No published minimum stake found.
+- The board may cap max payout per ticket (amount not published). Minimum bet 10 ₪ (per Ethan, 22/11/2026) →
+  `config.MIN_STAKE`; stakes are whole multiples of 5 ₪.
 
 ## Project settings — `nbaw/config.py`
 
